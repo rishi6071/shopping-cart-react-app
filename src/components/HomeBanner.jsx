@@ -6,77 +6,14 @@ import { makeStyles, Typography, Button } from "@material-ui/core";
 import { Fragment } from "react";
 import { Grid } from "@material-ui/core";
 
-// Icons & Media
-import Banner1 from "../media/banner/banner_01.png";
-import Banner2 from "../media/banner/banner_02.png";
+// Styled Components
+import useStyles from "./css/HomeBannerStyle";
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    width: "100vw",
-    height: 600,
-    marginBottom: 40,
-    background: "#f1f1f1",
-  },
-  mt3: {
-    marginTop: 10,
-  },
-  bannerBox: {
-    padding: "10px",
-    cursor: "grab",
-    "&:active": {
-      cursor: "grabbing",
-    },
-    overflow: "hidden",
-  },
-  bannerImgBox: {
-    display: "block",
-    margin: "auto",
-  },
-  bannerImg: {
-    height: 350,
-    display: "block",
-    margin: "auto",
-    [theme.breakpoints.up("md")]: {
-      height: 550,
-    },
-  },
-  bannerContent: {
-    paddingLeft: 50,
-    paddingBottom: 20,
-    [theme.breakpoints.down("sm")]: {
-      alignItems: "center",
-      paddingLeft: 0,
-    },
-  },
-  bannerBoldContent: {
-    fontWeight: "bold",
-    marginTop: 10,
-    textTransform: "uppercase",
-    fontFamily: "georgia",
-    [theme.breakpoints.up("sm")]: {
-      fontSize: "30px",
-    },
-  },
-  bannerBtn: {
-    width: 170,
-    borderRadius: 0,
-    paddingTop: 5,
-    paddingBottom: 5,
-    marginTop: 15,
-    background: "black",
-    color: "white",
-    border: "2.5px solid black",
-    transition: "0.5s",
-    "&:hover": {
-      background: "transparent",
-      color: "black",
-    },
-  },
-  category: {
-    background: "#f1f1f1",
-    padding: 15
-  }
-}));
+// Icons & Media
+import { Banner1, Banner2, Collection1, Collection2 } from "./css/HomeBannerStyle";
+
+const banners = [Banner1, Banner2];
+const collections = [Collection1, Collection2]
 
 const HomeBanner = () => {
   const classes = useStyles();
@@ -96,13 +33,14 @@ const HomeBanner = () => {
           hoverPause="true"
           focusAt="center"
         >
-          {[Banner1, Banner2].map((bannerItem) => {
+          {[...banners].map((bannerItem) => {
             return (
               <>
                 <Fragment>
                   <Grid container className={classes.bannerBox}>
                     <Grid
                       item
+                      xl={4}
                       sm={12}
                       md={6}
                       container
@@ -122,6 +60,7 @@ const HomeBanner = () => {
                       <Typography
                         variant="h6"
                         style={{ fontSize: "15px", marginTop: 6 }}
+                        color="textSecondary"
                       >
                         Trending Mobiles, Headphone and Accessories Collection
                       </Typography>
@@ -129,7 +68,13 @@ const HomeBanner = () => {
                         Shop Now
                       </Button>
                     </Grid>
-                    <Grid item sm={12} md={6} className={classes.bannerImgBox}>
+                    <Grid
+                      item
+                      xl={8}
+                      sm={12}
+                      md={6}
+                      className={classes.bannerImgBox}
+                    >
                       <img
                         src={bannerItem}
                         className={classes.bannerImg}
@@ -143,17 +88,61 @@ const HomeBanner = () => {
           })}
         </Glide>
       </div>
-    
+
       {/* Second Banner Section */}
       <div className>
-          <Grid container direction="column" justifyContent="center">
-            <Grid item sm={6} xs={12} className={classes.category}>
-
-            </Grid>
-            <Grid item sm={6} xs={12} className={classes.category}>
-
-            </Grid>
-          </Grid>
+        <Grid
+          container
+          direction="row"
+          justifyContent="center"
+          className={classes.collection}
+          spacing={2}
+        >
+          {[...collections].map((collection) => {
+            return (
+              <>
+                <Grid item md={6} sm={12}>
+                  <Grid className={classes.collectionItem} spacing={2}>
+                    <Grid container justifyContent="center">
+                      <Grid item sm={6}>
+                        <img
+                          src={collection}
+                          className={classes.collectionImg}
+                          alt="Smartphones"
+                        />
+                      </Grid>
+                      <Grid
+                        item
+                        sm={6}
+                        container
+                        alignItems="center"
+                        justifyContent="space-around"
+                      >
+                        <Grid>
+                          <Typography variantMapping="p">
+                            New Colors Introduced
+                          </Typography>
+                          <Typography
+                            variant="h6"
+                            className={classes.collectionBoldContent}
+                          >
+                            HEADPHONES
+                          </Typography>
+                          <Button
+                            variant="contained"
+                            className={classes.collectionBtn}
+                          >
+                            SHOP NOW
+                          </Button>
+                        </Grid>
+                      </Grid>
+                    </Grid>
+                  </Grid>
+                </Grid>
+              </>
+            );
+          })}
+        </Grid>
       </div>
     </>
   );

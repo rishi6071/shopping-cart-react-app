@@ -1,4 +1,5 @@
 import React from "react";
+import './App.css';
 import Navbar from "./components/Navbar";
 import HomeBanner from "./components/HomeBanner";
 import ProductGrid from "./components/ProductGrid";
@@ -6,9 +7,11 @@ import ProductGrid from "./components/ProductGrid";
 const App = () => {
   return (
     <>
-      <Navbar />
-      <HomeBanner />
-      <ProductGrid />
+      <main>
+        <Navbar />
+        <HomeBanner />
+        <ProductGrid />
+      </main>
     </>
   );
 };
