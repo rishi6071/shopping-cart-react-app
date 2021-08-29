@@ -1,3 +1,14 @@
 @charset "UTF-8";
 
-/* ===== HomeBanner.jsx Styling ===== */
+/* ===== SectionHeader.jsx Styling ===== */
+ul.alice-carousel__dots {
+  margin-top: 5px;
+}
+
+.readMoreLink {
+    text-decoration: none;
+}
+
+.readMoreLink:hover {
+    text-decoration: none;
+}

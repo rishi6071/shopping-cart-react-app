@@ -1,7 +1,10 @@
-import React, { useState, useEffect, Fragment } from "react";
-import axios from "axios";
-import useStyles from "./css/NewsGridStyle";
+import React, { useState, useEffect } from "react";
 import "./css/style.css";
+import axios from "axios";
+import SectionHeader from "./SectionHeader";
+import AliceCarousel from "react-alice-carousel";
+import "react-alice-carousel/lib/alice-carousel.css";
+import useStyles from "./css/NewsGridStyle";
 
 // Material-UI Components
 import Container from "@material-ui/core/Container";
@@ -45,65 +48,99 @@ const NewsGrid = () => {
       });
   }, []);
 
+  const responsiveNewsCards = {
+    0: { items: 1 },
+    768: {
+      items: 2,
+    },
+    1024: { items: 3 },
+    1900: {
+      items: 4,
+    },
+  };
+
   return (
     <>
       <div className={classes.root}>
         <Grid container>
-          {[...newsData].map((newsfeed) => {
-            return (
-              <>
-                <Grid item md={4}>
-                  <Card style={{ margin: "20px 15px" }}>
-                    <CardActionArea>
-                      <CardMedia
-                        component="img"
-                        alt="News_Article"
-                        height="250"
-                        image="https://lh3.googleusercontent.com/proxy/h1usQHaRRfUBfVGM-OI5Vp2ry0htc3UkxQ2quXXHZRO_ExOk3HpO4b67FSBkd03dc9eDWeEhRffMSOxTMUMSQD63qZ6jsZ4vjUGYi_et6KD-7b1Js-dfbHpRgdUQjBoBbQ"
-                        title="Contemplative Reptile"
-                      />
-                      <CardContent style={{ padding: "20px 20px 25px 20px" }}>
-                        <Container disableGutters className={classes.newsContentBox}>
-                          <Typography
-                            gutterBottom
-                            style={{
-                              fontWeight: "600",
-                              fontSize: "17px",
-                              letterSpacing: "0.5px",
-                            }}
+          <SectionHeader title={"NEWS Panel"} />
+
+          <AliceCarousel
+            mouseTracking
+            autoPlay
+            animationDuration="1000"
+            disableButtonsControls="false"
+            autoPlayInterval={2000}
+            responsive={responsiveNewsCards}
+            mouseTracking="false"
+            items={[...newsData].map((newsfeed) => {
+              return (
+                <>
+                  <Grid item>
+                    <Card style={{ margin: "20px 15px" }}>
+                      <CardActionArea>
+                        <CardMedia
+                          component="img"
+                          alt="News_Article"
+                          height="250"
+                          image="https://lh3.googleusercontent.com/proxy/h1usQHaRRfUBfVGM-OI5Vp2ry0htc3UkxQ2quXXHZRO_ExOk3HpO4b67FSBkd03dc9eDWeEhRffMSOxTMUMSQD63qZ6jsZ4vjUGYi_et6KD-7b1Js-dfbHpRgdUQjBoBbQ"
+                          title="Contemplative Reptile"
+                        />
+                        <CardContent style={{ padding: "20px 20px 25px 20px" }}>
+                          <Container
+                            disableGutters
+                            className={classes.newsContentBox}
                           >
-                            {newsfeed.name}
-                          </Typography>
-                          <Typography
-                            variantMapping="p"
-                            style={{ fontStyle: "italic", marginBottom: "8px" }}
+                            <Typography
+                              gutterBottom
+                              style={{
+                                fontWeight: "600",
+                                fontSize: "17px",
+                                letterSpacing: "0.5px",
+                              }}
+                            >
+                              {newsfeed.name}
+                            </Typography>
+                            <Typography
+                              variantMapping="p"
+                              style={{
+                                fontStyle: "italic",
+                                marginBottom: "8px",
+                                fontSize: "13px",
+                              }}
+                            >
+                              By {newsfeed.provider[0].name}
+                            </Typography>
+                            <Typography
+                              variant="body2"
+                              component="p"
+                              style={{
+                                color: "dimgrey",
+                                fontSize: "13.5px",
+                                letterSpacing: "0.7px",
+                                textAlign: "justify",
+                                lineHeight: "1.5",
+                              }}
+                            >
+                              {newsfeed.description}
+                            </Typography>
+                          </Container>
+                          <Button
+                            variant="contained"
+                            className={classes.newsBtn}
+                            href={newsfeed.url}
+                            target="_blank"
                           >
-                            By {newsfeed.provider[0].name}
-                          </Typography>
-                          <Typography
-                            variant="body2"
-                            component="p"
-                            style={{
-                              color: "dimgrey",
-                              fontSize: "13.5px",
-                              letterSpacing: "0.7px",
-                              textAlign: "justify",
-                              lineHeight: "1.5",
-                            }}
-                          >
-                            {newsfeed.description}
-                          </Typography>
-                        </Container>
-                        <Button variant="contained" className={classes.newsBtn}>
-                          Read More
-                        </Button>
-                      </CardContent>
-                    </CardActionArea>
-                  </Card>
-                </Grid>
-              </>
-            );
-          })}
+                              Read More
+                          </Button>
+                        </CardContent>
+                      </CardActionArea>
+                    </Card>
+                  </Grid>
+                </>
+              );
+            })}
+          />
         </Grid>
       </div>
     </>

@@ -10,6 +10,27 @@ const useStyles = makeStyles((theme) => ({
   grid: {
     marginTop: 30,
   },
+  newsHead: {
+    background: "#f1f1f1",
+    height: 60,
+    textAlign: "center",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 20,
+    marginBottom: 30,
+  },
+  newsHeadTitle: {
+    fontFamily: "impact, arial",
+    opacity: 0.9,
+    letterSpacing: "0.8px",
+    wordSpacing: "2.5px",
+  },
+  newsHeadIcon: {
+    marginRight: 5,
+    outline: "1px solid black",
+    outlineOffset: "-4px !important",
+  },
   newsBtn: {
     width: 135,
     borderRadius: 0,
@@ -28,6 +49,10 @@ const useStyles = makeStyles((theme) => ({
       color: "white",
     },
   },
+  newsContentBox: {
+    height: 190,
+    overflow: "hidden",
+  },
   media: {
     height: 0,
     paddingTop: "56.25%", // 16:9
@@ -44,10 +69,6 @@ const useStyles = makeStyles((theme) => ({
   },
   avatar: {
     backgroundColor: "black",
-  },
-  newsContentBox: {
-    height: 195,
-    overflow: "hidden",
   },
 }));
 
