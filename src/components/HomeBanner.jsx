@@ -1,8 +1,10 @@
-import React, { useRef } from "react";
+import React, { useEffect } from "react";
+import AOS from "aos";
 
 // Material-UI Components
+import 'react-glidejs/dist/index.css';
 import Glide, { Slide } from "react-glidejs";
-import { makeStyles, Typography, Button } from "@material-ui/core";
+import { Typography, Button } from "@material-ui/core";
 import { Fragment } from "react";
 import { Grid } from "@material-ui/core";
 
@@ -10,14 +12,23 @@ import { Grid } from "@material-ui/core";
 import useStyles from "./css/HomeBannerStyle";
 
 // Icons & Media
-import { Banner1, Banner2, Collection1, Collection2 } from "./css/HomeBannerStyle";
-
+import {
+  Banner1,
+  Banner2,
+  Collection1,
+  Collection2,
+} from "./css/HomeBannerStyle";
 const banners = [Banner1, Banner2];
-const collections = [Collection1, Collection2]
+const collections = [Collection1, Collection2];
 
 const HomeBanner = () => {
   const classes = useStyles();
-  const gliderRef = useRef(null);
+
+  useEffect(() => {
+    AOS.init({
+      duration: 2000,
+    });
+  }, []);
 
   return (
     <>
@@ -25,7 +36,7 @@ const HomeBanner = () => {
       <div className={classes.root}>
         <Glide
           type="carousel"
-          autoplay="3000"
+          autoplay="2500"
           animationDuration="800"
           animationTimingFunc="linear"
           perView={1}
@@ -90,7 +101,7 @@ const HomeBanner = () => {
       </div>
 
       {/* Second Banner Section */}
-      <div className>
+      <div data-aos="zoom-up">
         <Grid
           container
           direction="row"

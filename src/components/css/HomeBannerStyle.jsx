@@ -40,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   bannerContent: {
-    paddingLeft: 50,
+    paddingLeft: 70,
     paddingBottom: 20,
     [theme.breakpoints.down("sm")]: {
       alignItems: "center",
@@ -64,7 +64,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: 15,
     background: "black",
     color: "white",
-    border: "2.5px solid black",
+    border: "2px solid black",
     letterSpacing: "1px",
     fontWeight: "600",
     transition: "0.5s",
