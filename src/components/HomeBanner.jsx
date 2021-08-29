@@ -3,7 +3,7 @@ import AOS from "aos";
 
 // Material-UI Components
 import 'react-glidejs/dist/index.css';
-import Glide, { Slide } from "react-glidejs";
+import Glide from "react-glidejs";
 import { Typography, Button } from "@material-ui/core";
 import { Fragment } from "react";
 import { Grid } from "@material-ui/core";

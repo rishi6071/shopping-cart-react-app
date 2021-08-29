@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar";
 import HomeBanner from "./components/HomeBanner";
 import ProductGrid from "./components/ProductGrid";
 import NewsGrid from "./components/NewsGrid";
+import Footer from "./components/Footer";
 
 const App = () => {
   return (
@@ -12,7 +13,8 @@ const App = () => {
         <Navbar />
         <HomeBanner />
         <ProductGrid />
-        <NewsGrid />
+        {/* <NewsGrid /> */}
+        <Footer />
       </main>
     </>
   );
