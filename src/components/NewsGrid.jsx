@@ -4,7 +4,7 @@ import axios from "axios";
 import SectionHeader from "./SectionHeader";
 import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/alice-carousel.css";
-import useStyles from "./css/NewsGridStyle";
+import useStyles, { newsRandImgs } from "./css/NewsGridStyle";
 
 // Material-UI Components
 import Container from "@material-ui/core/Container";
@@ -83,7 +83,7 @@ const NewsGrid = () => {
                           component="img"
                           alt="News_Article"
                           height="250"
-                          image="https://lh3.googleusercontent.com/proxy/h1usQHaRRfUBfVGM-OI5Vp2ry0htc3UkxQ2quXXHZRO_ExOk3HpO4b67FSBkd03dc9eDWeEhRffMSOxTMUMSQD63qZ6jsZ4vjUGYi_et6KD-7b1Js-dfbHpRgdUQjBoBbQ"
+                          image={newsRandImgs[Math.floor(Math.random() * newsRandImgs.length)]}
                           title="Contemplative Reptile"
                         />
                         <CardContent style={{ padding: "20px 20px 25px 20px" }}>

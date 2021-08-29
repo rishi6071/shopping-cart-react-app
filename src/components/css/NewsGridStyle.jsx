@@ -1,5 +1,30 @@
 import { makeStyles } from "@material-ui/core/styles";
 
+// NewsGrid Random Images
+import Img1 from "../../media/NewsImgs/r1.jpg";
+import Img2 from "../../media/NewsImgs/r2.png";
+import Img3 from "../../media/NewsImgs/r3.jpg";
+import Img4 from "../../media/NewsImgs/r4.jpg";
+import Img5 from "../../media/NewsImgs/r5.jpg";
+import Img6 from "../../media/NewsImgs/r6.jpg";
+import Img7 from "../../media/NewsImgs/r7.jpg";
+import Img8 from "../../media/NewsImgs/r8.jpg";
+import Img9 from "../../media/NewsImgs/r9.jpeg";
+import Img10 from "../../media/NewsImgs/r10.jpeg";
+
+const newsRandImgs = [
+  Img1,
+  Img2,
+  Img3,
+  Img4,
+  Img5,
+  Img6,
+  Img7,
+  Img8,
+  Img9,
+  Img10,
+];
+
 const useStyles = makeStyles((theme) => ({
   root: {
     marginRight: 20,
@@ -73,3 +98,4 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default useStyles;
+export { newsRandImgs };
