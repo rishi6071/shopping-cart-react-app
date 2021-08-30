@@ -13,7 +13,7 @@ const App = () => {
         <Navbar />
         <HomeBanner />
         <ProductGrid />
-        <NewsGrid />
+        {/* <NewsGrid /> */}
         <Footer />
       </main>
     </>
