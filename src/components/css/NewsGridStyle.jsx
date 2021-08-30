@@ -2,7 +2,7 @@ import { makeStyles } from "@material-ui/core/styles";
 
 // NewsGrid Random Images
 import Img1 from "../../media/NewsImgs/r1.jpg";
-import Img2 from "../../media/NewsImgs/r2.png";
+import Img2 from "../../media/NewsImgs/r2.jpg";
 import Img3 from "../../media/NewsImgs/r3.jpg";
 import Img4 from "../../media/NewsImgs/r4.jpg";
 import Img5 from "../../media/NewsImgs/r5.jpg";

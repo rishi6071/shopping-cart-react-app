@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   bannerContent: {
-    paddingLeft: 70,
+    paddingLeft: 100,
     paddingBottom: 20,
     [theme.breakpoints.down("sm")]: {
       alignItems: "center",

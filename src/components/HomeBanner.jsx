@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import './css/style.css';
 import AOS from "aos";
 
 // Material-UI Components

@@ -27,8 +27,8 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   footerDarkBox: {
-    paddingTop: 35,
-    paddingBottom: 35,
+    paddingTop: 25,
+    paddingBottom: 25,
     display: "flex",
     justifyContent: "center",
     alignItems: "center",

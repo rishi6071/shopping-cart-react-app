@@ -66,7 +66,6 @@ const NewsGrid = () => {
           <SectionHeader title={"NEWS Panel"} />
 
           <AliceCarousel
-            mouseTracking
             autoPlay
             animationDuration="1000"
             disableButtonsControls="false"

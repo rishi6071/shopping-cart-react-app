@@ -14,15 +14,15 @@ import { Grid, Button } from "@material-ui/core";
 import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 import DummyImg from "../media/products/iPhone/iphone4.jpeg";
 
-const products = [
-  {
-    id: 1,
-    name: "Rishi Soni",
-    description: "My Name",
-    price: "",
-    url: "",
-  },
-];
+// const products = [
+//   {
+//     id: 1,
+//     name: "Rishi Soni",
+//     description: "My Name",
+//     price: "",
+//     url: "",
+//   },
+// ];
 
 const useStyles = makeStyles({
   root: {
