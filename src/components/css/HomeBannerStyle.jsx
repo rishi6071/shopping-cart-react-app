@@ -87,6 +87,7 @@ const useStyles = makeStyles((theme) => ({
     background: "#f1f1f1",
     padding: "20px 35px",
     textAlign: "center",
+    borderRadius: 7,
   },
   collectionImg: {
     height: 220,
@@ -116,4 +117,4 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default useStyles;
-export {Banner1, Banner2, Collection1, Collection2};
+export { Banner1, Banner2, Collection1, Collection2 };

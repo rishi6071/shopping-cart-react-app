@@ -37,7 +37,10 @@ const useStyles = makeStyles((theme) => ({
   },
   newsHead: {
     background: "#f1f1f1",
-    height: 60,
+    paddingTop: 20,
+    paddingBottom: 20,
+    width: "95%",
+    borderRadius: 5,
     textAlign: "center",
     display: "flex",
     justifyContent: "center",
@@ -46,10 +49,15 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: 30,
   },
   newsHeadTitle: {
-    fontFamily: "impact, arial",
-    opacity: 0.9,
+    fontFamily: "arial",
+    fontWeight: 600,
+    opacity: 0.8,
+    marginLeft: 2,
     letterSpacing: "0.8px",
     wordSpacing: "2.5px",
+    "&:hover": {
+      opacity: 1,
+    },
   },
   newsHeadIcon: {
     marginRight: 5,

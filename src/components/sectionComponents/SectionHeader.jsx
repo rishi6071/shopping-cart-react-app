@@ -1,6 +1,6 @@
 import React from "react";
-import "./css/style.css";
-import useStyles from "./css/NewsGridStyle";
+import "../css/style.css";
+import useStyles from "../css/NewsGridStyle";
 
 // Material-Ui Components
 import { Container, Grid, Typography } from "@material-ui/core";
@@ -14,7 +14,7 @@ const SectionHeader = (props) => {
   return (
     <>
       <Container className={classes.newsHead}>
-        <Grid container justifyContent="center">
+        <Grid container justifyContent="center" alignItems="center">
           <StopIcon className={classes.newsHeadIcon} />
           <Typography className={classes.newsHeadTitle}>{props.title}</Typography>
         </Grid>

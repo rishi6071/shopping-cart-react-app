@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import "./css/style.css";
+import "../css/style.css";
 import axios from "axios";
 import SectionHeader from "./SectionHeader";
 import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/alice-carousel.css";
-import useStyles, { newsRandImgs } from "./css/NewsGridStyle";
+import useStyles, { newsRandImgs } from "../css/NewsGridStyle";
 
 // Material-UI Components
 import Container from "@material-ui/core/Container";

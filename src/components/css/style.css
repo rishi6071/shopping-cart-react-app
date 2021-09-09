@@ -25,17 +25,27 @@
 }
 
 .Glide-leftArrow {
-  margin-top: 25px;
   animation: slideLeftArrow 0.6s ease-in-out 0.5s;
+}
+
+.Glide-rightArrow {
+  animation: slideRightArrow 0.6s ease-in-out 0.5s;
+}
+
+.Glide-leftArrow,
+.Glide-rightArrow {
+  margin-top: 25px;
   animation-fill-mode: both;
   box-shadow: 0px 1px 2px grey;
 }
 
-.Glide-rightArrow {
-  margin-top: 25px;
-  animation: slideRightArrow 0.6s ease-in-out 0.5s;
-  animation-fill-mode: both;
-  box-shadow: 0px 1px 2px grey;
+@media screen and (max-width: 576px) {
+  .Glide-leftArrow {
+    transform: translateX(-8px) !important;
+  }
+  .Glide-rightArrow {
+    transform: translateX(8px) !important;
+  }
 }
 
 /* ===== SectionHeader.jsx Styling ===== */
@@ -54,4 +64,21 @@ ul.alice-carousel__dots {
 /* ===== ProductGrid.jsx Styling ===== */
 .MuiCardActionArea-root {
   border-radius: 10px !important;
+}
+
+/* ===== ProductDetails.jsx Styling ===== */
+.MuiBreadcrumbs-separator {
+  margin-top: 2px;
+  font-size: smaller;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+/* ===== Footer.jsx Styling ===== */
+footer * {
+  box-sizing: content-box;
 }

@@ -1,6 +1,6 @@
 import React from "react";
-import "./css/style.css";
-import useStyles from "./css/FooterStyle";
+import useStyles from "../css/FooterStyle";
+import '../css/style.css';
 
 // Material-UI Components
 import { Grid, Typography } from "@material-ui/core";

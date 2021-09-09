@@ -1,40 +1,64 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
+import ProductDetails from "./ProductDetails";
 
 // Material-UI Components
 import { alpha, makeStyles } from "@material-ui/core/styles";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
-import IconButton from "@material-ui/core/IconButton";
 import SearchIcon from "@material-ui/icons/Search";
-import InputBase from "@material-ui/core/InputBase";
-import { Badge } from "@material-ui/core";
+import { Typography, IconButton } from "@material-ui/core";
+import { AppBar, Badge, Toolbar, InputBase } from "@material-ui/core";
 
 // Icons & Media
 import ShoppingCartTwoToneIcon from "@material-ui/icons/ShoppingCartTwoTone";
-import BrandIcon from "../media/brand.png";
+import BrandIcon from "../../media/brand.png";
+
+const navLinkPaths = [
+  {
+    name: "Home",
+    path: "/",
+  },
+  {
+    name: "Category",
+    path: "/product/1",
+  },
+  {
+    name: "NewsFeed",
+    path: "/newsfeed",
+  },
+  {
+    name: "Contact",
+    path: "/contact",
+  },
+];
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
+    position: "relative",
+    zIndex: 1,
   },
   appbar: {
     paddingTop: 3,
     paddingBottom: 3,
+    boxShadow: "0px 1px 10px lightgrey",
   },
   menuButton: {
     marginRight: theme.spacing(2),
+    marginLeft: 10,
   },
   brandIcon: {
     width: 40,
+    [theme.breakpoints.down("sm")]: {
+      marginLeft: 7,
+    },
   },
   title: {
     flexGrow: 1,
     display: "none",
     fontWeight: "bolder",
     letterSpacing: "1px",
-    fontFamily: "algerian, cooper black, Arial",
-    marginLeft: -12,
+    marginLeft: -10,
+    fontFamily: "algerian, cooper black, Arial !important",
     [theme.breakpoints.up("sm")]: {
       display: "block",
     },
@@ -79,8 +103,34 @@ const useStyles = makeStyles((theme) => ({
       },
     },
   },
+  navbarLinkBox: {
+    marginLeft: 20,
+    display: "flex",
+    [theme.breakpoints.down("sm")]: {
+      display: "none",
+    },
+  },
+  navbarLinkItem: {
+    marginLeft: 5,
+    marginRight: 5,
+    fontFamily: "Archivo, sans-serif",
+    fontSize: "14.5px",
+    textTransform: "uppercase",
+  },
+  navbarLink: {
+    textDecoration: "none",
+    color: "#666666",
+    transition: "color 0.7s",
+    "&:hover": {
+      color: "tomato",
+    },
+  },
+  activeNavbarLink: {
+    color: "tomato",
+  },
   badge: {
     marginLeft: 20,
+    marginRight: 10,
   },
 }));
 
@@ -90,7 +140,11 @@ const Navbar = () => {
   return (
     <>
       <div className={classes.root}>
-        <AppBar position="static" color="transparent" className={classes.appbar}>
+        <AppBar
+          position="static"
+          color="transparent"
+          className={classes.appbar}
+        >
           <Toolbar>
             <IconButton
               edge="start"
@@ -98,7 +152,11 @@ const Navbar = () => {
               color="inherit"
               aria-label="open drawer"
             >
-              <img src={BrandIcon} className={classes.brandIcon} alt="Commerce.js" />
+              <img
+                src={BrandIcon}
+                className={classes.brandIcon}
+                alt="Commerce.js"
+              />
             </IconButton>
             <Typography className={classes.title} variant="h6" noWrap>
               Commerce.js
@@ -115,6 +173,27 @@ const Navbar = () => {
                 }}
                 inputProps={{ "aria-label": "search" }}
               />
+            </div>
+            <div className={classes.navbarLinkBox}>
+              {[...navLinkPaths].map((linkItem) => {
+                return (
+                  <>
+                    <Typography
+                      variantMapping="p"
+                      className={classes.navbarLinkItem}
+                    >
+                      <NavLink
+                        to={linkItem.path}
+                        className={classes.navbarLink}
+                        activeClassName={classes.activeNavbarLink}
+                        exact
+                      >
+                        {linkItem.name}
+                      </NavLink>
+                    </Typography>
+                  </>
+                );
+              })}
             </div>
             <div className={classes.badge}>
               <Badge badgeContent={4} color="error">

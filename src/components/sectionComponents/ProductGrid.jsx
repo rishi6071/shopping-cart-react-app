@@ -1,28 +1,16 @@
 import React from "react";
-import "./css/style.css";
+import "../css/style.css";
 
 // Material-UI Components
 import { makeStyles } from "@material-ui/core/styles";
-import Card from "@material-ui/core/Card";
-import CardActionArea from "@material-ui/core/CardActionArea";
-import CardContent from "@material-ui/core/CardContent";
-import CardMedia from "@material-ui/core/CardMedia";
-import Typography from "@material-ui/core/Typography";
-import { Grid, Button } from "@material-ui/core";
+import { Card, CardActionArea, CardContent, CardMedia } from "@material-ui/core";
+import { Typography, Grid, Button } from "@material-ui/core";
 
 // Icons & Media
 import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
-import DummyImg from "../media/products/iPhone/iphone4.jpeg";
-
-// const products = [
-//   {
-//     id: 1,
-//     name: "Rishi Soni",
-//     description: "My Name",
-//     price: "",
-//     url: "",
-//   },
-// ];
+import StarIcon from "@material-ui/icons/Star";
+import StarBorderIcon from "@material-ui/icons/StarBorder";
+import DummyImg from "../../media/products/iPhone/iphone4.jpeg";
 
 const useStyles = makeStyles({
   root: {
@@ -34,10 +22,13 @@ const useStyles = makeStyles({
   grid: {
     marginTop: 30,
   },
+  productTitle: {
+    fontSize: "17.5px",
+  },
   addCartBtn: {
     width: "100%",
     borderRadius: 0,
-    marginTop: 10,
+    marginTop: 7,
     padding: 10,
     boxShadow: "none",
     background: "#f1f1f1",
@@ -52,13 +43,23 @@ const useStyles = makeStyles({
       background: "black",
     },
   },
+  ratingBox: {
+    display: "flex",
+    justifyContent: "center",
+    marginTop: -3,
+    marginBottom: 4,
+  },
+  ratingStar: {
+    color: "#ffcc00",
+    fontSize: "16px",
+  },
 });
 
 const ProductGrid = () => {
   const classes = useStyles();
 
   return (
-    <main>
+    <div>
       <Grid container direction="row" justifyContent="center">
         {[1, 1, 1, 1].map(() => {
           return (
@@ -66,7 +67,10 @@ const ProductGrid = () => {
               <Card className={classes.root}>
                 <CardActionArea>
                   <Grid
-                    style={{ maxHeight: "14.3rem", padding: "20px 25px 5px 25px" }}
+                    style={{
+                      maxHeight: "16rem",
+                      padding: "20px 25px 5px 25px",
+                    }}
                   >
                     <CardMedia
                       component="img"
@@ -83,8 +87,19 @@ const ProductGrid = () => {
                       variant="h6"
                       component="h2"
                       align="center"
+                      className={classes.productTitle}
                     >
                       Apple iPhone Pro
+                    </Typography>
+                    <Typography variant="body2" className={classes.ratingBox}>
+                      {[1, 1, 1].map((ratingStar) => {
+                        return <StarIcon className={classes.ratingStar} />;
+                      })}
+                      {[1, 1].map((ratingStar) => {
+                        return (
+                          <StarBorderIcon className={classes.ratingStar} />
+                        );
+                      })}
                     </Typography>
                     <Typography
                       variant="body2"
@@ -107,7 +122,7 @@ const ProductGrid = () => {
           );
         })}
       </Grid>
-    </main>
+    </div>
   );
 };
 
