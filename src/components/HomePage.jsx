@@ -27,7 +27,7 @@ const HomePage = () => {
           </Route>
         </Switch>
 
-        <NewsGrid />
+        {/* <NewsGrid /> */}
 
         <Footer />
       </BrowserRouter>

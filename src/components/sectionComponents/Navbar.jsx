@@ -104,15 +104,15 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   navbarLinkBox: {
-    marginLeft: 20,
+    marginRight: 20,
     display: "flex",
     [theme.breakpoints.down("sm")]: {
       display: "none",
     },
   },
   navbarLinkItem: {
-    marginLeft: 5,
-    marginRight: 5,
+    marginLeft: 7,
+    marginRight: 7,
     fontFamily: "Archivo, sans-serif",
     fontSize: "14.5px",
     textTransform: "uppercase",
@@ -161,19 +161,6 @@ const Navbar = () => {
             <Typography className={classes.title} variant="h6" noWrap>
               Commerce.js
             </Typography>
-            <div className={classes.search}>
-              <div className={classes.searchIcon}>
-                <SearchIcon />
-              </div>
-              <InputBase
-                placeholder="Search…"
-                classes={{
-                  root: classes.inputRoot,
-                  input: classes.inputInput,
-                }}
-                inputProps={{ "aria-label": "search" }}
-              />
-            </div>
             <div className={classes.navbarLinkBox}>
               {[...navLinkPaths].map((linkItem) => {
                 return (
@@ -194,6 +181,19 @@ const Navbar = () => {
                   </>
                 );
               })}
+            </div>
+            <div className={classes.search}>
+              <div className={classes.searchIcon}>
+                <SearchIcon />
+              </div>
+              <InputBase
+                placeholder="Search…"
+                classes={{
+                  root: classes.inputRoot,
+                  input: classes.inputInput,
+                }}
+                inputProps={{ "aria-label": "search" }}
+              />
             </div>
             <div className={classes.badge}>
               <Badge badgeContent={4} color="error">
