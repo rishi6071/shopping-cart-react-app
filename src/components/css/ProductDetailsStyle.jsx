@@ -77,10 +77,8 @@ const useStyles = makeStyles((theme) => ({
     opacity: 0.5,
   },
   buyCartButtonsBox: {
-    [theme.breakpoints.up("md")]: {
-      paddingLeft: 30,
-      paddingRight: 30
-    },
+    paddingLeft: 30,
+    paddingRight: 30,
   },
   buyButtonBox: {
     [theme.breakpoints.up("sm")]: {
@@ -114,7 +112,7 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down("sm")]: {
       paddingTop: 10,
       paddingBottom: 10,
-    }
+    },
   },
   buttonIcon: {
     marginRight: 7,
@@ -192,6 +190,49 @@ const useStyles = makeStyles((theme) => ({
       marginLeft: 3,
     },
   },
+  // Description, Review, Ratings Section
+  productDetailsSections: {
+    paddingLeft: 50,
+    paddingRight: 50,
+    marginBottom: 30,
+    color: "dimgrey",
+    "& *": {
+      fontFamily: "Archivo, sans-serif",
+    },
+    [theme.breakpoints.down("md")]: {
+      paddingLeft: 20,
+    paddingRight: 20,
+    }
+  },
+  descHeading: {
+    marginBottom: 25,
+  },
+  sampleList: {
+    lineHeight: 2,
+  },
+  reviewHeading: {
+    fontWeight: "bold",
+    marginBottom: 5,
+    [theme.breakpoints.down("md")]: {
+      fontSize: "30px",
+    },
+  },
+  sectionRatingStar: {
+    color: "#ffcc00",
+    fontSize: "22px",
+    marginLeft: 1.5,
+    marginRight: 1.5,
+  },
+  ratingDivider: {
+    marginTop: 6,
+    marginBottom: 10,
+    opacity: 0.7,
+    height: "1.5px",
+    width: "38%",
+    [theme.breakpoints.down("md")]: {
+      width: "100%",
+    }
+  }
 }));
 
 export default useStyles;

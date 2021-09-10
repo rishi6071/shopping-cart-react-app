@@ -9,13 +9,14 @@ import { Divider, ButtonGroup, InputLabel } from "@material-ui/core";
 import { MenuItem, FormControl, Select } from "@material-ui/core";
 
 // Icons & Media
-import CreditCardIcon from "@material-ui/icons/CreditCard";
-import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 import StarIcon from "@material-ui/icons/Star";
 import StarBorderIcon from "@material-ui/icons/StarBorder";
+import CreditCardIcon from "@material-ui/icons/CreditCard";
+import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 import AddIcon from "@material-ui/icons/Add";
 import RemoveIcon from "@material-ui/icons/Remove";
 import DummyImage from "../../media/banner/banner_01.png";
+import SectionHeader from "./SectionHeader";
 
 const ProductDetails = () => {
   const classes = useStyles();
@@ -23,7 +24,7 @@ const ProductDetails = () => {
   const [prodInStock, setProdInStock] = useState(7);
 
   const handleQty = (operation) => {
-    if (operation == "+") {
+    if (operation === "+") {
       if (prodQty < prodInStock) setProdQty(prodQty + 1);
     } else {
       if (prodQty > 1) setProdQty(prodQty - 1);
@@ -185,7 +186,7 @@ const ProductDetails = () => {
 
         {/* AddToCart & BuyNow Button */}
         <Grid container className={classes.buyCartButtonsBox}>
-          <Grid item sm={6} xs={12}>
+          <Grid item md={6} xs={12}>
             <Grid
               container
               style={{ display: "flex", justifyContent: "center" }}
@@ -207,8 +208,107 @@ const ProductDetails = () => {
         </Grid>
       </Grid>
 
+      {/* Product Description & Ratings */}
       <Grid container>
-        
+        <SectionHeader title="Description" />
+
+        <Grid container className={classes.productDetailsSections}>
+          {/* Description Section */}
+          <Grid container>
+            <Typography variantMapping="p" className={classes.descHeading}>
+              Nam tempus turpis at metus scelerisque placerat nulla deumantos
+              solicitud felis. Pellentesque diam dolor, elementum etos lobortis
+              des mollis ut risus. Sedcus faucibus an sullamcorper mattis
+              drostique des commodo pharetras loremos.Donec pretium egestas
+              sapien et mollis.
+            </Typography>
+            <Grid container direction="column">
+              <Typography variant="h5">Sample Unordered List</Typography>
+              <ul type="square" className={classes.sampleList}>
+                <li>Comodous in tempor ullamcorper miaculis</li>
+                <li>Pellentesque vitae neque mollis urna mattis laoreet.</li>
+                <li>Divamus sit amet purus justo.</li>
+                <li>
+                  Proin molestie egestas orci ac suscipit risus posuere loremous
+                </li>
+              </ul>
+            </Grid>
+            <Grid container direction="column">
+              <Typography variant="h5">Sample Ordered List</Typography>
+              <ol className={classes.sampleList}>
+                <li>Comodous in tempor ullamcorper miaculis</li>
+                <li>Pellentesque vitae neque mollis urna mattis laoreet.</li>
+                <li>Divamus sit amet purus justo.</li>
+                <li>
+                  Proin molestie egestas orci ac suscipit risus posuere loremous
+                </li>
+              </ol>
+            </Grid>
+            <Grid container direction="column">
+              <Typography variant="h5" style={{ marginBottom: 10 }}>
+                Sample Paragraph Text
+              </Typography>
+              <Typography
+                variantMapping="p"
+                style={{ lineHeight: 1.7, textIndent: 20 }}
+              >
+                Praesent vestibulum congue tellus at fringilla. Curabitur vitae
+                semper sem, eu convallis est. Cras felis nunc commodo eu
+                convallis vitae interdum non nisl. Maecenas ac est sit amet
+                augue pharetra convallis nec danos dui. Cras suscipit quam et
+                turpis eleifend vitae malesuada magna congue. Damus id
+                ullamcorper neque. Sed vitae mi a mi pretium aliquet ac sed
+                elit. Pellentesque nulla eros accumsan quis justo at tincidunt
+                lobortis denimes loremous. Suspendisse vestibulum lectus in
+                lectus volutpat, ut dapibus purus pulvinar. Vestibulum sit amet
+                auctor ipsum.
+              </Typography>
+            </Grid>
+          </Grid>
+
+          {/* Reviews Section */}
+          <Grid container direction="column">
+            <Typography variant="h3" className={classes.reviewHeading}>
+              Customer Reviews
+            </Typography>
+            <Typography variant="body2" className={classes.ratingBox}>
+              {[1, 1, 1].map((ratingStar) => {
+                return <StarIcon className={classes.sectionRatingStar} />;
+              })}
+              {[1, 1].map((ratingStar) => {
+                return <StarBorderIcon className={classes.sectionRatingStar} />;
+              })}
+            </Typography>
+            <Divider className={classes.ratingDivider} />
+          </Grid>
+
+          {/* Shipping Details */}
+          <Grid container direction="column">
+            <Typography variant="h6">Returns Policy</Typography>
+            <Typography variantMapping="p">
+              You may return most new, unopened items within 30 days of delivery
+              for a full refund. We'll also pay the return shipping costs if the
+              return is a result of our error (you received an incorrect or
+              defective item, etc.).
+            </Typography>
+            <Typography variantMapping="p">
+              You should expect to receive your refund within four weeks of
+              giving your package to the return shipper, however, in many cases
+              you will receive a refund more quickly. This time period includes
+              the transit time for us to receive your return from the shipper (5
+              to 10 business days), the time it takes us to process your return
+              once we receive it (3 to 5 business days), and the time it takes
+              your bank to process our refund request (5 to 10 business days).
+            </Typography>
+            <Typography variantMapping="p">
+              If you need to return an item, simply login to your account, view
+              the order using the 'Complete Orders' link under the My Account
+              menu and click the Return Item(s) button. We'll notify you via
+              e-mail of your refund once we've received and processed the
+              returned item.
+            </Typography>
+          </Grid>
+        </Grid>
       </Grid>
     </>
   );
