@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import "../css/style.css";
 
@@ -25,6 +25,10 @@ const ProductDetails = () => {
   const classes = useStyles();
   const [prodQty, setProdQty] = useState(1);
   const [prodInStock, setProdInStock] = useState(7);
+
+  useEffect(() => {
+    setProdInStock(7);
+  }, []);
 
   const handleQty = (operation) => {
     if (operation === "+") {
