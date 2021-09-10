@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Switch, Route, NavLink } from "react-router-dom";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 // Custom Components
 import Navbar from "./sectionComponents/Navbar";
@@ -19,7 +19,7 @@ const HomePage = () => {
         <Switch>
           <Route path="/" exact>
             <HomeBanner />
-            <SectionHeader title="Latest Products" />
+            <SectionHeader title="latestProducts" />
             <ProductGrid />
           </Route>
           <Route path="/product/1" exact>
@@ -27,7 +27,7 @@ const HomePage = () => {
           </Route>
         </Switch>
 
-        {/* <NewsGrid /> */}
+        <NewsGrid />
 
         <Footer />
       </BrowserRouter>

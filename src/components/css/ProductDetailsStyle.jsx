@@ -232,7 +232,10 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down("md")]: {
       width: "100%",
     }
-  }
+  },
+  shippingDetailsSection: {
+    lineHeight: 2,
+  },
 }));
 
 export default useStyles;

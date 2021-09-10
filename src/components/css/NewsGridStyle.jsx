@@ -35,35 +35,6 @@ const useStyles = makeStyles((theme) => ({
   grid: {
     marginTop: 30,
   },
-  newsHead: {
-    background: "#f1f1f1",
-    paddingTop: 20,
-    paddingBottom: 20,
-    width: "95%",
-    borderRadius: 5,
-    textAlign: "center",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    marginTop: 20,
-    marginBottom: 30,
-  },
-  newsHeadTitle: {
-    fontFamily: "arial",
-    fontWeight: 600,
-    opacity: 0.8,
-    marginLeft: 2,
-    letterSpacing: "0.8px",
-    wordSpacing: "2.5px",
-    "&:hover": {
-      opacity: 1,
-    },
-  },
-  newsHeadIcon: {
-    marginRight: 5,
-    outline: "1px solid black",
-    outlineOffset: "-4px !important",
-  },
   newsBtn: {
     width: 135,
     borderRadius: 0,

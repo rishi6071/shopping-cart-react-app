@@ -1,35 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-import ProductDetails from "./ProductDetails";
+import NavbarLinks from "./Path";
 
 // Material-UI Components
 import { alpha, makeStyles } from "@material-ui/core/styles";
-import SearchIcon from "@material-ui/icons/Search";
 import { Typography, IconButton } from "@material-ui/core";
 import { AppBar, Badge, Toolbar, InputBase } from "@material-ui/core";
 
 // Icons & Media
+import SearchIcon from "@material-ui/icons/Search";
 import ShoppingCartTwoToneIcon from "@material-ui/icons/ShoppingCartTwoTone";
 import BrandIcon from "../../media/brand.png";
-
-const navLinkPaths = [
-  {
-    name: "Home",
-    path: "/",
-  },
-  {
-    name: "Category",
-    path: "/product/1",
-  },
-  {
-    name: "NewsFeed",
-    path: "/newsfeed",
-  },
-  {
-    name: "Contact",
-    path: "/contact",
-  },
-];
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -136,6 +117,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Navbar = () => {
   const classes = useStyles();
+  const [navLinks, setNavLinks] = useState([...NavbarLinks]);
 
   return (
     <>
@@ -162,12 +144,13 @@ const Navbar = () => {
               Commerce.js
             </Typography>
             <div className={classes.navbarLinkBox}>
-              {[...navLinkPaths].map((linkItem) => {
+              {[...navLinks].map((linkItem) => {
                 return (
                   <>
                     <Typography
                       variantMapping="p"
                       className={classes.navbarLinkItem}
+                      key={linkItem.id}
                     >
                       <NavLink
                         to={linkItem.path}

@@ -63,7 +63,7 @@ const NewsGrid = () => {
     <>
       <div className={classes.root}>
         <Grid container>
-          <SectionHeader title={"NEWS Panel"} />
+          <SectionHeader title="newsPanel" />
 
           <AliceCarousel
             autoPlay
