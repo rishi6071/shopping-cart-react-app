@@ -19,15 +19,19 @@ const HomePage = () => {
         <Switch>
           <Route path="/" exact>
             <HomeBanner />
+            
             <SectionHeader title="latestProducts" />
             <ProductGrid />
+
+            <NewsGrid resources={["newsCarousel"]} /> 
           </Route>
           <Route path="/product/1" exact>
             <ProductDetails />
           </Route>
+          <Route path="/newsfeed" exact>
+            <NewsGrid resources={["newsCarousel", "newsGrid"]} />
+          </Route>
         </Switch>
-
-        <NewsGrid />
 
         <Footer />
       </BrowserRouter>

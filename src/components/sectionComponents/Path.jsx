@@ -50,11 +50,11 @@ const LatestProducts = [
   },
 ];
 
-// News Panel
+// News Panel Carousel
 const NewsPanel = [
   {
     id: "news_panel",
-    name: "News Panel",
+    name: "Gadgets News",
     path: "/"
   }
 ];

@@ -31,6 +31,7 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: 20,
     marginTop: 20,
     marginBottom: 50,
+    minHeight: "80vh",
   },
   grid: {
     marginTop: 30,
@@ -54,8 +55,27 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   newsContentBox: {
-    height: 190,
+    height: 150,
     overflow: "hidden",
+  },
+  newsName: {
+    fontWeight: "600",
+    fontSize: "17px",
+    letterSpacing: "0.5px",
+  },
+  newsSource: {
+    fontStyle: "italic",
+    marginBottom: "8px",
+    fontSize: "13px",
+    color: "rgba(0,0,0,0.85)"
+  },
+  newsDescription: {
+    color: "dimgrey",
+    fontSize: "13.5px",
+    letterSpacing: "0.7px",
+    textAlign: "justify",
+    lineHeight: 1.5,
+    marginTop: 5,
   },
   media: {
     height: 0,
@@ -73,6 +93,33 @@ const useStyles = makeStyles((theme) => ({
   },
   avatar: {
     backgroundColor: "black",
+  },
+  // Horizontal News Cards
+  horizontalNewsContentBox: {
+    height: 160,
+    overflow: "hidden",
+    [theme.breakpoints.down("sm")]: {
+      height: 180,
+    },
+  },
+  horizontalNewsBtn: {
+    width: 135,
+    borderRadius: 0,
+    paddingTop: 4,
+    paddingBottom: 4,
+    marginTop: 15,
+    fontSize: "12.5px",
+    background: "transparent",
+    color: "black",
+    border: "1px solid black",
+    fontWeight: "300",
+    letterSpacing: "1px",
+    transition: "0.5s",
+    boxShadow: "none",
+    "&:hover": {
+      background: "black",
+      color: "white",
+    },
   },
 }));
 
