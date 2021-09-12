@@ -121,8 +121,8 @@ const ProductDetails = () => {
               adipisicing elit. Sunt a doloribus iste natus et facere?
             </Typography>
 
-            <Grid container style={{ margin: "3px 0 20px -5px" }}>
-              <Grid item xs={6}>
+            <Grid container style={{ margin: "3px 0 10px -5px" }}>
+              <Grid item sm={6} xs={6}>
                 <FormControl className={classes.formControl}>
                   <InputLabel id="productColorLabel">Color</InputLabel>
                   <Select labelId="productColorLabel" id="productColorId">
@@ -132,7 +132,7 @@ const ProductDetails = () => {
                   </Select>
                 </FormControl>
               </Grid>
-              <Grid item xs={6}>
+              <Grid item sm={6} xs={6}>
                 <FormControl className={classes.formControl}>
                   <InputLabel id="productSizeLabel">Size</InputLabel>
                   <Select labelId="productSizeLabel" id="productSizeId">

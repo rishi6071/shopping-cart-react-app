@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
     padding: 20,
     paddingLeft: 35,
     [theme.breakpoints.down("xs")]: {
-      paddingLeft: 20,
+      paddingLeft: 10,
     },
   },
   productMainImgBox: {
@@ -153,6 +153,9 @@ const useStyles = makeStyles((theme) => ({
   formControl: {
     margin: theme.spacing(1),
     minWidth: 170,
+    [theme.breakpoints.down("sm")]: {
+      minWidth: "90%",
+    }
   },
   selectEmpty: {
     marginTop: theme.spacing(2),

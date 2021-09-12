@@ -47,17 +47,16 @@ const Footer = () => {
                 <>
                   <Grid
                     item
-                    xs={12}
-                    sm={6}
                     lg={3}
+                    xs={6}
                     align="center"
-                    style={{ marginTop: 35 }}
+                    className={classes.policyBox}
                     key={policy.id}
                   >
                     <Typography className={classes.policyIconBox}>
                       {policy.icon}
                     </Typography>
-                    <Typography>{policy.name}</Typography>
+                    <Typography className={classes.policyName}>{policy.name}</Typography>
                   </Grid>
                 </>
               );

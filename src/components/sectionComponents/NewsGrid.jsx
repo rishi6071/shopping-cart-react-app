@@ -115,7 +115,7 @@ const NewsGrid = (props) => {
     <>
       <div className={classes.root}>
         {/* News Horizontal Cards */}
-        <Grid container style={{ display: showNewsGrid === true ? "block" : "none" }}>
+        <Grid container style={{ display: showNewsGrid === true ? "block" : "none", marginBottom: 20 }}>
           {[...newsGridData].map((newsCard) => {
             return (
               <>

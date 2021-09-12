@@ -6,6 +6,23 @@ const useStyles = makeStyles((theme) => ({
     padding: "13px 15px 45px 15px",
     fontFamily: "Archivo, sans-serif",
     textTransform: "uppercase",
+    [theme.breakpoints.down("xs")]: {
+      padding: "3px 15px 25px 15px",
+    }
+  },
+  policyBox: {
+    marginTop: 30,
+    paddingLeft: 5,
+    paddingRight: 5,
+  },
+  policyName: {
+    lineHeight: 2,
+    fontFamily: "Archivo, sans-serif",
+    fontSize: "15px",
+    color: "#666666",
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "smaller",
+    },
   },
   policyIconBox: {
     width: 65,
