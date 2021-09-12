@@ -79,8 +79,8 @@ const useStyles = makeStyles((theme) => ({
     paddingRight: 70,
     marginBottom: 30,
     [theme.breakpoints.down("sm")]: {
-      paddingLeft: 30,
-      paddingRight: 30,
+      paddingLeft: 15,
+      paddingRight: 15,
     },
   },
   collectionItem: {
@@ -88,30 +88,56 @@ const useStyles = makeStyles((theme) => ({
     padding: "20px 35px",
     textAlign: "center",
     borderRadius: 7,
+    [theme.breakpoints.down("md")]: {
+      padding: "20px 15px",
+    },
+  },
+  collectionImgBox: {
+    height: 170,
+    [theme.breakpoints.down("md")]: {
+      height: 140,
+    },
   },
   collectionImg: {
-    height: 220,
+    maxWidth: "100%",
+    maxHeight: "100%",
+  },
+  collectionSlogan: {
+    color: "rgba(0,0,0,0.7)",
+    fontFamily: "Archivo, sans-serif",
+    [theme.breakpoints.down("md")]: {
+      fontSize: "smaller",
+    }
   },
   collectionBoldContent: {
-    marginTop: 3,
+    marginTop: 5,
     fontWeight: "bold",
+    fontFamily: "Archivo, sans-serif",
     letterSpacing: "0.4px",
+    [theme.breakpoints.down("md")]: {
+      fontSize: "15px",
+    },
   },
   collectionBtn: {
     width: 150,
     borderRadius: 20,
-    paddingTop: 5,
-    paddingBottom: 5,
+    paddingTop: 3,
+    paddingBottom: 3,
     marginTop: 5,
     background: "#2B1F4D",
     color: "white",
+    fontFamily: "Archivo, sans-serif",
     border: "2.5px solid #2B1F4D",
     letterSpacing: "1px",
-    fontWeight: "600",
+    fontWeight: "500",
     transition: "0.5s",
     "&:hover": {
       background: "transparent",
       color: "#2B1F4D",
+    },
+    [theme.breakpoints.down("md")]: {
+      width: 125,
+      fontSize: "small",
     },
   },
 }));

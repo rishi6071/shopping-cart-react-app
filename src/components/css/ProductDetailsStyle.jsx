@@ -24,16 +24,17 @@ const useStyles = makeStyles((theme) => ({
     padding: 20,
     paddingLeft: 35,
     [theme.breakpoints.down("xs")]: {
-      paddingLeft: 10,
+      paddingLeft: 15,
     },
   },
   productMainImgBox: {
     height: "27rem",
     border: "0.9px solid rgba(220,220,220, 0.55)",
-    paddingTop: 4,
-    paddingBottom: 4,
+    padding: 10,
     [theme.breakpoints.down("xs")]: {
       order: 1,
+      maxWidth: 225,
+      height: "18rem",
     },
   },
   productMainImg: {
@@ -61,7 +62,7 @@ const useStyles = makeStyles((theme) => ({
       cursor: "pointer",
     },
     [theme.breakpoints.down("xs")]: {
-      height: "4.8rem",
+      height: "4.3rem",
       marginTop: 20,
     },
   },

@@ -113,13 +113,13 @@ const HomeBanner = () => {
           className={classes.collection}
           spacing={2}
         >
-          {[...collections].map((collection) => {
+          {[...collections, ...collections].map((collection) => {
             return (
               <>
-                <Grid item md={6} sm={12}>
-                  <Grid className={classes.collectionItem} spacing={2}>
+                <Grid item sm={6} xs={12}>
+                  <Grid className={classes.collectionItem} >
                     <Grid container justifyContent="center">
-                      <Grid item sm={6}>
+                      <Grid item xs={6} className={classes.collectionImgBox}>
                         <img
                           src={collection}
                           className={classes.collectionImg}
@@ -128,13 +128,13 @@ const HomeBanner = () => {
                       </Grid>
                       <Grid
                         item
-                        sm={6}
+                        xs={6}
                         container
                         alignItems="center"
                         justifyContent="space-around"
                       >
                         <Grid>
-                          <Typography variantMapping="p">
+                          <Typography variantMapping="p" className={classes.collectionSlogan}>
                             New Colors Introduced
                           </Typography>
                           <Typography

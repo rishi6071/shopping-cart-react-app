@@ -24,8 +24,11 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: "0px 1px 10px lightgrey",
   },
   menuButton: {
-    marginRight: theme.spacing(2),
+    marginRight: theme.spacing(1),
     marginLeft: 10,
+    [theme.breakpoints.down('md')]: {
+      marginLeft: 0
+    },
   },
   brandIcon: {
     width: 40,

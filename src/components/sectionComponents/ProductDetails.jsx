@@ -78,7 +78,7 @@ const ProductDetails = () => {
                 <img
                   src={DummyImage}
                   className={classes.productMainImg}
-                  alt=""
+                  alt="ProductMainImg"
                 />
               </Grid>
             </Grid>
