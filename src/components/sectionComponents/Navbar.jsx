@@ -21,13 +21,13 @@ const useStyles = makeStyles((theme) => ({
   appbar: {
     paddingTop: 3,
     paddingBottom: 3,
-    boxShadow: "0px 1px 10px lightgrey",
+    boxShadow: "0px 1px 5px lightgrey",
   },
   menuButton: {
     marginRight: theme.spacing(1),
     marginLeft: 10,
-    [theme.breakpoints.down('md')]: {
-      marginLeft: 0
+    [theme.breakpoints.down("md")]: {
+      marginLeft: 0,
     },
   },
   brandIcon: {
@@ -58,7 +58,6 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: 0,
     width: "100%",
     [theme.breakpoints.up("sm")]: {
-      marginLeft: theme.spacing(1),
       width: "auto",
     },
   },
@@ -185,10 +184,17 @@ const Navbar = () => {
                 inputProps={{ "aria-label": "search" }}
               />
             </div>
-            <div className={classes.badge}>
-              <Badge badgeContent={4} color="error">
-                <ShoppingCartTwoToneIcon />
-              </Badge>
+            <div className={classes.navbarLinkItem} style={{ marginLeft: 15 }}>
+              <NavLink
+                to="/cart"
+                className={classes.navbarLink}
+                activeClassName={classes.activeNavbarLink}
+                exact
+              >
+                <Badge badgeContent={4} color="error">
+                  <ShoppingCartTwoToneIcon />
+                </Badge>
+              </NavLink>
             </div>
           </Toolbar>
         </AppBar>

@@ -13,6 +13,9 @@ const useStyles = makeStyles((theme) => ({
     height: 600,
     marginBottom: 40,
     background: "#f1f1f1",
+    [theme.breakpoints.down("xs")]: {
+      height: 550,
+    }
   },
   mt3: {
     marginTop: 10,
@@ -39,6 +42,9 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up("md")]: {
       maxHeight: 550,
     },
+    [theme.breakpoints.down("xs")]: {
+      maxHeight: 300,
+    },
   },
   bannerContent: {
     paddingLeft: 100,
@@ -55,6 +61,13 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: "Archivo, sans-serif",
     [theme.breakpoints.up("sm")]: {
       fontSize: "30px",
+    },
+  },
+  bannerSubTitle: {
+    fontSize: "15px",
+    marginTop: 6,
+    [theme.breakpoints.down("sm")]: {
+      textAlign: "center",
     },
   },
   bannerBtn: {
@@ -107,7 +120,7 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: "Archivo, sans-serif",
     [theme.breakpoints.down("md")]: {
       fontSize: "smaller",
-    }
+    },
   },
   collectionBoldContent: {
     marginTop: 5,

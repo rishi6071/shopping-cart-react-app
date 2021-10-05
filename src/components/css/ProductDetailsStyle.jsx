@@ -4,7 +4,7 @@ const useStyles = makeStyles((theme) => ({
   productDetailsBox: {
     paddingLeft: 30,
     paddingRight: 30,
-    marginTop: 30,
+    marginTop: 15,
     marginBottom: 30,
     fontFamily: "Archivo, sans-serif",
     [theme.breakpoints.down("lg")]: {
@@ -156,7 +156,7 @@ const useStyles = makeStyles((theme) => ({
     minWidth: 170,
     [theme.breakpoints.down("sm")]: {
       minWidth: "90%",
-    }
+    },
   },
   selectEmpty: {
     marginTop: theme.spacing(2),
@@ -205,14 +205,32 @@ const useStyles = makeStyles((theme) => ({
     },
     [theme.breakpoints.down("md")]: {
       paddingLeft: 20,
-    paddingRight: 20,
-    }
+      paddingRight: 20,
+    },
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "14px",
+    },
   },
   descHeading: {
     marginBottom: 25,
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "14px",
+    },
+  },
+  sampleListHead: {
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "20px",
+    },
   },
   sampleList: {
     lineHeight: 2,
+  },
+  sampleParaText: {
+    lineHeight: 1.7,
+    textIndent: 20,
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "14px",
+    },
   },
   reviewHeading: {
     fontWeight: "bold",
@@ -235,7 +253,7 @@ const useStyles = makeStyles((theme) => ({
     width: "38%",
     [theme.breakpoints.down("md")]: {
       width: "100%",
-    }
+    },
   },
   shippingDetailsSection: {
     lineHeight: 2,

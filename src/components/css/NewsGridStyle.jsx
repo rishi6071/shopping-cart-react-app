@@ -31,7 +31,9 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: 20,
     marginTop: 20,
     marginBottom: 50,
-    minHeight: "80vh",
+    [theme.breakpoints.up("md")]: {
+      minHeight: "70vh",
+    }
   },
   grid: {
     marginTop: 30,

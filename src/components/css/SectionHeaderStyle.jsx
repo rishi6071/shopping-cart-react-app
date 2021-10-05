@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: 10,
     marginRight: 10,
     marginTop: 15,
-    color: "rgba(0,0,0,0.7)",
+    color: "#666666",
   },
   sectionHeadTitle: {
     fontFamily: "Archivo, sans-serif",
@@ -27,17 +27,20 @@ const useStyles = makeStyles((theme) => ({
     letterSpacing: "0.5px",
     wordSpacing: "2.5px",
     textDecoration: "none",
-    color: "rgba(0,0,0,0.7)",
+    color: "#666666",
     transition: "color 0.6s",
+    display: "flex",
     "&:hover": {
       color: "rgba(0,0,0,1)",
+    },
+    "& span": {
+      marginTop: 3.5,
     },
   },
   sectionHeadIcon: {
     marginRight: 5,
-    outline: "1px solid black",
+    outline: "1px solid #666666",
     outlineOffset: "-4px !important",
-    marginTop: -3,
   },
   activeSectionHeadTitle: {
     fontWeight: 600,

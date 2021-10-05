@@ -39,14 +39,14 @@ const SectionHeader = (props) => {
             return (
               <>
                 <Grid className={classes.sectionHeadItem} key={linkItem.id}>
-                  <StopIcon className={classes.sectionHeadIcon} />
                   <NavLink
                     to={linkItem.path}
                     exact
                     className={classes.sectionHeadTitle}
                     activeClassName={classes.activeSectionHeadTitle}
                   >
-                    {linkItem.name}
+                    <StopIcon className={classes.sectionHeadIcon} />
+                    <span>{linkItem.name}</span>
                   </NavLink>
                 </Grid>
               </>

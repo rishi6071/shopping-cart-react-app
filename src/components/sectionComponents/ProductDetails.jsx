@@ -246,7 +246,7 @@ const ProductDetails = () => {
                     loremos.Donec pretium egestas sapien et mollis.
                   </Typography>
                   <Grid container direction="column">
-                    <Typography variant="h5">Sample Unordered List</Typography>
+                    <Typography variant="h5" className={classes.sampleListHead}>Sample Unordered List</Typography>
                     <ul type="square" className={classes.sampleList}>
                       <li>Comodous in tempor ullamcorper miaculis</li>
                       <li>
@@ -260,7 +260,7 @@ const ProductDetails = () => {
                     </ul>
                   </Grid>
                   <Grid container direction="column">
-                    <Typography variant="h5">Sample Ordered List</Typography>
+                    <Typography variant="h5" className={classes.sampleListHead}>Sample Ordered List</Typography>
                     <ol className={classes.sampleList}>
                       <li>Comodous in tempor ullamcorper miaculis</li>
                       <li>
@@ -274,12 +274,12 @@ const ProductDetails = () => {
                     </ol>
                   </Grid>
                   <Grid container direction="column">
-                    <Typography variant="h5" style={{ marginBottom: 10 }}>
+                    <Typography variant="h5" className={classes.sampleListHead} style={{ marginBottom: 10 }}>
                       Sample Paragraph Text
                     </Typography>
                     <Typography
                       variantMapping="p"
-                      style={{ lineHeight: 1.7, textIndent: 20 }}
+                      className={classes.sampleParaText}
                     >
                       Praesent vestibulum congue tellus at fringilla. Curabitur
                       vitae semper sem, eu convallis est. Cras felis nunc

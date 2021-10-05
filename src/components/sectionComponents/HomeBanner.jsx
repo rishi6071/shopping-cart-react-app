@@ -70,8 +70,8 @@ const HomeBanner = () => {
                         </Typography>
                         <Typography
                           variant="h6"
-                          style={{ fontSize: "15px", marginTop: 6 }}
                           color="textSecondary"
+                          className={classes.bannerSubTitle}
                         >
                           Trending Mobiles, Headphone and Accessories Collection
                         </Typography>
