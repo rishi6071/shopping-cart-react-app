@@ -123,8 +123,8 @@ const Contact = () => {
                   <Accordion key={faqItem.id}>
                     <AccordionSummary
                       expandIcon={<ExpandMoreIcon />}
-                      aria-controls="panel1a-content"
-                      id="panel1a-header"
+                      aria-controls={"faq-content-" + faqItem.id}
+                      id={"faq-header-" + faqItem.id}
                     >
                       <Typography>
                         <DoubleArrowIcon className={classes.faqIcon} />
