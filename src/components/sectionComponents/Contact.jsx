@@ -100,6 +100,7 @@ const Contact = () => {
             className={classes.contactMap}
             allowfullscreen=""
             loading="lazy"
+            title="Office Address"
           ></iframe>
         </Grid>
       </Grid>
