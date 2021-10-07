@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "../css/style.css";
+import useStyles from "../css/CartStyle";
 import Breadcrumb from "./Breadcrumb";
 
 // Material-UI Components
@@ -11,105 +12,15 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import {
-  makeStyles,
-  Typography,
-  ButtonGroup,
-  Button,
-} from "@material-ui/core";
+import Checkbox from "@mui/material/Checkbox";
+import FormGroup from "@mui/material/FormGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import { Typography, ButtonGroup, Button } from "@material-ui/core";
 
 // Media
 import CartImg1 from "../../media/products/iPhone/iphone1.jpeg";
 import AddIcon from "@material-ui/icons/Add";
 import RemoveIcon from "@material-ui/icons/Remove";
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    margin: "30px auto",
-    "& *": {
-      fontFamily: "Archivo, sans-serif !important",
-    },
-  },
-  cartItemBox: {
-    boxShadow: "none !important",
-  },
-  cartTableHead: {
-    "& *": {
-      textTransform: "uppercase !important",
-      fontSize: "16px !important",
-      letterSpacing: "0.8px !important",
-    },
-  },
-  cartItemImgBox: {
-    maxWidth: "160px",
-    height: "145px",
-    "& img": {
-      maxHeight: "145px",
-      margin: "auto",
-    },
-  },
-  colorSize: {
-    marginTop: "6px",
-    color: "dimgrey",
-    fontSize: "13px !important",
-    letterSpacing: "0.5px !important",
-  },
-  cartItemPrice: {
-    color: "red !important",
-    fontSize: "16px !important",
-    letterSpacing: "0.9px !important",
-    "& span": {
-      fontSize: "18px !important",
-      marginTop: "1px !important",
-      marginRight: "0.5px !important",
-    },
-  },
-  productQuantityField: {
-    fontFamily: "inherit",
-    marginBottom: 20,
-    marginLeft: 2,
-    "& > span": {
-      marginRight: 10,
-    },
-  },
-  quantityButtons: {
-    borderRadius: 0,
-    maxWidth: 45,
-    color: "dimgrey",
-  },
-  quantityInputField: {
-    borderRadius: 0,
-    maxWidth: 45,
-    border: "1px solid rgba(0,0,0,0.23)",
-    textAlign: "center",
-    fontSize: "16px",
-    fontWeight: "bold",
-  },
-  billingBox: {
-    margin: "auto",
-    marginTop: 30,
-    boxShadow: "0px 0px 15px lightgrey",
-    padding: "25px 35px",
-    borderRadius: 5,
-  },
-  billingHead: {
-    letterSpacing: "0.9px",
-    fontSize: "18.5px",
-    marginBottom: 5,
-  },
-  billingItemHead: {
-    fontSize: "15px !important",
-    letterSpacing: "0.9px !important",
-  },
-  billingItemPrice: {
-    color: "red !important",
-    fontSize: "16px !important",
-    "& span": {
-      fontSize: "18px !important",
-      marginRight: "0.5px !important",
-    },
-  },
-}));
 
 const createData = (name, calories, fat, carbs, protein) => {
   return { name, calories, fat, carbs, protein };
@@ -218,9 +129,31 @@ const Cart = () => {
                   </TableCell>
                 </TableRow>
               ))}
+
+              {/* Continue Shopping Row */}
+              <TableRow
+                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+              >
+                <TableCell component="th" scope="row" colSpan={3}>
+                  <Button contained="filled" className={classes.cartButtons}>
+                    Continue Shopping
+                  </Button>
+                </TableCell>
+                <TableCell></TableCell>
+                <TableCell align="right">
+                  <FormGroup>
+                    <FormControlLabel
+                      control={<Checkbox />}
+                      label="Shipping(+7$)"
+                    />
+                  </FormGroup>
+                </TableCell>
+              </TableRow>
             </TableBody>
           </Table>
         </TableContainer>
+
+        {/* Continue Shopping */}
 
         {/* Billing */}
         <Grid container className={classes.billingBox} md={6} sm={8} xs={11}>
@@ -255,7 +188,7 @@ const Cart = () => {
                   >
                     Shipping
                   </TableCell>
-                  <TableCell align="right">
+                  <TableCell align="right" className={classes.shippingPrice}>
                     <span>$</span>0
                   </TableCell>
                 </TableRow>
@@ -276,6 +209,10 @@ const Cart = () => {
               </TableBody>
             </Table>
           </TableContainer>
+
+          <Button contained="filled" className={classes.cartButtons}>
+            Proceed To Checkout
+          </Button>
         </Grid>
       </Grid>
     </>
