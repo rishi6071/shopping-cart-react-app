@@ -2,7 +2,7 @@ import { makeStyles } from "@material-ui/styles";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    margin: "30px auto",
+    margin: "20px auto 30px auto",
     "& *": {
       fontFamily: "Archivo, sans-serif !important",
     },
@@ -43,6 +43,7 @@ const useStyles = makeStyles((theme) => ({
   },
   productQuantityField: {
     fontFamily: "inherit",
+    marginTop: 8,
     marginBottom: 20,
     marginLeft: 2,
     "& > span": {
@@ -92,7 +93,7 @@ const useStyles = makeStyles((theme) => ({
     letterSpacing: "0.95px",
     "&:hover": {
       background: "black",
-      color: "white",
+      color: "rgba(255, 255, 255, 0.9)",
     },
   },
   shippingPrice: {

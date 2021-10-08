@@ -11,6 +11,7 @@ import ProductDetails from "./sectionComponents/ProductDetails";
 import SectionHeader from "./sectionComponents/SectionHeader";
 import Cart from "./sectionComponents/Cart";
 import Contact from "./sectionComponents/Contact";
+import SearchProduct from "./sectionComponents/SearchProduct";
 
 const HomePage = () => {
   return (
@@ -37,8 +38,10 @@ const HomePage = () => {
           <Route path="/cart" exact>
             <Cart />
           </Route>
+          <Route path="/search" exact>
+            <SearchProduct />
+          </Route>
         </Switch>
-
         <Footer />
       </BrowserRouter>
     </>

@@ -7,7 +7,7 @@ const NavbarLinks = [
   },
   {
     id: "nav_category",
-    name: "Category",
+    name: "Shop",
     path: "/product/1",
   },
   {

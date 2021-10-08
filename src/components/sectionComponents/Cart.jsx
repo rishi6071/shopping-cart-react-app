@@ -144,7 +144,7 @@ const Cart = () => {
                   <FormGroup>
                     <FormControlLabel
                       control={<Checkbox />}
-                      label="Shipping(+7$)"
+                      label="Shipping (+7$)"
                     />
                   </FormGroup>
                 </TableCell>

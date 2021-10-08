@@ -17,6 +17,7 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     position: "relative",
     zIndex: 1,
+    width: "100vw",
   },
   appbar: {
     paddingTop: 3,
@@ -120,10 +121,19 @@ const useStyles = makeStyles((theme) => ({
 const Navbar = () => {
   const classes = useStyles();
   const [navLinks, setNavLinks] = useState([]);
+  const [searchInput, setSearchInput] = useState("");
 
   useEffect(() => {
     setNavLinks([...NavbarLinks]);
   }, []);
+
+  const handleSearch = (event) => {
+    if (event.keyCode === 13) {
+      window.location.href = "/search";
+    } else {
+      setSearchInput(event.target.value);
+    }
+  };
 
   return (
     <>
@@ -181,7 +191,9 @@ const Navbar = () => {
                   root: classes.inputRoot,
                   input: classes.inputInput,
                 }}
+                defaultValue={searchInput}
                 inputProps={{ "aria-label": "search" }}
+                onKeyDown={handleSearch}
               />
             </div>
             <div className={classes.navbarLinkItem} style={{ marginLeft: 15 }}>
