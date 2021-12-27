@@ -7,11 +7,11 @@ import HomeBanner from "./sectionComponents/HomeBanner";
 import ProductGrid from "./sectionComponents/ProductGrid";
 import NewsGrid from "./sectionComponents/NewsGrid";
 import Footer from "./sectionComponents/Footer";
-import ProductDetails from "./sectionComponents/ProductDetails";
 import SectionHeader from "./sectionComponents/SectionHeader";
 import Cart from "./sectionComponents/Cart";
 import Contact from "./sectionComponents/Contact";
 import SearchProduct from "./sectionComponents/SearchProduct";
+import Shop from "./sectionComponents/Shop";
 
 const HomePage = () => {
   return (
@@ -27,7 +27,8 @@ const HomePage = () => {
             <NewsGrid resources={["newsCarousel"]} /> 
           </Route>
           <Route path="/product/1" exact>
-            <ProductDetails />
+            {/* <ProductDetails /> */}
+            <Shop />
           </Route>
           <Route path="/newsfeed" exact>
             <NewsGrid resources={["newsCarousel", "newsGrid"]} />

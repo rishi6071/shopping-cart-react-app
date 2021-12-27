@@ -68,3 +68,29 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+def findNext(input1, input2):
+    n = len(input2)
+    if input2[0] == input2[1] == input2[2] == 0:
+        return "-999"
+    
+    if input2[1] - input2[0] == input2[2] - input2[1]:
+        print("A.P.")
+        return input2[n-1] + (input2[1] - input2[0])
+    elif input2[n-3]//input2[n-2] == input2[n-2]//input2[n-1]:
+        print("G.P.")
+        return input2[2]**2//input2[1]
+    elif input2[0] + input2[1] == input2[2]:
+        print("Fibonacci")
+        return input2[n-1] + input2[n-2]
+    else:
+        return "-999"
+        
+
+input1 = 3
+input2 = [2,6,18]
+print(findNext(3, [1,2,3]))
+print(findNext(3, [2,6,18]))
+print(findNext(6, [0,1,1,2,3,5]))
+print(findNext(3, [0,0,0]))

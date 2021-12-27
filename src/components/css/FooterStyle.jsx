@@ -3,7 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 const useStyles = makeStyles((theme) => ({
   footerLightBox: {
     background: "#f1f1f1",
-    padding: "13px 15px 45px 15px",
+    padding: "3px 15px 22px 15px",
     fontFamily: "Archivo, sans-serif",
     textTransform: "uppercase",
     [theme.breakpoints.down("xs")]: {

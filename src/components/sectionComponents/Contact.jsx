@@ -29,22 +29,38 @@ const Contact = () => {
 
           <Grid container className={classes.socialMediaIconsBox}>
             <Grid>
-              <Link href="#" className={classes.socialMediaItem}>
+              <Link
+                href="https://www.linkedin.com/in/rishi-soni-26847717a/"
+                target="_blank"
+                className={classes.socialMediaItem}
+              >
                 <LinkedInIcon style={{ color: "#0077B4" }} />
               </Link>
             </Grid>
             <Grid>
-              <Link href="#" className={classes.socialMediaItem}>
+              <Link
+                href="https://www.facebook.com/rishi.soni.31508076"
+                target="_blank"
+                className={classes.socialMediaItem}
+              >
                 <FacebookIcon style={{ color: "#4867AA" }} />
               </Link>
             </Grid>
             <Grid>
-              <Link href="#" className={classes.socialMediaItem}>
+              <Link
+                href="https://twitter.com/GoogleIndia"
+                target="_blank"
+                className={classes.socialMediaItem}
+              >
                 <TwitterIcon style={{ color: "#5DA9DD" }} />
               </Link>
             </Grid>
             <Grid>
-              <Link href="#" className={classes.socialMediaItem}>
+              <Link
+                href="https://www.youtube.com/channel/UCJikXMlfqNM5C74LbRvhAmA"
+                target="_blank"
+                className={classes.socialMediaItem}
+              >
                 <YouTubeIcon color="secondary" />
               </Link>
             </Grid>
