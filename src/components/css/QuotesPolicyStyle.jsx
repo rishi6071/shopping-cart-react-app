@@ -1,5 +1,9 @@
 import { makeStyles } from "@material-ui/core";
 
+import RatanTata from "../../media/quotes/ratan_tata.jpg";
+import ElonMusk from "../../media/quotes/elon_musk.jpg";
+import SteveJobs from "../../media/quotes/steve_jobs.jpg";
+
 const useStyles = makeStyles((theme) => ({
   policyGridBox: {
     background: "#f1f1f1",
@@ -50,9 +54,42 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   quotesGridBox: {
-    background: "#222222",
-    color: "#ffffff"
+    background: "#191919",
+    color: "#ffffff",
+    padding: "45px 25px",
+    marginBottom: 40,
+  },
+  quoteItemBox: {
+    paddingBottom: 20,
+    textAlign: "center",
+    fontFamily: "Archivo, sans-serif",
+    color: "#A8A8A8",
+  },
+  quoteContentBox: {
+    paddingTop: 15,
+    paddingBottom: 15,
+  },
+  quoteImg: {
+    marginBottom: 25,
+    "& img": {
+      width: "80px",
+      height: "80px",
+      objectFit: "cover",
+      borderRadius: "50%",
+    },
+  },
+  quoteLines: {
+    fontSize: "15px",
+    lineHeight: 1.8,
+    fontStyle: "italic",
+    fontWeight: 200,
+    marginBottom: 25,
+  },
+  quoteByDesignation: {
+    fontSize: "13px",
+    marginTop: 6,
   },
 }));
 
 export default useStyles;
+export { RatanTata, ElonMusk, SteveJobs };
