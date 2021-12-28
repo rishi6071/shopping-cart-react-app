@@ -9,7 +9,7 @@ import Collection2 from "../../media/collection/collection_02.png";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: "100vw",
+    maxWidth: "1400px",
     height: 600,
     marginBottom: 40,
     background: "#f1f1f1",
@@ -134,9 +134,9 @@ const useStyles = makeStyles((theme) => ({
   collectionBtn: {
     width: 150,
     borderRadius: 20,
+    marginTop: 10,
     paddingTop: 3,
     paddingBottom: 3,
-    marginTop: 5,
     background: "#2B1F4D",
     color: "white",
     fontFamily: "Archivo, sans-serif",

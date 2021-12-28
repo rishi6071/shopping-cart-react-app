@@ -9,9 +9,11 @@ import NewsGrid from "./sectionComponents/NewsGrid";
 import Footer from "./sectionComponents/Footer";
 import SectionHeader from "./sectionComponents/SectionHeader";
 import Cart from "./sectionComponents/Cart";
+import ProductDetails from "./sectionComponents/ProductDetails";
 import Contact from "./sectionComponents/Contact";
 import SearchProduct from "./sectionComponents/SearchProduct";
 import Shop from "./sectionComponents/Shop";
+import QuotesPolicy from "./sectionComponents/QuotesPolicy";
 
 const HomePage = () => {
   return (
@@ -24,10 +26,11 @@ const HomePage = () => {
             <HomeBanner />
             <SectionHeader title="latestProducts" />
             <ProductGrid />
+            <QuotesPolicy />
             <NewsGrid resources={["newsCarousel"]} /> 
           </Route>
           <Route path="/product/1" exact>
-            {/* <ProductDetails /> */}
+            <ProductDetails />
             <Shop />
           </Route>
           <Route path="/newsfeed" exact>

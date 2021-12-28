@@ -27,16 +27,22 @@ const newsRandImgs = [
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    marginRight: 20,
-    marginLeft: 20,
     marginTop: 20,
     marginBottom: 50,
     [theme.breakpoints.up("md")]: {
       minHeight: "70vh",
-    }
+    },
   },
   grid: {
     marginTop: 30,
+  },
+  paddingPart: {
+    paddingLeft: 20,
+    paddingRight: 20,
+    [theme.breakpoints.down("sm")]: {
+      paddingLeft: 5,
+      paddingRight: 5,
+    }
   },
   newsBtn: {
     width: 135,
@@ -69,7 +75,7 @@ const useStyles = makeStyles((theme) => ({
     fontStyle: "italic",
     marginBottom: "8px",
     fontSize: "13px",
-    color: "rgba(0,0,0,0.85)"
+    color: "rgba(0,0,0,0.85)",
   },
   newsDescription: {
     color: "dimgrey",

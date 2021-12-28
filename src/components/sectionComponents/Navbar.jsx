@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     position: "relative",
     zIndex: 1,
-    width: "100vw",
+    maxWidth: "1400px",
   },
   appbar: {
     paddingTop: 3,

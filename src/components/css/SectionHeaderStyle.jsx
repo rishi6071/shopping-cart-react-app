@@ -6,7 +6,7 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: 8,
     paddingBottom: 20,
     width: "95%",
-    borderRadius: 5,
+    borderRadius: 3,
     textAlign: "center",
     display: "flex",
     justifyContent: "center",

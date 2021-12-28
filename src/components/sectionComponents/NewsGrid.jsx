@@ -115,7 +115,14 @@ const NewsGrid = (props) => {
     <>
       <div className={classes.root}>
         {/* News Horizontal Cards */}
-        <Grid container style={{ display: showNewsGrid === true ? "block" : "none", marginBottom: 20 }}>
+        <Grid
+          container
+          className={classes.paddingPart}
+          style={{
+            display: showNewsGrid === true ? "block" : "none",
+            marginBottom: 20,
+          }}
+        >
           {[...newsGridData].map((newsCard) => {
             return (
               <>
@@ -183,8 +190,15 @@ const NewsGrid = (props) => {
         </Grid>
 
         {/* News AliceCarousel */}
-        <Grid container style={{ display: showNewsCarousel === true ? "block" : "none" }}>
-          <SectionHeader title="newsPanel" />
+        <SectionHeader
+          title="newsPanel"
+          style={{ display: showNewsCarousel === true ? "block" : "none" }}
+        />
+        <Grid
+          container
+          className={classes.paddingPart}
+          style={{ display: showNewsCarousel === true ? "block" : "none" }}
+        >
           <AliceCarousel
             autoPlay
             animationDuration="1000"
