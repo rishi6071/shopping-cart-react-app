@@ -27,6 +27,9 @@ const useStyles = makeStyles((theme) => ({
   menuButton: {
     marginRight: theme.spacing(1),
     marginLeft: 10,
+    [theme.breakpoints.down("sm")]: {
+      display: "none",
+    },
     [theme.breakpoints.down("md")]: {
       marginLeft: 0,
     },
@@ -39,13 +42,13 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     flexGrow: 1,
-    display: "none",
+    display: "block",
     fontWeight: "bolder",
     letterSpacing: "1px",
     marginLeft: -10,
-    fontFamily: "algerian, cooper black, Arial !important",
-    [theme.breakpoints.up("sm")]: {
-      display: "block",
+    fontFamily: "Acme, sans-serif",
+    [theme.breakpoints.down("sm")]: {
+      marginLeft: 10,
     },
   },
   search: {
@@ -60,6 +63,9 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     [theme.breakpoints.up("sm")]: {
       width: "auto",
+    },
+    [theme.breakpoints.down("sm")]: {
+      display: "none",
     },
   },
   searchIcon: {
@@ -156,7 +162,7 @@ const Navbar = () => {
                 alt="Commerce.js"
               />
             </IconButton>
-            <Typography className={classes.title} variant="h6" noWrap>
+            <Typography className={classes.title} variant="h5" noWrap>
               Commerce.js
             </Typography>
             <div className={classes.navbarLinkBox}>
@@ -196,7 +202,7 @@ const Navbar = () => {
                 onKeyDown={handleSearch}
               />
             </div>
-            <div className={classes.navbarLinkItem} style={{ marginLeft: 15 }}>
+            <div className={classes.navbarLinkItem} style={{ marginLeft: 15, marginRight: 10 }}>
               <NavLink
                 to="/cart"
                 className={classes.navbarLink}

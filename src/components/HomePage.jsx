@@ -24,8 +24,19 @@ const HomePage = () => {
         <Switch>
           <Route path="/" exact>
             <HomeBanner />
-            <SectionHeader title="latestProducts" />
-            <ProductGrid />
+
+            {/* Latest Products */}
+            <div>
+              <SectionHeader title="latestProducts" />
+              <ProductGrid />
+            </div>
+
+            {/* Related Products */}
+            <div>
+              <SectionHeader title="relatedProducts" />
+              <ProductGrid />
+            </div>
+
             <QuotesPolicy />
             <NewsGrid resources={["newsCarousel"]} /> 
           </Route>
@@ -46,7 +57,8 @@ const HomePage = () => {
             <SearchProduct />
           </Route>
         </Switch>
-        <Footer />
+
+        <Footer subscribe={true} />
       </BrowserRouter>
     </>
   );

@@ -146,7 +146,7 @@ const ProductDetails = () => {
             <Typography className={classes.productQuantityField}>
               <span>Quantity: </span>
               <ButtonGroup
-                size="medium"
+                size="small"
                 aria-label="small button group"
                 style={{ transform: "translateY(5px)" }}
               >

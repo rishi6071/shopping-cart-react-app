@@ -177,7 +177,7 @@ const useStyles = makeStyles((theme) => ({
   },
   quantityInputField: {
     borderRadius: 0,
-    maxWidth: 60,
+    maxWidth: 50,
     border: "1px solid rgba(0,0,0,0.23)",
     textAlign: "center",
     fontSize: "16px",
@@ -185,7 +185,7 @@ const useStyles = makeStyles((theme) => ({
   },
   productExtraDetails: {
     fontFamily: "inherit",
-    marginTop: 9,
+    marginTop: 12,
     marginLeft: 3,
     letterSpacing: "0.5px",
     "& span": {

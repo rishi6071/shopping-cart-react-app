@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: "bolder",
     letterSpacing: "1px",
     marginLeft: -10,
-    fontFamily: "algerian, cooper black, Arial !important",
+    fontFamily: "Acme, sans-serif",
     [theme.breakpoints.up("sm")]: {
       display: "block",
     },

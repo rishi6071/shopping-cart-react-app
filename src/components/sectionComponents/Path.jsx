@@ -50,6 +50,16 @@ const LatestProducts = [
   },
 ];
 
+// Related Products
+const RelatedProducts = [
+  {
+    id: "related_products",
+    name: "Related Products",
+    path: "/",
+  },
+];
+
+
 // News Panel Carousel
 const NewsPanel = [
   {
@@ -60,4 +70,4 @@ const NewsPanel = [
 ];
 
 export default NavbarLinks;
-export { ProductSectionLinks, LatestProducts, NewsPanel };
+export { ProductSectionLinks, LatestProducts, RelatedProducts, NewsPanel };
