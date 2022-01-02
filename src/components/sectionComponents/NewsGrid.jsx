@@ -3,7 +3,7 @@ import "../css/style.css";
 import axios from "axios";
 import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/alice-carousel.css";
-import useStyles, { newsRandImgs } from "../css/NewsGridStyle";
+import useStyles, { newsRandImgs, responsiveNewsCards } from "../css/NewsGridStyle";
 import SectionHeader from "./SectionHeader";
 
 // Material-UI Components
@@ -100,16 +100,7 @@ const NewsGrid = (props) => {
       });
   }, []);
 
-  const responsiveNewsCards = {
-    0: { items: 1 },
-    768: {
-      items: 2,
-    },
-    1024: { items: 3 },
-    1900: {
-      items: 4,
-    },
-  };
+  
 
   return (
     <>

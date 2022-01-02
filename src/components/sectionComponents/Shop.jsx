@@ -1,4 +1,5 @@
 import { useState } from "react";
+import ProductGrid from "./ProductGrid";
 
 // Material-UI Components
 import {
@@ -192,8 +193,9 @@ const Shop = () => {
           item
           md={9}
           xs={12}
-          style={{ background: "lightgrey" }}
-        ></Grid>
+        >
+          <ProductGrid />
+        </Grid>
       </Grid>
     </>
   );

@@ -25,6 +25,17 @@ const newsRandImgs = [
   Img10,
 ];
 
+const responsiveNewsCards = {
+  0: { items: 1 },
+  768: {
+    items: 2,
+  },
+  1024: { items: 3 },
+  1900: {
+    items: 4,
+  },
+};
+
 const useStyles = makeStyles((theme) => ({
   root: {
     marginTop: 20,
@@ -132,4 +143,4 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default useStyles;
-export { newsRandImgs };
+export { newsRandImgs, responsiveNewsCards };

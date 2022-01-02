@@ -1,5 +1,5 @@
 import React from "react";
-import useStyles from "../css/ProductGridItemStyle";
+import useStyles from "../css/ProductGridItemSliderStyle";
 import "../css/style.css";
 
 // Material-UI Components
@@ -30,7 +30,7 @@ const ProductItem = (props) => {
               component="img"
               alt="Contemplative Reptile"
               maxHeight="100%"
-              maxWidth  ="100%"
+              maxWidth="100%"
               image={props.img}
               title="Contemplative Reptile"
             />

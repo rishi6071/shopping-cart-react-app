@@ -58,7 +58,7 @@ const HomePage = () => {
           </Route>
         </Switch>
 
-        <Footer subscribe={true} />
+        <Footer />
       </BrowserRouter>
     </>
   );

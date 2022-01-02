@@ -1,5 +1,5 @@
 import React from "react";
-import useStyles from "../css/ProductGridItemStyle";
+import useStyles from "../css/ProductGridItemSliderStyle";
 import "../css/style.css";
 import ProductItem from "./ProductItem";
 
@@ -7,7 +7,7 @@ import ProductItem from "./ProductItem";
 import { Grid } from "@material-ui/core";
 
 // Icons & Media
-import DummyImg from "../../media/products/iPhone/iphone4.jpeg";
+import DummyImg from "../../media/products/iPhone/iphone1.jpeg";
 
 const ProductGrid = () => {
   const classes = useStyles();

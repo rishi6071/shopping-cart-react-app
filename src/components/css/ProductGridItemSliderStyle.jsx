@@ -1,5 +1,16 @@
 import { makeStyles } from "@material-ui/core/styles";
 
+const responsiveProductCards = {
+  0: { items: 1 },
+  768: {
+    items: 2,
+  },
+  1024: { items: 3 },
+  1900: {
+    items: 4,
+  },
+};
+
 const useStyles = makeStyles((theme) => ({
   root: {
     paddingLeft: 15,
@@ -85,3 +96,4 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default useStyles;
+export { responsiveProductCards };
