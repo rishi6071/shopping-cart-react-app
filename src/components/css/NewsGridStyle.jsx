@@ -27,7 +27,7 @@ const newsRandImgs = [
 
 const responsiveNewsCards = {
   0: { items: 1 },
-  768: {
+  767: {
     items: 2,
   },
   1024: { items: 3 },

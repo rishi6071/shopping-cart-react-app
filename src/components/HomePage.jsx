@@ -14,6 +14,7 @@ import Contact from "./sectionComponents/Contact";
 import SearchProduct from "./sectionComponents/SearchProduct";
 import Shop from "./sectionComponents/Shop";
 import QuotesPolicy from "./sectionComponents/QuotesPolicy";
+import ProductSlider from "./sectionComponents/ProductSlider";
 
 const HomePage = () => {
   return (
@@ -28,7 +29,7 @@ const HomePage = () => {
             {/* Latest Products */}
             <div>
               <SectionHeader title="latestProducts" />
-              <ProductGrid />
+              <ProductSlider />
             </div>
 
             {/* Related Products */}

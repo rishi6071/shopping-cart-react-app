@@ -3,7 +3,10 @@ import "../css/style.css";
 import axios from "axios";
 import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/alice-carousel.css";
-import useStyles, { newsRandImgs, responsiveNewsCards } from "../css/NewsGridStyle";
+import useStyles, {
+  newsRandImgs,
+  responsiveNewsCards,
+} from "../css/NewsGridStyle";
 import SectionHeader from "./SectionHeader";
 
 // Material-UI Components
@@ -100,8 +103,6 @@ const NewsGrid = (props) => {
       });
   }, []);
 
-  
-
   return (
     <>
       <div className={classes.root}>
@@ -114,10 +115,14 @@ const NewsGrid = (props) => {
             marginBottom: 20,
           }}
         >
-          {[...newsGridData].map((newsCard) => {
+          {[...newsGridData].map((newsCard, idx) => {
             return (
               <>
-                <Grid item style={{ margin: "20px 15px" }}>
+                <Grid
+                  item
+                  style={{ margin: "20px 15px" }}
+                  key={`news_horizontal_card_${idx}`}
+                >
                   <Card>
                     <CardActionArea>
                       <Grid container>
@@ -164,7 +169,7 @@ const NewsGrid = (props) => {
                             <Button
                               variant="contained"
                               className={classes.horizontalNewsBtn}
-                              href={"#"}
+                              href={newsCard.url}
                               target="_blank"
                             >
                               Read More
@@ -197,10 +202,10 @@ const NewsGrid = (props) => {
             autoPlayInterval={2000}
             responsive={responsiveNewsCards}
             mouseTracking="false"
-            items={[...newsCarouselData].map((newsfeed) => {
+            items={[...newsCarouselData].map((newsfeed, idx) => {
               return (
                 <>
-                  <Grid item>
+                  <Grid item key={`news_carousel_card_${idx}`}>
                     <Card style={{ margin: "20px 15px" }}>
                       <CardActionArea>
                         <CardMedia

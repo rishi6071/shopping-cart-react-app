@@ -1,17 +1,25 @@
 import { makeStyles } from "@material-ui/core/styles";
 
 const responsiveProductCards = {
-  0: { items: 1 },
-  768: {
-    items: 2,
+  desktop: {
+    breakpoint: { max: 3000, min: 1024 },
+    items: 5,
+    slidesToSlide: 3, // optional, default to 1.
   },
-  1024: { items: 3 },
-  1900: {
-    items: 4,
+  tablet: {
+    breakpoint: { max: 1024, min: 464 },
+    items: 3,
+    slidesToSlide: 2, // optional, default to 1.
+  },
+  mobile: {
+    breakpoint: { max: 464, min: 0 },
+    items: 2,
+    slidesToSlide: 1, // optional, default to 1.
   },
 };
 
 const useStyles = makeStyles((theme) => ({
+  // ProductGrid.jsx
   root: {
     paddingLeft: 15,
     paddingRight: 15,
@@ -28,9 +36,10 @@ const useStyles = makeStyles((theme) => ({
       paddingRight: 0,
     },
   },
+  // ProductItem.jsx
   productItem: {
     boxSizing: "border-box",
-    margin: "0px auto 50px auto",
+    margin: "0px auto 40px auto",
     boxShadow: "none",
   },
   productImgBox: {
@@ -92,6 +101,16 @@ const useStyles = makeStyles((theme) => ({
   ratingStar: {
     color: "#ffcc00",
     fontSize: "17px",
+  },
+  // ProductSlider.jsx
+  productSliderBox: {
+    paddingLeft: 35,
+    paddingRight: 35,
+    marginBottom: 45,
+    [theme.breakpoints.down("sm")]: {
+      paddingLeft: 6,
+      paddingRight: 6,
+    },
   },
 }));
 

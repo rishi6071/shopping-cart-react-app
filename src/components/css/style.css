@@ -64,7 +64,7 @@ ul.alice-carousel__dots {
 
 /* ===== ProductGrid.jsx Styling ===== */
 .MuiCardActionArea-root {
-  border-radius: 10px !important;
+  border-radius: 5px !important;
 }
 
 /* ===== ProductDetails.jsx Styling ===== */

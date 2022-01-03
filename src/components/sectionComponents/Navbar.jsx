@@ -64,7 +64,7 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up("sm")]: {
       width: "auto",
     },
-    [theme.breakpoints.down("sm")]: {
+    [theme.breakpoints.down("xs")]: {
       display: "none",
     },
   },

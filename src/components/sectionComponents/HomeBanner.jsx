@@ -2,9 +2,11 @@ import React, { useEffect, Fragment } from "react";
 import "../css/style.css";
 import AOS from "aos";
 
-// Material-UI Components
+// react-glidejs
 import "react-glidejs/dist/index.css";
 import Glide from "react-glidejs";
+
+// Material-UI Components
 import { Typography, Button, Grid } from "@material-ui/core";
 
 // Styled Components
