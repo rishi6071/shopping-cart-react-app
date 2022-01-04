@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import useStyles from "../css/ProductGridItemSliderStyle";
 import "../css/style.css";
 
@@ -12,13 +12,13 @@ import {
   Grid,
   Button,
 } from "@material-ui/core";
+import Rating from "@mui/material/Rating";
 
 // Icons & Media
 import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
-import StarIcon from "@material-ui/icons/Star";
-import StarBorderIcon from "@material-ui/icons/StarBorder";
 
 const ProductItem = (props) => {
+  const [rating, setRating] = useState(3);
   const classes = useStyles();
 
   return (
@@ -28,11 +28,11 @@ const ProductItem = (props) => {
           <Grid className={classes.productImgBox}>
             <CardMedia
               component="img"
-              alt="Contemplative Reptile"
+              alt="Product Item"
               maxHeight="100%"
               maxWidth="100%"
               image={props.img}
-              title="Contemplative Reptile"
+              title="Product Item"
             />
           </Grid>
           <CardContent>
@@ -45,13 +45,21 @@ const ProductItem = (props) => {
             >
               Apple iPhone Pro
             </Typography>
-            <Typography variant="body2" className={classes.ratingBox}>
-              {[1, 1, 1].map((ratingStar) => {
-                return <StarIcon className={classes.ratingStar} />;
-              })}
-              {[1, 1].map((ratingStar) => {
-                return <StarBorderIcon className={classes.ratingStar} />;
-              })}
+            <Typography
+              variant="body2"
+              component="p"
+              align="center"
+              className={classes.productPrice}
+            >
+              <Rating
+                name="read-only"
+                value={rating}
+                size="small"
+                onChange={(event, newRating) => {
+                  setRating(newRating);
+                }}
+                readOnly
+              />
             </Typography>
             <Typography
               variant="body2"

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import ProductGrid from "./ProductGrid";
+import ProductItem from "./ProductItem";
 
 // Material-UI Components
 import {
@@ -15,10 +15,10 @@ import {
   Link,
   Slider,
 } from "@material-ui/core";
+import Rating from "@mui/material/Rating";
 
-// Material-UI Icons
-import StarIcon from "@material-ui/icons/Star";
-import StarBorderIcon from "@material-ui/icons/StarBorder";
+// Icons & Media
+import DummyImg from "../../media/products/iPhone/iphone1.jpeg";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -56,21 +56,17 @@ const useStyles = makeStyles((theme) => ({
   },
   ratingBox: {
     display: "block !important",
-    paddingLeft: 13,
-    paddingRight: 13,
+    paddingLeft: 15,
+    paddingRight: 15,
   },
   ratingLayer: {
     marginTop: 2.5,
     display: "flex",
-    "& span:nth-child(2)": {
-      marginLeft: 5,
-      fontSize: "12px",
-      marginTop: "3.5px !important",
+    "& > span:nth-child(2)": {
+      marginLeft: 9,
+      paddingTop: 2.3,
+      color: "dimgrey",
     },
-  },
-  ratingStar: {
-    color: "#ffcc00",
-    fontSize: "20px",
   },
 }));
 
@@ -98,6 +94,7 @@ function valuetext(value) {
 
 const Shop = () => {
   const classes = useStyles();
+  const [rating, setRating] = useState(3);
   const [value, setValue] = useState([20, 37]);
 
   const handleChange = (event, newValue) => {
@@ -165,22 +162,24 @@ const Shop = () => {
             </Typography>
 
             <Grid container className={classes.ratingBox}>
-              {[1, 1, 1, 1].map(() => {
+              {[1].map(() => {
                 return (
                   <>
                     <Grid item>
-                      <Typography variant="body2" className={classes.ratingLayer}>
+                      <Typography
+                        variant="body2"
+                        className={classes.ratingLayer}
+                      >
                         <span>
-                          {[1, 1, 1].map((ratingStar) => {
-                            return <StarIcon className={classes.ratingStar} />;
-                          })}
-                          {[1, 1].map((ratingStar) => {
-                            return (
-                              <StarBorderIcon className={classes.ratingStar} />
-                            );
-                          })}
+                          <Rating
+                            name="read-only"
+                            value={rating}
+                            onChange={(event, rating) => {
+                              setRating(rating);
+                            }}
+                          />
                         </span>
-                        <span>& up</span>
+                        <span>&#38; up</span>
                       </Typography>
                     </Grid>
                   </>
@@ -189,12 +188,31 @@ const Shop = () => {
             </Grid>
           </Grid>
         </Grid>
-        <Grid
-          item
-          md={9}
-          xs={12}
-        >
-          <ProductGrid />
+
+        <Grid item md={9} xs={12}>
+          <Grid
+            container
+            direction="row"
+            justifyContent="center"
+            className={classes.productGridBox}
+            spacing={2}
+          >
+            {[1, 1, 1, 1, 1, 1].map(() => {
+              return (
+                <>
+                  <Grid
+                    item
+                    md={3}
+                    sm={6}
+                    xs={6}
+                    className={classes.productGridItem}
+                  >
+                    <ProductItem img={DummyImg} />
+                  </Grid>
+                </>
+              );
+            })}
+          </Grid>
         </Grid>
       </Grid>
     </>

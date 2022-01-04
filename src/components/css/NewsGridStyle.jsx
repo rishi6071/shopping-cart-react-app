@@ -38,7 +38,7 @@ const responsiveNewsCards = {
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    marginTop: 20,
+    marginTop: 30,
     marginBottom: 50,
     [theme.breakpoints.up("md")]: {
       minHeight: "70vh",

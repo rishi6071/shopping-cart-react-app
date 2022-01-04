@@ -38,6 +38,7 @@ const ProductSlider = (props) => {
           containerClass="carousel-container"
           dotListClass="custom-dot-list-style"
           itemClass="carousel-item-padding-40-px"
+          spacing={2}
         >
           {[1, 1, 1, 1, 1, 1, 1].map((product, idx) => {
             return <ProductItem img={DummyImg} key={idx} />;

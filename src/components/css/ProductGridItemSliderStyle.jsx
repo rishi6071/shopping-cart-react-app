@@ -20,20 +20,20 @@ const responsiveProductCards = {
 
 const useStyles = makeStyles((theme) => ({
   // ProductGrid.jsx
-  root: {
-    paddingLeft: 15,
-    paddingRight: 15,
-    [theme.breakpoints.down("sm")]: {
-      paddingLeft: 2,
-      paddingRight: 2,
-    },
-  },
   productGridBox: {
     paddingLeft: 30,
     paddingRight: 30,
     [theme.breakpoints.down("sm")]: {
       paddingLeft: 0,
       paddingRight: 0,
+    },
+  },
+  productGridItem: {
+    paddingLeft: 15,
+    paddingRight: 15,
+    [theme.breakpoints.down("sm")]: {
+      paddingLeft: 2,
+      paddingRight: 2,
     },
   },
   // ProductItem.jsx
@@ -91,16 +91,6 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down("sm")]: {
       marginLeft: 3,
     },
-  },
-  ratingBox: {
-    display: "flex",
-    justifyContent: "center",
-    marginTop: -3,
-    marginBottom: 4,
-  },
-  ratingStar: {
-    color: "#ffcc00",
-    fontSize: "17px",
   },
   // ProductSlider.jsx
   productSliderBox: {

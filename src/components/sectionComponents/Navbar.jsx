@@ -4,13 +4,17 @@ import NavbarLinks from "./Path";
 
 // Material-UI Components
 import { alpha, makeStyles } from "@material-ui/core/styles";
-import { Typography, IconButton } from "@material-ui/core";
-import { AppBar, Badge, Toolbar, InputBase } from "@material-ui/core";
+import {
+  AppBar,
+  Badge,
+  Toolbar,
+  InputBase,
+  Typography,
+} from "@material-ui/core";
 
 // Icons & Media
 import SearchIcon from "@material-ui/icons/Search";
 import ShoppingCartTwoToneIcon from "@material-ui/icons/ShoppingCartTwoTone";
-import BrandIcon from "../../media/brand.png";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -24,28 +28,12 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: 3,
     boxShadow: "0px 1px 5px lightgrey",
   },
-  menuButton: {
-    marginRight: theme.spacing(1),
-    marginLeft: 10,
-    [theme.breakpoints.down("sm")]: {
-      display: "none",
-    },
-    [theme.breakpoints.down("md")]: {
-      marginLeft: 0,
-    },
-  },
-  brandIcon: {
-    width: 40,
-    [theme.breakpoints.down("sm")]: {
-      marginLeft: 7,
-    },
-  },
   title: {
     flexGrow: 1,
     display: "block",
     fontWeight: "bolder",
     letterSpacing: "1px",
-    marginLeft: -10,
+    marginLeft: 15,
     fontFamily: "Acme, sans-serif",
     [theme.breakpoints.down("sm")]: {
       marginLeft: 10,
@@ -150,18 +138,6 @@ const Navbar = () => {
           className={classes.appbar}
         >
           <Toolbar>
-            <IconButton
-              edge="start"
-              className={classes.menuButton}
-              color="inherit"
-              aria-label="open drawer"
-            >
-              <img
-                src={BrandIcon}
-                className={classes.brandIcon}
-                alt="Commerce.js"
-              />
-            </IconButton>
             <Typography className={classes.title} variant="h5" noWrap>
               Commerce.js
             </Typography>
@@ -202,7 +178,10 @@ const Navbar = () => {
                 onKeyDown={handleSearch}
               />
             </div>
-            <div className={classes.navbarLinkItem} style={{ marginLeft: 15, marginRight: 10 }}>
+            <div
+              className={classes.navbarLinkItem}
+              style={{ marginLeft: 15, marginRight: 10 }}
+            >
               <NavLink
                 to="/cart"
                 className={classes.navbarLink}

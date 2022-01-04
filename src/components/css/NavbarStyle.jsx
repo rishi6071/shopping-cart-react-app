@@ -5,35 +5,22 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     position: "relative",
     zIndex: 1,
-    width: "100vw",
+    maxWidth: "1400px",
   },
   appbar: {
     paddingTop: 3,
     paddingBottom: 3,
     boxShadow: "0px 1px 5px lightgrey",
   },
-  menuButton: {
-    marginRight: theme.spacing(1),
-    marginLeft: 10,
-    [theme.breakpoints.down("md")]: {
-      marginLeft: 0,
-    },
-  },
-  brandIcon: {
-    width: 40,
-    [theme.breakpoints.down("sm")]: {
-      marginLeft: 7,
-    },
-  },
   title: {
     flexGrow: 1,
-    display: "none",
+    display: "block",
     fontWeight: "bolder",
     letterSpacing: "1px",
-    marginLeft: -10,
+    marginLeft: 15,
     fontFamily: "Acme, sans-serif",
-    [theme.breakpoints.up("sm")]: {
-      display: "block",
+    [theme.breakpoints.down("sm")]: {
+      marginLeft: 10,
     },
   },
   search: {
@@ -48,6 +35,9 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     [theme.breakpoints.up("sm")]: {
       width: "auto",
+    },
+    [theme.breakpoints.down("xs")]: {
+      display: "none",
     },
   },
   searchIcon: {

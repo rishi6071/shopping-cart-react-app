@@ -23,7 +23,7 @@ const ProductGrid = () => {
         {[1, 1, 1, 1, 1, 1].map(() => {
           return (
             <>
-              <Grid item md={3} sm={4} xs={6} className={classes.root}>
+              <Grid item md={3} sm={4} xs={6} className={classes.productGridItem}>
                 <ProductItem img={DummyImg} />
               </Grid>
             </>
