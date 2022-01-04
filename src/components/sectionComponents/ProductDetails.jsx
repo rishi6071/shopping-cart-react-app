@@ -246,7 +246,9 @@ const ProductDetails = () => {
                     loremos.Donec pretium egestas sapien et mollis.
                   </Typography>
                   <Grid container direction="column">
-                    <Typography variant="h5" className={classes.sampleListHead}>Sample Unordered List</Typography>
+                    <Typography variant="h5" className={classes.sampleListHead}>
+                      Sample Unordered List
+                    </Typography>
                     <ul type="square" className={classes.sampleList}>
                       <li>Comodous in tempor ullamcorper miaculis</li>
                       <li>
@@ -260,7 +262,9 @@ const ProductDetails = () => {
                     </ul>
                   </Grid>
                   <Grid container direction="column">
-                    <Typography variant="h5" className={classes.sampleListHead}>Sample Ordered List</Typography>
+                    <Typography variant="h5" className={classes.sampleListHead}>
+                      Sample Ordered List
+                    </Typography>
                     <ol className={classes.sampleList}>
                       <li>Comodous in tempor ullamcorper miaculis</li>
                       <li>
@@ -274,7 +278,11 @@ const ProductDetails = () => {
                     </ol>
                   </Grid>
                   <Grid container direction="column">
-                    <Typography variant="h5" className={classes.sampleListHead} style={{ marginBottom: 10 }}>
+                    <Typography
+                      variant="h5"
+                      className={classes.sampleListHead}
+                      style={{ marginBottom: 10 }}
+                    >
                       Sample Paragraph Text
                     </Typography>
                     <Typography
@@ -325,14 +333,24 @@ const ProductDetails = () => {
                   className={classes.shippingDetailsSection}
                 >
                   <Grid container>
-                    <Typography variant="h6">Returns Policy</Typography>
-                    <Typography variantMapping="p" style={{ marginTop: 10 }}>
+                    <Typography variant="h6" className={classes.sampleListHead}>
+                      Returns Policy
+                    </Typography>
+                    <Typography
+                      variantMapping="p"
+                      className={classes.sampleList}
+                      style={{ marginTop: 10 }}
+                    >
                       You may return most new, unopened items within 30 days of
                       delivery for a full refund. We'll also pay the return
                       shipping costs if the return is a result of our error (you
                       received an incorrect or defective item, etc.).
                     </Typography>
-                    <Typography variantMapping="p" style={{ marginTop: 25 }}>
+                    <Typography
+                      variantMapping="p"
+                      className={classes.sampleList}
+                      style={{ marginTop: 15 }}
+                    >
                       You should expect to receive your refund within four weeks
                       of giving your package to the return shipper, however, in
                       many cases you will receive a refund more quickly. This
@@ -342,7 +360,11 @@ const ProductDetails = () => {
                       (3 to 5 business days), and the time it takes your bank to
                       process our refund request (5 to 10 business days).
                     </Typography>
-                    <Typography variantMapping="p" style={{ marginTop: 25 }}>
+                    <Typography
+                      variantMapping="p"
+                      className={classes.sampleList}
+                      style={{ marginTop: 15 }}
+                    >
                       If you need to return an item, simply login to your
                       account, view the order using the 'Complete Orders' link
                       under the My Account menu and click the Return Item(s)
@@ -351,20 +373,34 @@ const ProductDetails = () => {
                     </Typography>
                   </Grid>
                   <Grid container style={{ marginTop: 30 }}>
-                    <Typography variant="h6">Shipping Policy</Typography>
-                    <Typography variantMapping="p" style={{ marginTop: 10 }}>
+                    <Typography variant="h6" className={classes.sampleListHead}>
+                      Shipping Policy
+                    </Typography>
+                    <Typography
+                      variantMapping="p"
+                      className={classes.sampleList}
+                      style={{ marginTop: 10 }}
+                    >
                       We can ship to virtually any address in the world. Note
                       that there are restrictions on some products, and some
                       products cannot be shipped to international destinations.
                     </Typography>
-                    <Typography variantMapping="p" style={{ marginTop: 25 }}>
+                    <Typography
+                      variantMapping="p"
+                      className={classes.sampleList}
+                      style={{ marginTop: 15 }}
+                    >
                       When you place an order, we will estimate shipping and
                       delivery dates for you based on the availability of your
                       items and the shipping options you choose. Depending on
                       the shipping provider you choose, shipping date estimates
                       may appear on the shipping quotes page.
                     </Typography>
-                    <Typography variantMapping="p" style={{ marginTop: 25 }}>
+                    <Typography
+                      variantMapping="p"
+                      className={classes.sampleList}
+                      style={{ marginTop: 15 }}
+                    >
                       Please also note that the shipping rates for many items we
                       sell are weight-based. The weight of any such item can be
                       found on its detail page. To reflect the policies of the

@@ -55,7 +55,7 @@ const RelatedProducts = [
   {
     id: "related_products",
     name: "Related Products",
-    path: "/",
+    path: "/search",
   },
 ];
 

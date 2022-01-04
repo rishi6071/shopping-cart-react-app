@@ -84,6 +84,9 @@ const useStyles = makeStyles((theme) => ({
       padding: "7px 5px",
       fontSize: "12.5px",
     },
+    [theme.breakpoints.down("xs")]: {
+      padding: "7px 1px",
+    },
   },
   productCartIcon: {
     marginLeft: 10,

@@ -1,4 +1,7 @@
 import React from "react";
+
+import SectionHeader from "./SectionHeader";
+import ProductSlider from "./ProductSlider";
 import ProductGrid from "./ProductGrid";
 
 // Material UI Components
@@ -37,6 +40,11 @@ const SearchProduct = (props) => {
 
         <ProductGrid />
       </Grid>
+
+      <div style={{ marginTop: 10 }}>
+        <SectionHeader title="relatedProducts" />
+        <ProductSlider />
+      </div>
     </>
   );
 };

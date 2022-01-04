@@ -213,19 +213,25 @@ const useStyles = makeStyles((theme) => ({
   },
   descHeading: {
     marginBottom: 25,
+    marginTop: 10,
+    fontSize: "15px",
+    lineHeight: 1.7,
     [theme.breakpoints.down("sm")]: {
       fontSize: "14px",
     },
   },
   sampleListHead: {
+    fontSize: "19px",
     [theme.breakpoints.down("sm")]: {
-      fontSize: "20px",
+      fontSize: "17px",
     },
   },
   sampleList: {
-    lineHeight: 2,
+    lineHeight: 1.7,
+    fontSize: "14px",
   },
   sampleParaText: {
+    fontSize: "15px",
     lineHeight: 1.7,
     textIndent: 20,
     [theme.breakpoints.down("sm")]: {
