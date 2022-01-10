@@ -1,6 +1,9 @@
 import React from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 
+// Commerce.js Instance
+// import { commerce } from "../lib/commerce";
+
 // Custom Components
 import Navbar from "./sectionComponents/Navbar";
 import HomeBanner from "./sectionComponents/HomeBanner";

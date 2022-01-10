@@ -18,9 +18,11 @@ import {
   Banner2,
   Collection1,
   Collection2,
+  Collection3,
+  Collection4,
 } from "../css/HomeBannerStyle";
 const banners = [Banner1, Banner2];
-const collections = [Collection1, Collection2];
+const collections = [Collection1, Collection2, Collection3, Collection4];
 
 const HomeBanner = () => {
   const classes = useStyles();
@@ -115,7 +117,7 @@ const HomeBanner = () => {
           className={classes.collection}
           spacing={2}
         >
-          {[...collections, ...collections].map((collection) => {
+          {[...collections].map((collection) => {
             return (
               <>
                 <Grid item sm={6} xs={12}>
