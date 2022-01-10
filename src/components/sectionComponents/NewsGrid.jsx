@@ -66,7 +66,7 @@ const NewsGrid = (props) => {
     axios
       .request(options)
       .then(function (response) {
-        console.log(response.data.value);
+        // console.log(response.data.value);
         setNewsCarouselData(response.data.value);
       })
       .catch(function (error) {
@@ -95,7 +95,7 @@ const NewsGrid = (props) => {
     axios
       .request(options)
       .then(function (response) {
-        console.log(response.data.value);
+        // console.log(response.data.value);
         setNewsGridData(response.data.value);
       })
       .catch(function (error) {

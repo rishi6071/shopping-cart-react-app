@@ -4,10 +4,6 @@ import "./style.css";
 // Icons Banners
 import Banner1 from "../../media/banner/banner_01.png";
 import Banner2 from "../../media/banner/banner_02.png";
-import Collection1 from "../../media/collection/collection_01.png";
-import Collection2 from "../../media/collection/collection_02.png";
-import Collection3 from "../../media/collection/collection_03.png";
-import Collection4 from "../../media/collection/collection_04.png";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -122,13 +118,13 @@ const useStyles = makeStyles((theme) => ({
   },
   collectionSlogan: {
     color: "rgba(0,0,0,0.7)",
+    fontSize: "smaller",
     fontFamily: "Archivo, sans-serif",
     [theme.breakpoints.down("md")]: {
       fontSize: "smaller",
     },
   },
   collectionBoldContent: {
-    marginTop: 5,
     fontWeight: "bold",
     fontFamily: "Archivo, sans-serif",
     letterSpacing: "0.4px",
@@ -161,4 +157,4 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default useStyles;
-export { Banner1, Banner2, Collection1, Collection2, Collection3, Collection4 };
+export { Banner1, Banner2};

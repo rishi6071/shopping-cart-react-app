@@ -13,18 +13,10 @@ import { Typography, Button, Grid } from "@material-ui/core";
 import useStyles from "../css/HomeBannerStyle";
 
 // Icons & Media
-import {
-  Banner1,
-  Banner2,
-  Collection1,
-  Collection2,
-  Collection3,
-  Collection4,
-} from "../css/HomeBannerStyle";
+import { Banner1, Banner2 } from "../css/HomeBannerStyle";
 const banners = [Banner1, Banner2];
-const collections = [Collection1, Collection2, Collection3, Collection4];
 
-const HomeBanner = () => {
+const HomeBanner = (props) => {
   const classes = useStyles();
 
   useEffect(() => {
@@ -117,47 +109,63 @@ const HomeBanner = () => {
           className={classes.collection}
           spacing={2}
         >
-          {[...collections].map((collection) => {
+          {[...props.categories].map((collection) => {
+            let iterable = collection.children;
+            if (collection.children.length > 0) iterable = collection.children;
+
             return (
               <>
-                <Grid item sm={6} xs={12}>
-                  <Grid className={classes.collectionItem} >
-                    <Grid container justifyContent="center">
-                      <Grid item xs={6} className={classes.collectionImgBox}>
-                        <img
-                          src={collection}
-                          className={classes.collectionImg}
-                          alt="Smartphones"
-                        />
-                      </Grid>
-                      <Grid
-                        item
-                        xs={6}
-                        container
-                        alignItems="center"
-                        justifyContent="space-around"
-                      >
-                        <Grid>
-                          <Typography variantMapping="p" className={classes.collectionSlogan}>
-                            New Colors Introduced
-                          </Typography>
-                          <Typography
-                            variant="h6"
-                            className={classes.collectionBoldContent}
+                {[...iterable].map((category) => {
+                  return (
+                    <Grid item sm={6} xs={12} key={category.id}>
+                      <Grid className={classes.collectionItem}>
+                        <Grid container justifyContent="center">
+                          <Grid
+                            item
+                            xs={6}
+                            className={classes.collectionImgBox}
                           >
-                            HEADPHONES
-                          </Typography>
-                          <Button
-                            variant="contained"
-                            className={classes.collectionBtn}
+                            <img
+                              src={category.assets[0].url}
+                              className={classes.collectionImg}
+                              alt="Smartphones"
+                            />
+                          </Grid>
+                          <Grid
+                            item
+                            xs={6}
+                            container
+                            alignItems="center"
+                            justifyContent="space-around"
                           >
-                            SHOP NOW
-                          </Button>
+                            <Grid>
+                              <Typography
+                                variantMapping="p"
+                                className={classes.collectionSlogan}
+                              >
+                                {category.description === undefined
+                                  ? "Newly Branded"
+                                  : category.description}
+                              </Typography>
+                              <Typography
+                                variant="h6"
+                                className={classes.collectionBoldContent}
+                              >
+                                {category.name}
+                              </Typography>
+                              <Button
+                                variant="contained"
+                                className={classes.collectionBtn}
+                              >
+                                SHOP NOW
+                              </Button>
+                            </Grid>
+                          </Grid>
                         </Grid>
                       </Grid>
                     </Grid>
-                  </Grid>
-                </Grid>
+                  );
+                })}
               </>
             );
           })}

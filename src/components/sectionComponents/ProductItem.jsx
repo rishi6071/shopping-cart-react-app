@@ -10,12 +10,11 @@ import {
   CardMedia,
   Typography,
   Grid,
-  Button,
 } from "@material-ui/core";
 import Rating from "@mui/material/Rating";
 
 // Icons & Media
-import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
+// import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 
 const ProductItem = (props) => {
   const [rating, setRating] = useState(3);
@@ -69,10 +68,10 @@ const ProductItem = (props) => {
             >
               $900
             </Typography>
-            <Button variant="contained" className={classes.addCartBtn}>
+            {/* <Button variant="contained" className={classes.addCartBtn}>
               ADD TO CART{" "}
               <AddShoppingCartIcon className={classes.productCartIcon} />
-            </Button>
+            </Button> */}
           </CardContent>
         </CardActionArea>
       </Card>

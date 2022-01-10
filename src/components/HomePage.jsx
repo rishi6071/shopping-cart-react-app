@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 // Commerce.js Instance
-// import { commerce } from "../lib/commerce";
+import { commerce } from "../lib/commerce";
 
 // Custom Components
 import Navbar from "./sectionComponents/Navbar";
@@ -20,6 +20,18 @@ import QuotesPolicy from "./sectionComponents/QuotesPolicy";
 import ProductSlider from "./sectionComponents/ProductSlider";
 
 const HomePage = () => {
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      const { data } = await commerce.categories.list();
+      console.log(data);
+      setCategories(data);
+    };
+    
+    fetchCategories();
+  }, []);
+
   return (
     <>
       <BrowserRouter>
@@ -27,7 +39,8 @@ const HomePage = () => {
 
         <Switch>
           <Route path="/" exact>
-            <HomeBanner />
+            {/* Home Carousel & Categories Listing */}
+            <HomeBanner categories={categories} />
 
             {/* Latest Products */}
             <div>
