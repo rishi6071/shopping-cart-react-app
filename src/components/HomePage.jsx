@@ -20,16 +20,26 @@ import QuotesPolicy from "./sectionComponents/QuotesPolicy";
 import ProductSlider from "./sectionComponents/ProductSlider";
 
 const HomePage = () => {
+  const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
+    const fetchProducts = async () => {
+      const { data } = await commerce.products.list({
+        category_slug: ["mobiles"],
+      });
+      // console.log(data);
+      setProducts(data);
+    };
+
     const fetchCategories = async () => {
       const { data } = await commerce.categories.list();
-      console.log(data);
+      // console.log(data);
       setCategories(data);
     };
-    
+
     fetchCategories();
+    fetchProducts();
   }, []);
 
   return (
@@ -44,13 +54,13 @@ const HomePage = () => {
 
             {/* Latest Products */}
             <div>
-              <SectionHeader title="latestProducts" />
+              <SectionHeader title="Latest Products" />
               <ProductSlider />
             </div>
 
             {/* Related Products */}
             <div>
-              <SectionHeader title="relatedProducts" />
+              <SectionHeader title="Related Products" />
               <ProductGrid />
             </div>
 

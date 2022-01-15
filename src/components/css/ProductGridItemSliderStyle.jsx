@@ -29,8 +29,8 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   productGridItem: {
-    paddingLeft: 15,
-    paddingRight: 15,
+    paddingLeft: 10,
+    paddingRight: 10,
     [theme.breakpoints.down("sm")]: {
       paddingLeft: 2,
       paddingRight: 2,
@@ -56,7 +56,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   productTitle: {
-    fontSize: "17.5px",
+    fontSize: "16px",
     fontFamily: "Archivo, sans-serif",
   },
   productPrice: {

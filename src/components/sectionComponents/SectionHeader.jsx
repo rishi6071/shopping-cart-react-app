@@ -2,12 +2,7 @@ import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import "../css/style.css";
 
-import {
-  ProductSectionLinks,
-  LatestProducts,
-  RelatedProducts,
-  NewsPanel,
-} from "./Path";
+import { ProductSectionLinks, NewsPanel } from "./Path";
 import useStyles from "../css/SectionHeaderStyle";
 
 // Material-Ui Components
@@ -22,14 +17,14 @@ const SectionHeader = (props) => {
 
   // Links Filtering
   useEffect(() => {
-    if (props.title === "latestProducts") {
-      setSectionLinks([...LatestProducts]);
-    } else if (props.title === "relatedProducts") {
-      setSectionLinks([...RelatedProducts]);
-    } else if (props.title === "productDetailsSections") {
+    if (props.title === "productDetailsSections") {
       setSectionLinks([...ProductSectionLinks]);
     } else if (props.title === "newsPanel") {
       setSectionLinks([...NewsPanel]);
+    } else {
+      setSectionLinks([
+        { id: `commercejs_${props.title}`, name: `${props.title}`, path: `#` },
+      ]);
     }
   }, [props]);
 

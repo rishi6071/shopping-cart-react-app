@@ -41,33 +41,14 @@ const ProductSectionLinks = [
   },
 ];
 
-// Latest Products
-const LatestProducts = [
-  {
-    id: "latest_products",
-    name: "Latest Products",
-    path: "/",
-  },
-];
-
-// Related Products
-const RelatedProducts = [
-  {
-    id: "related_products",
-    name: "Related Products",
-    path: "/search",
-  },
-];
-
-
 // News Panel Carousel
 const NewsPanel = [
   {
     id: "news_panel",
     name: "Gadgets News",
-    path: "/"
-  }
+    path: "#",
+  },
 ];
 
 export default NavbarLinks;
-export { ProductSectionLinks, LatestProducts, RelatedProducts, NewsPanel };
+export { ProductSectionLinks, NewsPanel };
