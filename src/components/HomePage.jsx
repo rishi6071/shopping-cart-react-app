@@ -58,10 +58,10 @@ const HomePage = () => {
             })}
 
             {/* Related Products */}
-            <div>
+            {/* <div>
               <SectionHeader title="Related Products" />
-              {/* <ProductGrid /> */}
-            </div>
+              <ProductGrid />
+            </div> */}
 
             <QuotesPolicy />
             <NewsGrid resources={["newsCarousel"]} /> 

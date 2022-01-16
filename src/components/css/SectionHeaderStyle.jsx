@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
     alignItems: "center",
     marginTop: 20,
-    marginBottom: 30,
+    marginBottom: 20,
   },
   sectionHeadItem: {
     display: "flex",

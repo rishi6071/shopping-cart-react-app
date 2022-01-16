@@ -47,6 +47,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
     alignItems: "center",
     padding: "20px 15px 5px 15px",
+    height: "13.5rem",
     "& img": {
       maxHeight: "13.5rem",
       maxWidth: 215,
@@ -54,8 +55,9 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down("sm")]: {
       paddingLeft: 15,
       paddingRight: 15,
+      height: "11.3rem",
       "& img": {
-        maxHeight: "12.3rem",
+        maxHeight: "11.3rem",
         maxWidth: 160,
       },
     },
