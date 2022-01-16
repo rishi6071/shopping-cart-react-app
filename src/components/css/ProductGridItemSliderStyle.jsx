@@ -43,16 +43,21 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: "none",
   },
   productImgBox: {
-    height: "15.5rem",
-    maxWidth: 215,
-    display: "block",
-    margin: "auto",
-    padding: "20px 25px 5px 25px",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    padding: "20px 15px 5px 15px",
+    "& img": {
+      maxHeight: "13.5rem",
+      maxWidth: 215,
+    },
     [theme.breakpoints.down("sm")]: {
       paddingLeft: 15,
       paddingRight: 15,
-      maxWidth: 160,
-      height: "12.3rem",
+      "& img": {
+        maxHeight: "12.3rem",
+        maxWidth: 160,
+      },
     },
   },
   productTitle: {

@@ -35,6 +35,7 @@ const useStyles = makeStyles((theme) => ({
     },
     "& span": {
       marginTop: 3.5,
+      textTransform: "capitalize",
     },
   },
   sectionHeadIcon: {

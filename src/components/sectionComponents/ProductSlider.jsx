@@ -1,5 +1,8 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "../css/style.css";
+
+// Commerce.js Instance
+import { commerce } from "../../lib/commerce";
 
 // react-multi-carousel
 import Carousel from "react-multi-carousel";
@@ -8,10 +11,6 @@ import "react-multi-carousel/lib/styles.css";
 // Material-UI Components
 import Grid from "@material-ui/core/Grid";
 
-// Icons & Media
-import DummyImg from "../../media/products/iPhone/iphone1.jpeg";
-import DummyImg2 from "../../media/products/iPhone/iphone4.jpeg";
-
 import useStyles, {
   responsiveProductCards,
 } from "../css/ProductGridItemSliderStyle";
@@ -19,6 +18,19 @@ import ProductItem from "./ProductItem";
 
 const ProductSlider = (props) => {
   const classes = useStyles();
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    // Fetch All Category Products
+    const fetchCategoryProducts = async () => {
+      const { data } = await commerce.products.list({
+        category_slug: [props.categorySlug],
+      });
+      setProducts(data);
+    };
+
+    fetchCategoryProducts();
+  }, [props.categorySlug]);
 
   return (
     <>
@@ -40,10 +52,9 @@ const ProductSlider = (props) => {
           itemClass="carousel-item-padding-40-px"
           spacing={2}
         >
-          {[1, 1, 1, 1, 1, 1, 1].map((product, idx) => {
-            return <ProductItem img={DummyImg} key={idx} />;
+          {[...products].map((product, idx) => {
+            return <ProductItem item={product} key={idx} />;
           })}
-          <ProductItem img={DummyImg2} />
         </Carousel>
       </Grid>
     </>

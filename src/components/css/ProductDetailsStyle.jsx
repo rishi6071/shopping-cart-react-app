@@ -29,7 +29,6 @@ const useStyles = makeStyles((theme) => ({
   },
   productMainImgBox: {
     height: "27rem",
-    border: "0.9px solid rgba(220,220,220, 0.55)",
     padding: 10,
     [theme.breakpoints.down("xs")]: {
       order: 1,
@@ -53,16 +52,16 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   prodGalleryImgBox: {
-    height: "5.2rem",
+    height: "4.2rem",
     padding: "8px 12px",
-    border: "0.9px solid rgba(220,220,220, 0.55)",
+    border: "1px solid rgba(220,220,220, 0.75)",
     transition: "border 0.3s",
     "&:hover": {
       border: "0.9px solid red",
       cursor: "pointer",
     },
     [theme.breakpoints.down("xs")]: {
-      height: "4.3rem",
+      height: "3.2rem",
       marginTop: 20,
     },
   },

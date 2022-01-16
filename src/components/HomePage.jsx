@@ -7,7 +7,7 @@ import { commerce } from "../lib/commerce";
 // Custom Components
 import Navbar from "./sectionComponents/Navbar";
 import HomeBanner from "./sectionComponents/HomeBanner";
-import ProductGrid from "./sectionComponents/ProductGrid";
+// import ProductGrid from "./sectionComponents/ProductGrid";
 import NewsGrid from "./sectionComponents/NewsGrid";
 import Footer from "./sectionComponents/Footer";
 import SectionHeader from "./sectionComponents/SectionHeader";
@@ -20,26 +20,15 @@ import QuotesPolicy from "./sectionComponents/QuotesPolicy";
 import ProductSlider from "./sectionComponents/ProductSlider";
 
 const HomePage = () => {
-  const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
 
+  // Fetch All Categories
   useEffect(() => {
-    const fetchProducts = async () => {
-      const { data } = await commerce.products.list({
-        category_slug: ["mobiles"],
-      });
-      // console.log(data);
-      setProducts(data);
-    };
-
     const fetchCategories = async () => {
       const { data } = await commerce.categories.list();
-      // console.log(data);
       setCategories(data);
     };
-
     fetchCategories();
-    fetchProducts();
   }, []);
 
   return (
@@ -52,16 +41,26 @@ const HomePage = () => {
             {/* Home Carousel & Categories Listing */}
             <HomeBanner categories={categories} />
 
-            {/* Latest Products */}
-            <div>
-              <SectionHeader title="Latest Products" />
-              <ProductSlider />
-            </div>
+            {/* ProductSlider for all Sub-Categories */}
+            {[...categories].map((parent_category) => {
+              return (
+                <>
+                  {[...parent_category.children].map((sub_category) => {
+                    return (
+                      <div key={sub_category.id}>
+                        <SectionHeader title={"Branded " + sub_category.name} />
+                        <ProductSlider categorySlug={sub_category.slug} />
+                      </div>
+                    );
+                  })}
+                </>
+              );
+            })}
 
             {/* Related Products */}
             <div>
               <SectionHeader title="Related Products" />
-              <ProductGrid />
+              {/* <ProductGrid /> */}
             </div>
 
             <QuotesPolicy />

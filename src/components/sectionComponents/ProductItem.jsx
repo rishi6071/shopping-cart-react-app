@@ -7,7 +7,6 @@ import {
   Card,
   CardActionArea,
   CardContent,
-  CardMedia,
   Typography,
   Grid,
 } from "@material-ui/core";
@@ -25,14 +24,7 @@ const ProductItem = (props) => {
       <Card className={classes.productItem}>
         <CardActionArea>
           <Grid className={classes.productImgBox}>
-            <CardMedia
-              component="img"
-              alt="Product Item"
-              maxHeight="100%"
-              maxWidth="100%"
-              image={props.img}
-              title="Product Item"
-            />
+            <img src={props.item.image.url} maxHeight="100%" maxWidth="100%" alt="" />
           </Grid>
           <CardContent>
             <Typography
@@ -42,7 +34,7 @@ const ProductItem = (props) => {
               align="center"
               className={classes.productTitle}
             >
-              Apple iPhone Pro
+              {props.item.name}
             </Typography>
             <Typography
               variant="body2"
@@ -66,7 +58,7 @@ const ProductItem = (props) => {
               align="center"
               className={classes.productPrice}
             >
-              $900
+              {props.item.price.formatted_with_symbol}
             </Typography>
             {/* <Button variant="contained" className={classes.addCartBtn}>
               ADD TO CART{" "}
