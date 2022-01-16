@@ -6,10 +6,7 @@ import ProductItem from "./ProductItem";
 // Material-UI Components
 import { Grid } from "@material-ui/core";
 
-// Icons & Media
-import DummyImg from "../../media/products/iPhone/iphone1.jpeg";
-
-const ProductGrid = () => {
+const ProductGrid = (props) => {
   const classes = useStyles();
 
   return (
@@ -20,11 +17,11 @@ const ProductGrid = () => {
         justifyContent="center"
         className={classes.productGridBox}
       >
-        {[1, 1, 1, 1, 1, 1].map(() => {
+        {[...props.products].map((product) => {
           return (
             <>
               <Grid item md={3} sm={4} xs={6} className={classes.productGridItem}>
-                <ProductItem img={DummyImg} />
+                <ProductItem item={product} />
               </Grid>
             </>
           );

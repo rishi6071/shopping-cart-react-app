@@ -7,7 +7,7 @@ import { commerce } from "../lib/commerce";
 // Custom Components
 import Navbar from "./sectionComponents/Navbar";
 import HomeBanner from "./sectionComponents/HomeBanner";
-// import ProductGrid from "./sectionComponents/ProductGrid";
+import ProductGrid from "./sectionComponents/ProductGrid";
 import NewsGrid from "./sectionComponents/NewsGrid";
 import Footer from "./sectionComponents/Footer";
 import SectionHeader from "./sectionComponents/SectionHeader";
@@ -21,6 +21,7 @@ import ProductSlider from "./sectionComponents/ProductSlider";
 
 const HomePage = () => {
   const [categories, setCategories] = useState([]);
+  const [allProducts, setAllProducts] = useState([]);
 
   // Fetch All Categories
   useEffect(() => {
@@ -29,6 +30,12 @@ const HomePage = () => {
       setCategories(data);
     };
     fetchCategories();
+
+    const fetchAllProducts = async () => {
+      const { data } = await commerce.products.list();
+      setAllProducts(data);
+    };
+    fetchAllProducts();
   }, []);
 
   return (
@@ -58,10 +65,10 @@ const HomePage = () => {
             })}
 
             {/* Related Products */}
-            {/* <div>
-              <SectionHeader title="Related Products" />
-              <ProductGrid />
-            </div> */}
+            <div>
+              <SectionHeader title="Latest Products" />
+              <ProductGrid products={allProducts} />
+            </div>
 
             <QuotesPolicy />
             <NewsGrid resources={["newsCarousel"]} /> 

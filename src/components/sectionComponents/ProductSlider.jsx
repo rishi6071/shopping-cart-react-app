@@ -25,6 +25,7 @@ const ProductSlider = (props) => {
     const fetchCategoryProducts = async () => {
       const { data } = await commerce.products.list({
         category_slug: [props.categorySlug],
+        limit: 10,
       });
       setProducts(data);
     };
@@ -42,7 +43,7 @@ const ProductSlider = (props) => {
           autoPlay={props.deviceType !== "mobile" ? true : false}
           autoPlaySpeed={5000}
           customTransition="all 1.5s"
-          transitionDuration={1500}
+          transitionDuration={2000}
           ssr={true}
           draggable={true}
           deviceType={props.deviceType}
