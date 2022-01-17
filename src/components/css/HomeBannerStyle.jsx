@@ -157,4 +157,4 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default useStyles;
-export { Banner1, Banner2};
+export { Banner1, Banner2 };

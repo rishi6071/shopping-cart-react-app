@@ -37,6 +37,9 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   // ProductItem.jsx
+  productItemLink: {
+    textDecoration: "none",
+  },
   productItem: {
     boxSizing: "border-box",
     margin: "0px auto 40px auto",

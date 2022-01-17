@@ -4,7 +4,7 @@ const useStyles = makeStyles((theme) => ({
   productDetailsBox: {
     paddingLeft: 30,
     paddingRight: 30,
-    marginTop: 15,
+    marginTop: 10,
     marginBottom: 30,
     fontFamily: "Archivo, sans-serif",
     [theme.breakpoints.down("lg")]: {
@@ -14,6 +14,7 @@ const useStyles = makeStyles((theme) => ({
   },
   productDetailsItem: {
     padding: 20,
+    paddingTop: 0,
     display: "block",
     margin: "auto",
     [theme.breakpoints.down("xs")]: {
@@ -28,19 +29,22 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   productMainImgBox: {
-    height: "27rem",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    height: "23rem",
     padding: 10,
+    "& img": {
+      maxHeight: "23rem",
+    },
     [theme.breakpoints.down("xs")]: {
       order: 1,
       maxWidth: 225,
-      height: "18rem",
+      height: "14rem",
+      "& img": {
+        maxHeight: "14rem",
+      },
     },
-  },
-  productMainImg: {
-    maxWidth: "100%",
-    maxHeight: "100%",
-    display: "block",
-    margin: "auto",
   },
   productGalleryBox: {
     marginTop: 0.4,
@@ -52,24 +56,24 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   prodGalleryImgBox: {
-    height: "4.2rem",
-    padding: "8px 12px",
-    border: "1px solid rgba(220,220,220, 0.75)",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    marginBottom: 18,
+    width: 130,
+    height: "2.5rem",
     transition: "border 0.3s",
+    "& img": {
+      maxWidth: 130,
+      maxHeight: "2.5rem",
+    },
     "&:hover": {
-      border: "0.9px solid red",
       cursor: "pointer",
     },
     [theme.breakpoints.down("xs")]: {
       height: "3.2rem",
       marginTop: 20,
     },
-  },
-  prodGalleryImg: {
-    maxWidth: "100%",
-    maxHeight: "100%",
-    display: "block",
-    margin: "auto",
   },
   divider: {
     marginTop: 15,

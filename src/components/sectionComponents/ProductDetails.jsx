@@ -2,6 +2,12 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import "../css/style.css";
 
+// React-Router-Dom
+import { useParams } from "react-router-dom";
+
+// Commerce.js Instance
+import { commerce } from "../../lib/commerce";
+
 // Custom Components
 import useStyles from "../css/ProductDetailsStyle";
 import SectionHeader from "./SectionHeader";
@@ -19,16 +25,35 @@ import CreditCardIcon from "@material-ui/icons/CreditCard";
 import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 import AddIcon from "@material-ui/icons/Add";
 import RemoveIcon from "@material-ui/icons/Remove";
-import DummyImage from "../../media/banner/banner_01.png";
 
 const ProductDetails = () => {
   const classes = useStyles();
+  const { id } = useParams();
+
+  const [productItem, setProductItem] = useState({});
+
+  const [productImgGallery, setProductImgGallery] = useState([]);
+  const [productMainImg, setProductMainImg] = useState("");
   const [prodQty, setProdQty] = useState(1);
   const [prodInStock, setProdInStock] = useState(7);
 
   useEffect(() => {
     setProdInStock(7);
-  }, []);
+
+    const fetchProductDetails = async () => {
+      const data = await commerce.products.retrieve(id);
+      setProductItem(data);
+      setProductImgGallery(data.assets);
+      setProductMainImg(data.assets[0].url);
+    };
+
+    fetchProductDetails();
+  }, [id]);
+
+  // useEffect(() => {
+  //   console.log(productItem);
+  //   console.log(productItem.assets);
+  // }, [productItem]);
 
   const handleQty = (operation) => {
     if (operation === "+") {
@@ -36,6 +61,11 @@ const ProductDetails = () => {
     } else {
       if (prodQty > 1) setProdQty(prodQty - 1);
     }
+  };
+
+  const handleMainImg = (e) => {
+    let src = e.target.src;
+    setProductMainImg(src);
   };
 
   return (
@@ -55,16 +85,23 @@ const ProductDetails = () => {
               <Grid item sm={2} xs={12} className={classes.productGalleryBox}>
                 <Grid
                   container
-                  style={{ display: "flex", justifyContent: "center" }}
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    marginTop: 10,
+                  }}
                 >
-                  {[1, 1, 1, 1, 1].map((galleryImg) => {
+                  {[...productImgGallery].map((galleryImg) => {
                     return (
                       <>
-                        <Grid className={classes.prodGalleryImgBox}>
+                        <Grid
+                          className={classes.prodGalleryImgBox}
+                          key={galleryImg.id}
+                        >
                           <img
-                            src={DummyImage}
-                            className={classes.prodGalleryImg}
-                            alt="Img"
+                            src={galleryImg.url}
+                            onMouseOver={handleMainImg}
+                            alt={galleryImg.id}
                           />
                         </Grid>
                       </>
@@ -74,9 +111,10 @@ const ProductDetails = () => {
               </Grid>
 
               {/* Product Main Image */}
-              <Grid item sm={10} xs={12} className={classes.productMainImgBox}>
+              <Grid item sm={1} xs={0}></Grid>
+              <Grid item sm={9} xs={12} className={classes.productMainImgBox}>
                 <img
-                  src={DummyImage}
+                  src={productMainImg}
                   className={classes.productMainImg}
                   alt="ProductMainImg"
                 />
@@ -87,11 +125,11 @@ const ProductDetails = () => {
           {/* Product Details */}
           <Grid item md={6} className={classes.productDetailsContentItem}>
             <Typography variant="h5" className={classes.productTitle}>
-              Apple iPhone XR
+              {productItem.name}
             </Typography>
 
             <Typography variant="h6" className={classes.productPrice}>
-              $250.99
+              {productItem.price ? productItem.price.formatted_with_symbol : ""}
             </Typography>
 
             <Typography variant="body2" className={classes.ratingBox}>
@@ -233,7 +271,7 @@ const ProductDetails = () => {
           <Grid container className={classes.productDetailsSections}>
             <Switch>
               {/* Description Section */}
-              <Route path="/product/1" exact>
+              <Route path="/product/:id" exact>
                 <Grid container direction="column">
                   <Typography
                     variantMapping="p"
@@ -306,7 +344,7 @@ const ProductDetails = () => {
               </Route>
 
               {/* Reviews Section */}
-              <Route path="/product/1/reviews" exact>
+              <Route path="/product/:id/reviews" exact>
                 <Grid container direction="column">
                   <Typography variant="h3" className={classes.reviewHeading}>
                     Customer Reviews
@@ -326,7 +364,7 @@ const ProductDetails = () => {
               </Route>
 
               {/* Shipping Details */}
-              <Route path="/product/1/policies" exact>
+              <Route path="/product/:id/policies" exact>
                 <Grid
                   container
                   direction="column"

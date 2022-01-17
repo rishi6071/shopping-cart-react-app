@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+
+// React-Router-Dom
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 // Commerce.js Instance
@@ -15,7 +17,7 @@ import Cart from "./sectionComponents/Cart";
 import ProductDetails from "./sectionComponents/ProductDetails";
 import Contact from "./sectionComponents/Contact";
 import SearchProduct from "./sectionComponents/SearchProduct";
-import Shop from "./sectionComponents/Shop";
+// import Shop from "./sectionComponents/Shop";
 import QuotesPolicy from "./sectionComponents/QuotesPolicy";
 import ProductSlider from "./sectionComponents/ProductSlider";
 
@@ -64,7 +66,7 @@ const HomePage = () => {
               );
             })}
 
-            {/* Related Products */}
+            {/* Latest Products */}
             <div>
               <SectionHeader title="Latest Products" />
               <ProductGrid products={allProducts} />
@@ -73,9 +75,9 @@ const HomePage = () => {
             <QuotesPolicy />
             <NewsGrid resources={["newsCarousel"]} /> 
           </Route>
-          <Route path="/product/1" exact>
+          <Route path="/shop" exact>
             <ProductDetails />
-            <Shop />
+            {/* <Shop /> */}
           </Route>
           <Route path="/newsfeed" exact>
             <NewsGrid resources={["newsCarousel", "newsGrid"]} />
@@ -88,6 +90,9 @@ const HomePage = () => {
           </Route>
           <Route path="/search" exact>
             <SearchProduct />
+          </Route>
+          <Route path="/product/:id">
+            <ProductDetails />
           </Route>
         </Switch>
 
