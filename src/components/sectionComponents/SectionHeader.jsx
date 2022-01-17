@@ -18,6 +18,9 @@ const SectionHeader = (props) => {
   // Links Filtering
   useEffect(() => {
     if (props.title === "productDetailsSections") {
+      for (let i = 0; i < ProductSectionLinks.length; i++) {
+        ProductSectionLinks[i].path = ProductSectionLinks[i].path.replace("/1", `/${props.productId}`);
+      }
       setSectionLinks([...ProductSectionLinks]);
     } else if (props.title === "newsPanel") {
       setSectionLinks([...NewsPanel]);

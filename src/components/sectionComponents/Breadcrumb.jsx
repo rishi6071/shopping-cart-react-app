@@ -6,6 +6,9 @@ const useStyles = makeStyles((theme) => ({
   breadcumbBox: {
     padding: "5px 30px 4px 40px",
     background: "#f1f1f1",
+    [theme.breakpoints.down("xs")]: {
+      padding: "5px 10px 4px 22px",
+    }
   },
   breadcumbLink: {
     color: "dimgrey",
@@ -21,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Breadcrumb = () => {
+const Breadcrumb = (props) => {
   const classes = useStyles();
 
   return (
@@ -30,20 +33,16 @@ const Breadcrumb = () => {
         <Link color="inherit" href="/" className={classes.breadcumbLink}>
           <HomeIcon className={classes.breadcumbHomeIcon} />
         </Link>
-        <Link
-          color="inherit"
-          href="/getting-started/installation/"
-          className={classes.breadcumbLink}
-        >
+        <Link color="inherit" href="#" className={classes.breadcumbLink}>
           Products
         </Link>
         <Link
           color="textPrimary"
-          href="/components/breadcrumbs/"
+          href="#"
           className={classes.breadcumbLink}
           aria-current="page"
         >
-          iPhone 11
+          {props.productName}
         </Link>
       </Breadcrumbs>
     </>

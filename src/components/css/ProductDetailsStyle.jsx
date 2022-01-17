@@ -14,9 +14,7 @@ const useStyles = makeStyles((theme) => ({
   },
   productDetailsItem: {
     padding: 20,
-    paddingTop: 0,
-    display: "block",
-    margin: "auto",
+    paddingTop: 30,
     [theme.breakpoints.down("xs")]: {
       padding: 10,
     },
@@ -35,13 +33,14 @@ const useStyles = makeStyles((theme) => ({
     height: "23rem",
     padding: 10,
     "& img": {
+      maxWidth: 400,
       maxHeight: "23rem",
     },
     [theme.breakpoints.down("xs")]: {
       order: 1,
-      maxWidth: 225,
       height: "14rem",
       "& img": {
+        maxWidth: 225,
         maxHeight: "14rem",
       },
     },
@@ -60,11 +59,11 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
     alignItems: "center",
     marginBottom: 18,
-    width: 130,
+    width: 100,
     height: "2.5rem",
     transition: "border 0.3s",
     "& img": {
-      maxWidth: 130,
+      maxWidth: 100,
       maxHeight: "2.5rem",
     },
     "&:hover": {
@@ -146,14 +145,6 @@ const useStyles = makeStyles((theme) => ({
     paddingRight: 2,
     fontFamily: "inherit",
   },
-  productDescription: {
-    marginTop: 12,
-    marginLeft: 2,
-    fontSize: "14px",
-    lineHeight: 1.8,
-    opacity: 0.8,
-    fontFamily: "inherit",
-  },
   formControl: {
     margin: theme.spacing(1),
     minWidth: 170,
@@ -166,9 +157,10 @@ const useStyles = makeStyles((theme) => ({
   },
   productQuantityField: {
     fontFamily: "inherit",
+    marginTop: 20,
     marginBottom: 20,
     marginLeft: 2,
-    "& > span": {
+    "& > strong": {
       marginRight: 10,
     },
   },
@@ -188,6 +180,7 @@ const useStyles = makeStyles((theme) => ({
   },
   productExtraDetails: {
     fontFamily: "inherit",
+    fontSize: "smaller",
     marginTop: 12,
     marginLeft: 3,
     letterSpacing: "0.5px",
@@ -196,6 +189,10 @@ const useStyles = makeStyles((theme) => ({
       color: "dimgrey",
       marginLeft: 3,
     },
+  },
+  productAvailability: {
+    marginLeft: 3,
+    fontFamily: "inherit",
   },
   // Description, Review, Ratings Section
   productDetailsSections: {

@@ -2,6 +2,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700&display=swap");
 @import url('https://fonts.googleapis.com/css2?family=Acme&display=swap');
 
+.disabled-link {
+  pointer-events: none;
+}
+
 /* ===== HomeBanner.jsx Styling ===== */
 @keyframes slideLeftArrow {
   from {

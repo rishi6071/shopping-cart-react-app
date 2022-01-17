@@ -14,9 +14,15 @@ import SectionHeader from "./SectionHeader";
 import Breadcrumb from "./Breadcrumb";
 
 // Material-UI Components
-import { Link, Grid, Button, Typography } from "@material-ui/core";
-import { Divider, ButtonGroup, InputLabel } from "@material-ui/core";
-import { MenuItem, FormControl, Select } from "@material-ui/core";
+import {
+  Link,
+  Grid,
+  Button,
+  Typography,
+  Divider,
+  ButtonGroup,
+} from "@material-ui/core";
+// import { MenuItem, FormControl, Select, InputLabel } from "@material-ui/core";
 
 // Icons & Media
 import StarIcon from "@material-ui/icons/Star";
@@ -34,6 +40,7 @@ const ProductDetails = () => {
 
   const [productImgGallery, setProductImgGallery] = useState([]);
   const [productMainImg, setProductMainImg] = useState("");
+  const [productDescription, setProductDescription] = useState(["", ""]);
   const [prodQty, setProdQty] = useState(1);
   const [prodInStock, setProdInStock] = useState(7);
 
@@ -50,6 +57,18 @@ const ProductDetails = () => {
     fetchProductDetails();
   }, [id]);
 
+  // Formatting ProductDescription once Product Loads
+  useEffect(() => {
+    if (Object.keys(productItem).length !== 0) {
+      let p_description = productItem.description;
+      p_description = p_description.split(
+        "<h2><strong>About this item:</strong></h2>"
+      );
+      setProductDescription(p_description);
+    }
+  }, [productItem]);
+
+  // For Loggers
   // useEffect(() => {
   //   console.log(productItem);
   //   console.log(productItem.assets);
@@ -72,7 +91,7 @@ const ProductDetails = () => {
     <>
       <BrowserRouter>
         {/* Breadcrumbs */}
-        <Breadcrumb />
+        <Breadcrumb productName={productItem.name} />
 
         {/* Product Details Box */}
         <Grid container className={classes.productDetailsBox}>
@@ -95,6 +114,9 @@ const ProductDetails = () => {
                     return (
                       <>
                         <Grid
+                          item
+                          sm={12}
+                          xs={2}
                           className={classes.prodGalleryImgBox}
                           key={galleryImg.id}
                         >
@@ -116,7 +138,7 @@ const ProductDetails = () => {
                 <img
                   src={productMainImg}
                   className={classes.productMainImg}
-                  alt="ProductMainImg"
+                  alt="ProductMainImage"
                 />
               </Grid>
             </Grid>
@@ -150,16 +172,7 @@ const ProductDetails = () => {
 
             <Divider className={classes.divider} />
 
-            <Typography
-              variantMapping="p"
-              className={classes.productDescription}
-            >
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt a
-              doloribus iste natus et facere? dolor sit amet consectetur
-              adipisicing elit. Sunt a doloribus iste natus et facere?
-            </Typography>
-
-            <Grid container style={{ margin: "3px 0 10px -5px" }}>
+            {/* <Grid container style={{ margin: "3px 0 10px -5px" }}>
               <Grid item sm={6} xs={6}>
                 <FormControl className={classes.formControl}>
                   <InputLabel id="productColorLabel">Color</InputLabel>
@@ -179,10 +192,10 @@ const ProductDetails = () => {
                   </Select>
                 </FormControl>
               </Grid>
-            </Grid>
+            </Grid> */}
 
             <Typography className={classes.productQuantityField}>
-              <span>Quantity: </span>
+              <strong>Quantity: </strong>
               <ButtonGroup
                 size="small"
                 aria-label="small button group"
@@ -213,30 +226,17 @@ const ProductDetails = () => {
             <Typography
               variantMapping="p"
               className={classes.productExtraDetails}
-            >
-              Subtotal: <span>$250.99</span>
-            </Typography>
+              dangerouslySetInnerHTML={{__html: productDescription[0]}}
+            />
 
             <Typography
               variantMapping="p"
-              className={classes.productExtraDetails}
+              className={classes.productAvailability}
             >
-              Brand: <span>Apple</span>
-            </Typography>
-
-            <Typography
-              variantMapping="p"
-              className={classes.productExtraDetails}
-            >
-              Product Type: <span>Phone</span>
-            </Typography>
-
-            <Typography
-              variantMapping="p"
-              className={classes.productExtraDetails}
-            >
-              Availability:{" "}
-              <span style={{ color: "green" }}>In Stock (7 Items)</span>
+              <strong>Availability:</strong>{" "}
+              <span style={{ color: "green" }}>
+                In Stock ({prodInStock} Items)
+              </span>
             </Typography>
           </Grid>
 
@@ -266,85 +266,23 @@ const ProductDetails = () => {
 
         {/* Product Description, Reviews & Shipping Details */}
         <Grid container>
-          <SectionHeader title="productDetailsSections" />
+          <SectionHeader productId={id} title="productDetailsSections" />
 
           <Grid container className={classes.productDetailsSections}>
             <Switch>
               {/* Description Section */}
-              <Route path="/product/:id" exact>
+              <Route path={"/product/" + id + ""} exact>
                 <Grid container direction="column">
                   <Typography
                     variantMapping="p"
                     className={classes.descHeading}
-                  >
-                    Nam tempus turpis at metus scelerisque placerat nulla
-                    deumantos solicitud felis. Pellentesque diam dolor,
-                    elementum etos lobortis des mollis ut risus. Sedcus faucibus
-                    an sullamcorper mattis drostique des commodo pharetras
-                    loremos.Donec pretium egestas sapien et mollis.
-                  </Typography>
-                  <Grid container direction="column">
-                    <Typography variant="h5" className={classes.sampleListHead}>
-                      Sample Unordered List
-                    </Typography>
-                    <ul type="square" className={classes.sampleList}>
-                      <li>Comodous in tempor ullamcorper miaculis</li>
-                      <li>
-                        Pellentesque vitae neque mollis urna mattis laoreet.
-                      </li>
-                      <li>Divamus sit amet purus justo.</li>
-                      <li>
-                        Proin molestie egestas orci ac suscipit risus posuere
-                        loremous
-                      </li>
-                    </ul>
-                  </Grid>
-                  <Grid container direction="column">
-                    <Typography variant="h5" className={classes.sampleListHead}>
-                      Sample Ordered List
-                    </Typography>
-                    <ol className={classes.sampleList}>
-                      <li>Comodous in tempor ullamcorper miaculis</li>
-                      <li>
-                        Pellentesque vitae neque mollis urna mattis laoreet.
-                      </li>
-                      <li>Divamus sit amet purus justo.</li>
-                      <li>
-                        Proin molestie egestas orci ac suscipit risus posuere
-                        loremous
-                      </li>
-                    </ol>
-                  </Grid>
-                  <Grid container direction="column">
-                    <Typography
-                      variant="h5"
-                      className={classes.sampleListHead}
-                      style={{ marginBottom: 10 }}
-                    >
-                      Sample Paragraph Text
-                    </Typography>
-                    <Typography
-                      variantMapping="p"
-                      className={classes.sampleParaText}
-                    >
-                      Praesent vestibulum congue tellus at fringilla. Curabitur
-                      vitae semper sem, eu convallis est. Cras felis nunc
-                      commodo eu convallis vitae interdum non nisl. Maecenas ac
-                      est sit amet augue pharetra convallis nec danos dui. Cras
-                      suscipit quam et turpis eleifend vitae malesuada magna
-                      congue. Damus id ullamcorper neque. Sed vitae mi a mi
-                      pretium aliquet ac sed elit. Pellentesque nulla eros
-                      accumsan quis justo at tincidunt lobortis denimes
-                      loremous. Suspendisse vestibulum lectus in lectus
-                      volutpat, ut dapibus purus pulvinar. Vestibulum sit amet
-                      auctor ipsum.
-                    </Typography>
-                  </Grid>
+                    dangerouslySetInnerHTML={{ __html: productDescription[1] }}
+                  />
                 </Grid>
               </Route>
 
               {/* Reviews Section */}
-              <Route path="/product/:id/reviews" exact>
+              <Route path={"/product/" + id + "/reviews"} exact>
                 <Grid container direction="column">
                   <Typography variant="h3" className={classes.reviewHeading}>
                     Customer Reviews
@@ -359,12 +297,11 @@ const ProductDetails = () => {
                       );
                     })}
                   </Typography>
-                  <Divider className={classes.ratingDivider} />
                 </Grid>
               </Route>
 
               {/* Shipping Details */}
-              <Route path="/product/:id/policies" exact>
+              <Route path={"/product/" + id + "/policies"} exact>
                 <Grid
                   container
                   direction="column"
