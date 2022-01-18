@@ -82,6 +82,10 @@ const useStyles = makeStyles((theme) => ({
   buyCartButtonsBox: {
     paddingLeft: 30,
     paddingRight: 30,
+    marginTop: 20,
+    [theme.breakpoints.down("xs")]: {
+      marginTop: 10,
+    }
   },
   buyButtonBox: {
     [theme.breakpoints.up("sm")]: {

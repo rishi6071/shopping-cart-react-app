@@ -52,6 +52,11 @@ const ProductDetails = () => {
       setProductItem(data);
       setProductImgGallery(data.assets);
       setProductMainImg(data.assets[0].url);
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
     };
 
     fetchProductDetails();
@@ -96,6 +101,7 @@ const ProductDetails = () => {
         {/* Product Details Box */}
         <Grid container className={classes.productDetailsBox}>
           <Grid item md={6} sm={10} className={classes.productDetailsItem}>
+            {/* ImgGallery & MainImage */}
             <Grid
               container
               style={{ display: "flex", justifyContent: "center" }}
@@ -140,6 +146,40 @@ const ProductDetails = () => {
                   className={classes.productMainImg}
                   alt="ProductMainImage"
                 />
+              </Grid>
+            </Grid>
+
+            {/* AddToCart & BuyNow Button */}
+            <Grid container className={classes.buyCartButtonsBox}>
+              <Grid item md={12} xs={12}>
+                <Grid
+                  container
+                  style={{ display: "flex", justifyContent: "center" }}
+                >
+                  <Grid
+                    item
+                    sm={6}
+                    xs={11}
+                    className={classes.addCartButtonBox}
+                  >
+                    <Button
+                      contained="filled"
+                      className={classes.buyCartButton}
+                    >
+                      <AddShoppingCartIcon className={classes.buttonIcon} />{" "}
+                      <span>Add To Cart</span>
+                    </Button>
+                  </Grid>
+                  <Grid item sm={6} xs={11} className={classes.buyButtonBox}>
+                    <Button
+                      contained="filled"
+                      className={classes.buyCartButton}
+                    >
+                      <CreditCardIcon className={classes.buttonIcon} />{" "}
+                      <span>Buy Now</span>
+                    </Button>
+                  </Grid>
+                </Grid>
               </Grid>
             </Grid>
           </Grid>
@@ -226,7 +266,7 @@ const ProductDetails = () => {
             <Typography
               variantMapping="p"
               className={classes.productExtraDetails}
-              dangerouslySetInnerHTML={{__html: productDescription[0]}}
+              dangerouslySetInnerHTML={{ __html: productDescription[0] }}
             />
 
             <Typography
@@ -238,29 +278,6 @@ const ProductDetails = () => {
                 In Stock ({prodInStock} Items)
               </span>
             </Typography>
-          </Grid>
-
-          {/* AddToCart & BuyNow Button */}
-          <Grid container className={classes.buyCartButtonsBox}>
-            <Grid item md={6} xs={12}>
-              <Grid
-                container
-                style={{ display: "flex", justifyContent: "center" }}
-              >
-                <Grid item sm={6} xs={11} className={classes.addCartButtonBox}>
-                  <Button contained="filled" className={classes.buyCartButton}>
-                    <AddShoppingCartIcon className={classes.buttonIcon} />{" "}
-                    <span>Add To Cart</span>
-                  </Button>
-                </Grid>
-                <Grid item sm={6} xs={11} className={classes.buyButtonBox}>
-                  <Button contained="filled" className={classes.buyCartButton}>
-                    <CreditCardIcon className={classes.buttonIcon} />{" "}
-                    <span>Buy Now</span>
-                  </Button>
-                </Grid>
-              </Grid>
-            </Grid>
           </Grid>
         </Grid>
 
