@@ -17,9 +17,6 @@ import {
 } from "@material-ui/core";
 import Rating from "@mui/material/Rating";
 
-// Icons & Media
-import DummyImg from "../../media/products/iPhone/iphone1.jpeg";
-
 const useStyles = makeStyles((theme) => ({
   root: {
     margin: "15px auto",
@@ -92,7 +89,7 @@ function valuetext(value) {
   return `${value}°C`;
 }
 
-const Shop = () => {
+const Shop = (props) => {
   const classes = useStyles();
   const [rating, setRating] = useState(3);
   const [value, setValue] = useState([20, 37]);
@@ -197,7 +194,7 @@ const Shop = () => {
             className={classes.productGridBox}
             spacing={2}
           >
-            {[1, 1, 1, 1, 1, 1].map(() => {
+            {[...props.products].map((item) => {
               return (
                 <>
                   <Grid
@@ -207,7 +204,7 @@ const Shop = () => {
                     xs={6}
                     className={classes.productGridItem}
                   >
-                    <ProductItem img={DummyImg} />
+                    <ProductItem item={item} />
                   </Grid>
                 </>
               );

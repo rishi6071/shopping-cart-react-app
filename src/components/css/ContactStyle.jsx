@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   contactInputField: {
-    marginTop: 20,
+    marginTop: "20px !important",
     width: 480,
     [theme.breakpoints.down("md")]: {
       width: 380,
@@ -51,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
     padding: "6px 35px",
     marginTop: 22,
     background: "transparent",
-    letterSpacing: "1px",
+    letterSpacing: "1.5px",
     border: "1px solid rgba(118, 118, 118, 0.6)",
     boxShadow: "none",
     color: "grey",

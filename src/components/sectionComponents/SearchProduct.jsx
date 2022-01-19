@@ -1,8 +1,8 @@
 import React from "react";
 
-import SectionHeader from "./SectionHeader";
-import ProductSlider from "./ProductSlider";
-import ProductGrid from "./ProductGrid";
+// import SectionHeader from "./SectionHeader";
+// import ProductSlider from "./ProductSlider";
+// import ProductGrid from "./ProductGrid";
 
 // Material UI Components
 import { Grid, Typography } from "@mui/material";
@@ -38,13 +38,13 @@ const SearchProduct = (props) => {
           Search Results For: <span>{"iPhone X"}</span>
         </Typography>
 
-        <ProductGrid />
+        {/* <ProductGrid products={props.allProducts} /> */}
       </Grid>
 
-      <div style={{ marginTop: 10 }}>
+      {/* <div style={{ marginTop: 10 }}>
         <SectionHeader title="relatedProducts" />
         <ProductSlider />
-      </div>
+      </div> */}
     </>
   );
 };

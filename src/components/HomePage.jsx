@@ -17,7 +17,7 @@ import Cart from "./sectionComponents/Cart";
 import ProductDetails from "./sectionComponents/ProductDetails";
 import Contact from "./sectionComponents/Contact";
 import SearchProduct from "./sectionComponents/SearchProduct";
-// import Shop from "./sectionComponents/Shop";
+import Shop from "./sectionComponents/Shop";
 import QuotesPolicy from "./sectionComponents/QuotesPolicy";
 import ProductSlider from "./sectionComponents/ProductSlider";
 
@@ -76,8 +76,7 @@ const HomePage = () => {
             <NewsGrid resources={["newsCarousel"]} /> 
           </Route>
           <Route path="/shop" exact>
-            <ProductDetails />
-            {/* <Shop /> */}
+            <Shop products={allProducts} />
           </Route>
           <Route path="/newsfeed" exact>
             <NewsGrid resources={["newsCarousel", "newsGrid"]} />
@@ -89,7 +88,7 @@ const HomePage = () => {
             <Cart />
           </Route>
           <Route path="/search" exact>
-            <SearchProduct />
+            <SearchProduct products={allProducts} />
           </Route>
           <Route path="/product/:id">
             <ProductDetails />
