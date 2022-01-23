@@ -3,6 +3,9 @@ import "../css/style.css";
 import useStyles from "../css/CartStyle";
 import Breadcrumb from "./Breadcrumb";
 
+// Commerce.js Instance
+// import { commerce } from "../../lib/commerce";
+
 // Material-UI Components
 import Grid from "@mui/material/Grid";
 import Table from "@mui/material/Table";

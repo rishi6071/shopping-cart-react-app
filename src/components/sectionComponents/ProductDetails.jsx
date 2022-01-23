@@ -93,6 +93,14 @@ const ProductDetails = () => {
     setProductMainImg(src);
   };
 
+  const addToCart = (p_id) => {
+    const addItem = async () => {
+      const response = await commerce.cart.add(p_id, prodQty);
+      if (response.success) window.alert("Item Added in Cart");
+    };
+    addItem();
+  };
+
   return (
     <>
       <BrowserRouter>
@@ -100,7 +108,7 @@ const ProductDetails = () => {
         <Breadcrumb productName={productItem.name} />
 
         {/* Product Details Box */}
-        <Grid container className={classes.productDetailsBox}>
+        <Grid container className={classes.productDetailsBox} pid={id}>
           <Grid item md={6} sm={10} className={classes.productDetailsItem}>
             {/* ImgGallery & MainImage */}
             <Grid
@@ -166,6 +174,9 @@ const ProductDetails = () => {
                     <Button
                       contained="filled"
                       className={classes.buyCartButton}
+                      onClick={() => {
+                        addToCart(id);
+                      }}
                     >
                       <AddShoppingCartIcon className={classes.buttonIcon} />{" "}
                       <span>Add To Cart</span>
