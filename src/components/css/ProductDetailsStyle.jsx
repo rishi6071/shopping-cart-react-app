@@ -126,7 +126,6 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "20px",
   },
   productTitle: {
-    textShadow: "0px 1px 2.5px lightgrey",
     fontFamily: "inherit",
   },
   productPrice: {
@@ -173,6 +172,10 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     alignContent: "center",
     color: "dimgrey",
+    "&:hover": {
+      color: "white",
+      background: "black",
+    },
   },
   quantityInputField: {
     borderRadius: 0,

@@ -34,7 +34,7 @@ const Breadcrumb = (props) => {
           <HomeIcon className={classes.breadcumbHomeIcon} />
         </Link>
         <Link color="inherit" href="#" className={classes.breadcumbLink}>
-          Products
+          Shop
         </Link>
         <Link
           color="textPrimary"

@@ -41,6 +41,34 @@ const useStyles = makeStyles((theme) => ({
       marginRight: "0.5px !important",
     },
   },
+  cartItemRemoveBtn: {
+    padding: "5px 0px",
+    border: "1px solid rgba(0,0,0,0.15)",
+    color: "dimgrey",
+    borderRadius: 0,
+    minWidth: 40,
+    "&:hover": {
+      color: "white",
+      background: "black",
+    },
+    // "& span": {
+    //   width: 45,
+    //   margin: "auto",
+    //   display: "flex",
+    //   justifyContent: "center",
+    //   alignItems: "center",
+    //   paddingTop: 4,
+    //   paddingBottom: 4,
+    //   fontWeight: "bold",
+    //   border: "1.3px solid rgba(0,0,0,0.15)",
+    //   transition: "all 0.2s",
+    //   "&:hover": {
+    //     cursor: "pointer",
+    //     color: "white",
+    //     background: "black",
+    //   },
+    // },
+  },
   productQuantityField: {
     fontFamily: "inherit",
     marginTop: 8,
@@ -54,6 +82,10 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: 0,
     maxWidth: 45,
     color: "dimgrey",
+    "&:hover": {
+      color: "white",
+      background: "black",
+    },
   },
   quantityInputField: {
     borderRadius: 0,
@@ -98,7 +130,7 @@ const useStyles = makeStyles((theme) => ({
   },
   shippingPrice: {
     fontSize: "16px !important",
-  }
+  },
 }));
 
 export default useStyles;

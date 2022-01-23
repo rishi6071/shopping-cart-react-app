@@ -21,6 +21,7 @@ import { Typography, ButtonGroup, Button } from "@material-ui/core";
 import CartImg1 from "../../media/products/iPhone/iphone1.jpeg";
 import AddIcon from "@material-ui/icons/Add";
 import RemoveIcon from "@material-ui/icons/Remove";
+import ClearIcon from '@mui/icons-material/Clear';
 
 const createData = (name, calories, fat, carbs, protein) => {
   return { name, calories, fat, carbs, protein };
@@ -69,6 +70,7 @@ const Cart = () => {
                 <TableCell align="center">Unit Price</TableCell>
                 <TableCell align="center">Quantity</TableCell>
                 <TableCell align="center">Total</TableCell>
+                <TableCell align="center">Remove</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -126,6 +128,9 @@ const Cart = () => {
                   <TableCell className={classes.cartItemPrice} align="center">
                     <span>$</span>
                     {row.protein}
+                  </TableCell>
+                  <TableCell align="center">
+                    <Button className={classes.cartItemRemoveBtn}><ClearIcon /></Button>
                   </TableCell>
                 </TableRow>
               ))}

@@ -42,7 +42,7 @@ const ProductDetails = () => {
   const [productMainImg, setProductMainImg] = useState("");
   const [productDescription, setProductDescription] = useState(["", ""]);
   const [prodQty, setProdQty] = useState(1);
-  const [prodInStock, setProdInStock] = useState(7);
+  const [prodInStock, setProdInStock] = useState(0);
 
   useEffect(() => {
     setProdInStock(7);
@@ -52,6 +52,7 @@ const ProductDetails = () => {
       setProductItem(data);
       setProductImgGallery(data.assets);
       setProductMainImg(data.assets[0].url);
+      setProdInStock(data.inventory.available);
 
       window.scrollTo({
         top: 0,
@@ -274,9 +275,14 @@ const ProductDetails = () => {
               className={classes.productAvailability}
             >
               <strong>Availability:</strong>{" "}
-              <span style={{ color: "green" }}>
-                In Stock ({prodInStock} Items)
-              </span>
+              {prodInStock > 0 ? (
+                <span style={{ color: "green" }}>
+                  In Stock{" "}
+                  {prodInStock < 10 ? `(Only ${prodInStock} Left)` : ``}
+                </span>
+              ) : (
+                <span style={{ color: "red" }}>Out of Stock</span>
+              )}
             </Typography>
           </Grid>
         </Grid>
