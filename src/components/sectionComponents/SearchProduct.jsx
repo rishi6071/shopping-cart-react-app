@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 
-// import SectionHeader from "./SectionHeader";
-// import ProductSlider from "./ProductSlider";
-// import ProductGrid from "./ProductGrid";
+import ProductGrid from "./ProductGrid";
+
+// Commerce.js Instance
+import { commerce } from "../../lib/commerce";
 
 // Material UI Components
 import { Grid, Typography } from "@mui/material";
@@ -10,7 +12,7 @@ import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    margin: "25px auto 10px auto",
+    margin: "20px auto 10px auto",
     padding: "0 15px",
   },
   searchHead: {
@@ -30,21 +32,34 @@ const useStyles = makeStyles((theme) => ({
 
 const SearchProduct = (props) => {
   const classes = useStyles();
+  const { search } = useParams();
+  const [searchProducts, setSearchProducts] = useState([]);
+
+  useEffect(() => {
+    const fetchSearchProducts = async () => {
+      const { data } = await commerce.products.list({
+        query: search,
+      });
+
+      setSearchProducts(data);
+    }
+
+    fetchSearchProducts();
+  }, [search]);
+
+  useEffect(() => {
+    console.log(searchProducts);
+  }, [searchProducts]);
 
   return (
     <>
       <Grid container className={classes.root} sm={11} xs={12}>
-        <Typography variant="h6" className={classes.searchHead}>
-          Search Results For: <span>{"iPhone X"}</span>
+        <Typography variantMapping="p" className={classes.searchHead}>
+          <strong>Search Results For:</strong> <span>{search}</span>
         </Typography>
 
-        {/* <ProductGrid products={props.allProducts} /> */}
+        <ProductGrid products={searchProducts} />
       </Grid>
-
-      {/* <div style={{ marginTop: 10 }}>
-        <SectionHeader title="relatedProducts" />
-        <ProductSlider />
-      </div> */}
     </>
   );
 };

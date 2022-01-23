@@ -87,8 +87,8 @@ const HomePage = () => {
           <Route path="/cart" exact>
             <Cart />
           </Route>
-          <Route path="/search" exact>
-            <SearchProduct products={allProducts} />
+          <Route path="/search/:search" exact>
+            <SearchProduct />
           </Route>
           <Route path="/product/:id">
             <ProductDetails />

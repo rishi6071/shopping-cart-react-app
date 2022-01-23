@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 import NavbarLinks from "./Path";
 
 // Material-UI Components
@@ -114,6 +114,8 @@ const useStyles = makeStyles((theme) => ({
 
 const Navbar = () => {
   const classes = useStyles();
+  const history = useHistory();
+
   const [navLinks, setNavLinks] = useState([]);
   const [searchInput, setSearchInput] = useState("");
 
@@ -121,11 +123,14 @@ const Navbar = () => {
     setNavLinks([...NavbarLinks]);
   }, []);
 
+  // For Searching Feature
   const handleSearch = (event) => {
-    if (event.keyCode === 13) {
-      window.location.href = "/search";
-    } else {
-      setSearchInput(event.target.value);
+    setSearchInput(event.target.value);
+  };
+  const switchToSearch = (event) => {
+    if (event.keyCode === 13 && searchInput.length > 0) {
+      history.push(`/search/${searchInput}`);
+      setSearchInput("");
     }
   };
 
@@ -141,6 +146,12 @@ const Navbar = () => {
             <Typography className={classes.title} variant="h5" noWrap>
               Commerce.js
             </Typography>
+            {/* <div className={classes.searchBox}>
+              <input type="text" name="" id="" />
+              <button type="button">
+                <SearchIcon fontSize="small" />
+              </button>
+            </div> */}
             <div className={classes.navbarLinkBox}>
               {[...navLinks].map((linkItem) => {
                 return (
@@ -173,9 +184,10 @@ const Navbar = () => {
                   root: classes.inputRoot,
                   input: classes.inputInput,
                 }}
-                defaultValue={searchInput}
+                value={searchInput}
                 inputProps={{ "aria-label": "search" }}
-                onKeyDown={handleSearch}
+                onChange={handleSearch}
+                onKeyDown={switchToSearch}
               />
             </div>
             <div

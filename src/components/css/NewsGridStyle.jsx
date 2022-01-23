@@ -58,8 +58,8 @@ const useStyles = makeStyles((theme) => ({
   newsBtn: {
     width: 135,
     borderRadius: 0,
-    paddingTop: 8,
-    paddingBottom: 8,
+    paddingTop: 5,
+    paddingBottom: 5,
     marginTop: 15,
     background: "transparent",
     color: "black",

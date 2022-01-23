@@ -14,7 +14,6 @@ const ProductGrid = (props) => {
       <Grid
         container
         direction="row"
-        justifyContent="center"
         className={classes.productGridBox}
       >
         {[...props.products].map((product) => {
