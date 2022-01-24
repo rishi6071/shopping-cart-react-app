@@ -6,6 +6,9 @@ import ProductGrid from "./ProductGrid";
 // Commerce.js Instance
 import { commerce } from "../../lib/commerce";
 
+// Icons & Media
+import NoResultFound from "../../media/result_not_found.png";
+
 // Material UI Components
 import { Grid, Typography } from "@mui/material";
 import { makeStyles } from "@material-ui/core/styles";
@@ -28,6 +31,15 @@ const useStyles = makeStyles((theme) => ({
       marginLeft: 7,
     },
   },
+  noResultFound: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    marginBottom: 20,
+    "& img": {
+      maxWidth: 500,
+    },
+  },
 }));
 
 const SearchProduct = (props) => {
@@ -42,7 +54,7 @@ const SearchProduct = (props) => {
       });
 
       setSearchProducts(data);
-    }
+    };
 
     fetchSearchProducts();
   }, [search]);
@@ -58,7 +70,13 @@ const SearchProduct = (props) => {
           <strong>Search Results For:</strong> <span>{search}</span>
         </Typography>
 
-        <ProductGrid products={searchProducts} />
+        {searchProducts ? (
+          <ProductGrid products={searchProducts} />
+        ) : (
+          <Grid container className={classes.noResultFound}>
+            <img src={NoResultFound} alt="NoItemFound" />
+          </Grid>
+        )}
       </Grid>
     </>
   );

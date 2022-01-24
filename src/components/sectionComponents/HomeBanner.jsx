@@ -40,10 +40,10 @@ const HomeBanner = (props) => {
             hoverPause="true"
             focusAt="center"
           >
-            {[...banners].map((bannerItem) => {
+            {[...banners].map((bannerItem, idx) => {
               return (
                 <>
-                  <Fragment>
+                  <Fragment key={`banner_${idx+1}`}>
                     <Grid container className={classes.bannerBox}>
                       <Grid
                         item
