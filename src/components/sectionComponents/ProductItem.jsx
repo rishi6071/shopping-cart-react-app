@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import useStyles from "../css/ProductGridItemSliderStyle";
 import "../css/style.css";
+import { formatPrice } from "../HomePage";
 
 // React-Router-Dom
 import { NavLink } from "react-router-dom";
@@ -32,7 +33,7 @@ const ProductItem = (props) => {
                 src={props.item.image.url}
                 maxHeight="100%"
                 maxWidth="100%"
-                alt=""
+                alt={props.item.image.id}
               />
             </Grid>
             <CardContent>
@@ -67,7 +68,7 @@ const ProductItem = (props) => {
                 align="center"
                 className={classes.productPrice}
               >
-                {props.item.price.formatted_with_symbol}
+                {formatPrice(props.item.price.formatted_with_symbol)}
               </Typography>
               {/* <Button variant="contained" className={classes.addCartBtn}>
               ADD TO CART{" "}

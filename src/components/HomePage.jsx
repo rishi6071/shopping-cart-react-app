@@ -21,6 +21,11 @@ import Shop from "./sectionComponents/Shop";
 import QuotesPolicy from "./sectionComponents/QuotesPolicy";
 import ProductSlider from "./sectionComponents/ProductSlider";
 
+// Formatting Price
+const formatPrice = (price) => {
+  return price.substring(0, price.length - 3);
+}
+
 const HomePage = () => {
   const [categories, setCategories] = useState([]);
   const [allProducts, setAllProducts] = useState([]);
@@ -102,3 +107,4 @@ const HomePage = () => {
 };
 
 export default HomePage;
+export { formatPrice }; 

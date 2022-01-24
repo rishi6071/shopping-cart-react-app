@@ -2,9 +2,10 @@ import React, { useState, useEffect } from "react";
 import "../css/style.css";
 import useStyles from "../css/CartStyle";
 import Breadcrumb from "./Breadcrumb";
+import { formatPrice } from "../HomePage";
 
 // Commerce.js Instance
-// import { commerce } from "../../lib/commerce";
+import { commerce } from "../../lib/commerce";
 
 // Material-UI Components
 import Grid from "@mui/material/Grid";
@@ -21,37 +22,28 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import { Typography, ButtonGroup, Button } from "@material-ui/core";
 
 // Media
-import CartImg1 from "../../media/products/iPhone/iphone1.jpeg";
 import AddIcon from "@material-ui/icons/Add";
 import RemoveIcon from "@material-ui/icons/Remove";
-import ClearIcon from '@mui/icons-material/Clear';
-
-const createData = (name, calories, fat, carbs, protein) => {
-  return { name, calories, fat, carbs, protein };
-};
-
-const rows = [
-  createData("Frozen yoghurt", 159, 250.99, 24, 250.99),
-  createData("Ice cream sandwich", 237, 250.99, 37, 250.99),
-  createData("Eclair", 262, 250.99, 24, 250.99),
-];
+import ClearIcon from "@mui/icons-material/Clear";
 
 const Cart = () => {
   const classes = useStyles();
-  const [prodQty, setProdQty] = useState(1);
-  const [prodInStock, setProdInStock] = useState(7);
+  const [cart, setCart] = useState({});
+  const [cartProducts, setCartProducts] = useState([]);
 
   useEffect(() => {
-    setProdInStock(7);
+    const fetchCart = async () => {
+      const response = await commerce.cart.retrieve();
+      setCart(response);
+      setCartProducts(response.line_items);
+    };
+
+    fetchCart();
   }, []);
 
-  const handleQty = (operation) => {
-    if (operation === "+") {
-      if (prodQty < prodInStock) setProdQty(prodQty + 1);
-    } else {
-      if (prodQty > 1) setProdQty(prodQty - 1);
-    }
-  };
+  useEffect(() => {
+    console.log(cart);
+  }, [cart]);
 
   return (
     <>
@@ -64,11 +56,12 @@ const Cart = () => {
           component={Paper}
           className={classes.cartItemBox}
           data-box="cartBox"
+          id={cart.id}
         >
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
             <TableHead>
               <TableRow className={classes.cartTableHead}>
-                <TableCell>Product</TableCell>
+                <TableCell align="center">Product</TableCell>
                 <TableCell>Name</TableCell>
                 <TableCell align="center">Unit Price</TableCell>
                 <TableCell align="center">Quantity</TableCell>
@@ -77,9 +70,10 @@ const Cart = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {[...rows].map((row) => (
+              {[...cartProducts].map((product) => (
                 <TableRow
-                  key={row.name}
+                  key={product.id}
+                  id={product.product_id}
                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                 >
                   <TableCell
@@ -87,17 +81,23 @@ const Cart = () => {
                     scope="row"
                     className={classes.cartItemImgBox}
                   >
-                    <img src={CartImg1} alt="Cart Item" />
+                    <img
+                      src={product ? product.image.url : ``}
+                      alt={product.product_name}
+                    />
                   </TableCell>
                   <TableCell>
-                    <Typography variantMapping="p">{row.name}</Typography>
-                    <Typography className={classes.colorSize}>
-                      White / 6.25
+                    <Typography variantMapping="p">
+                      {product.product_name}
                     </Typography>
+                    {/* <Typography className={classes.colorSize}>
+                      White / 6.25
+                    </Typography> */}
                   </TableCell>
                   <TableCell className={classes.cartItemPrice} align="center">
-                    <span>$</span>
-                    {row.fat}
+                    {product
+                      ? formatPrice(product.price.formatted_with_symbol)
+                      : ``}
                   </TableCell>
                   <TableCell align="center">
                     <Typography className={classes.productQuantityField}>
@@ -106,10 +106,7 @@ const Cart = () => {
                         aria-label="small button group"
                         style={{ transform: "translateY(5px)" }}
                       >
-                        <Button
-                          className={classes.quantityButtons}
-                          onClick={() => handleQty("-")}
-                        >
+                        <Button className={classes.quantityButtons}>
                           <RemoveIcon />
                         </Button>
                         <input
@@ -117,23 +114,24 @@ const Cart = () => {
                           type="number"
                           name="prodQtyId"
                           id="prodQtyId"
-                          value={prodQty}
+                          value={product.quantity}
+                          readOnly
                         />
-                        <Button
-                          className={classes.quantityButtons}
-                          onClick={() => handleQty("+")}
-                        >
+                        <Button className={classes.quantityButtons}>
                           <AddIcon />
                         </Button>
                       </ButtonGroup>
                     </Typography>
                   </TableCell>
                   <TableCell className={classes.cartItemPrice} align="center">
-                    <span>$</span>
-                    {row.protein}
+                    {product
+                      ? formatPrice(product.line_total.formatted_with_symbol)
+                      : ``}
                   </TableCell>
                   <TableCell align="center">
-                    <Button className={classes.cartItemRemoveBtn}><ClearIcon /></Button>
+                    <Button className={classes.cartItemRemoveBtn}>
+                      <ClearIcon />
+                    </Button>
                   </TableCell>
                 </TableRow>
               ))}
@@ -147,12 +145,11 @@ const Cart = () => {
                     Continue Shopping
                   </Button>
                 </TableCell>
-                <TableCell></TableCell>
-                <TableCell align="right">
+                <TableCell colSpan={3}>
                   <FormGroup>
                     <FormControlLabel
                       control={<Checkbox />}
-                      label="Shipping (+7$)"
+                      label="Shipping (+ ₹150)"
                     />
                   </FormGroup>
                 </TableCell>
@@ -183,7 +180,7 @@ const Cart = () => {
                     Subtotal
                   </TableCell>
                   <TableCell align="right" className={classes.billingItemPrice}>
-                    <span>$</span>250.99
+                    {cart.subtotal ? cart.subtotal.formatted_with_symbol : ``}
                   </TableCell>
                 </TableRow>
                 <TableRow
@@ -197,7 +194,7 @@ const Cart = () => {
                     Shipping
                   </TableCell>
                   <TableCell align="right" className={classes.shippingPrice}>
-                    <span>$</span>0
+                    <span>₹</span>0
                   </TableCell>
                 </TableRow>
                 <TableRow
@@ -211,7 +208,7 @@ const Cart = () => {
                     Total
                   </TableCell>
                   <TableCell align="right" className={classes.billingItemPrice}>
-                    <span>$</span>250.99
+                    {cart.subtotal ? cart.subtotal.formatted_with_symbol : ``}
                   </TableCell>
                 </TableRow>
               </TableBody>

@@ -1,4 +1,5 @@
-import { makeStyles } from "@material-ui/styles";
+import { makeStyles } from "@material-ui/core";
+import "./style.css";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -18,11 +19,19 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   cartItemImgBox: {
-    maxWidth: "160px",
     height: "145px",
     "& img": {
+      maxWidth: "160px",
       maxHeight: "145px",
+      display: "block",
       margin: "auto",
+    },
+    [theme.breakpoints.down("sm")]: {
+      height: "125px",
+      "& img": {
+        maxWidth: "120px",
+        maxHeight: "125px",
+      }
     },
   },
   colorSize: {
@@ -35,15 +44,11 @@ const useStyles = makeStyles((theme) => ({
     color: "red !important",
     fontSize: "16px !important",
     letterSpacing: "0.9px !important",
-    "& span": {
-      fontSize: "18px !important",
-      marginTop: "1px !important",
-      marginRight: "0.5px !important",
-    },
   },
   cartItemRemoveBtn: {
-    padding: "5px 0px",
-    border: "1px solid rgba(0,0,0,0.15)",
+    padding: "3px 0px",
+    marginTop: -4,
+    border: "1.45px solid rgba(0,0,0,0.15)",
     color: "dimgrey",
     borderRadius: 0,
     minWidth: 40,
@@ -51,23 +56,6 @@ const useStyles = makeStyles((theme) => ({
       color: "white",
       background: "black",
     },
-    // "& span": {
-    //   width: 45,
-    //   margin: "auto",
-    //   display: "flex",
-    //   justifyContent: "center",
-    //   alignItems: "center",
-    //   paddingTop: 4,
-    //   paddingBottom: 4,
-    //   fontWeight: "bold",
-    //   border: "1.3px solid rgba(0,0,0,0.15)",
-    //   transition: "all 0.2s",
-    //   "&:hover": {
-    //     cursor: "pointer",
-    //     color: "white",
-    //     background: "black",
-    //   },
-    // },
   },
   productQuantityField: {
     fontFamily: "inherit",
@@ -80,7 +68,9 @@ const useStyles = makeStyles((theme) => ({
   },
   quantityButtons: {
     borderRadius: 0,
-    maxWidth: 45,
+    maxWidth: 35,
+    paddingTop: 3,
+    paddingBottom: 3,
     color: "dimgrey",
     "&:hover": {
       color: "white",
@@ -89,7 +79,7 @@ const useStyles = makeStyles((theme) => ({
   },
   quantityInputField: {
     borderRadius: 0,
-    maxWidth: 45,
+    maxWidth: 35,
     border: "1px solid rgba(0,0,0,0.25)",
     textAlign: "center",
     fontSize: "16px",
@@ -113,10 +103,6 @@ const useStyles = makeStyles((theme) => ({
   billingItemPrice: {
     color: "red !important",
     fontSize: "16px !important",
-    "& span": {
-      fontSize: "18px !important",
-      marginRight: "0.5px !important",
-    },
   },
   cartButtons: {
     border: "1px solid black",
