@@ -1,7 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "../css/style.css";
 import useStyles from "../css/CartStyle";
+
+// Custom Components
 import Breadcrumb from "./Breadcrumb";
+import AlertMessage from "./AlertMessage";
 import { formatPrice } from "../HomePage";
 
 // Commerce.js Instance
@@ -31,6 +34,13 @@ const Cart = () => {
   const [cart, setCart] = useState({});
   const [cartProducts, setCartProducts] = useState([]);
 
+  // AlertMessage
+  const alertFunc = useRef(null);
+  const [alertContent, setAlertContent] = useState({
+    message: "",
+    context: "",
+  });
+
   useEffect(() => {
     const fetchCart = async () => {
       const response = await commerce.cart.retrieve();
@@ -44,6 +54,27 @@ const Cart = () => {
   useEffect(() => {
     console.log(cart);
   }, [cart]);
+
+  const removeFromCart = (item_id) => {
+    const removeItem = async (id) => {
+      const response = await commerce.cart.remove(id);
+      if (response.success) {
+        setAlertContent({
+          message: "Item Removed from Cart!",
+          context: "success",
+        });
+        alertFunc.current();
+      } else {
+        setAlertContent({
+          message: "Error Occured!",
+          context: "error",
+        });
+        alertFunc.current();
+      }
+    };
+
+    removeItem(item_id);
+  };
 
   return (
     <>
@@ -129,7 +160,10 @@ const Cart = () => {
                       : ``}
                   </TableCell>
                   <TableCell align="center">
-                    <Button className={classes.cartItemRemoveBtn}>
+                    <Button
+                      className={classes.cartItemRemoveBtn}
+                      onClick={() => removeFromCart(product.id)}
+                    >
                       <ClearIcon />
                     </Button>
                   </TableCell>
@@ -157,8 +191,6 @@ const Cart = () => {
             </TableBody>
           </Table>
         </TableContainer>
-
-        {/* Continue Shopping */}
 
         {/* Billing */}
         <Grid container className={classes.billingBox} md={6} sm={8} xs={11}>
@@ -219,6 +251,9 @@ const Cart = () => {
             Proceed To Checkout
           </Button>
         </Grid>
+
+        {/* AlertMessage */}
+        <AlertMessage alertFunc={alertFunc} alertContent={alertContent} />
       </Grid>
     </>
   );

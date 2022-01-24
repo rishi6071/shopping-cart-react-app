@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
+// Custom Components
 import ProductGrid from "./ProductGrid";
 
 // Commerce.js Instance

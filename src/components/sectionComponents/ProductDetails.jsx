@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import "../css/style.css";
 
@@ -12,6 +12,7 @@ import { commerce } from "../../lib/commerce";
 import useStyles from "../css/ProductDetailsStyle";
 import SectionHeader from "./SectionHeader";
 import Breadcrumb from "./Breadcrumb";
+import AlertMessage from "./AlertMessage";
 
 // Material-UI Components
 import {
@@ -36,6 +37,13 @@ const ProductDetails = () => {
   const classes = useStyles();
   const { id } = useParams();
 
+  // AlertMessage
+  const alertFunc = useRef(null);
+  const [alertContent, setAlertContent] = useState({
+    message: "",
+    context: "",
+  });
+
   const [productItem, setProductItem] = useState({});
 
   const [productImgGallery, setProductImgGallery] = useState([]);
@@ -45,8 +53,6 @@ const ProductDetails = () => {
   const [prodInStock, setProdInStock] = useState(0);
 
   useEffect(() => {
-    setProdInStock(7);
-
     const fetchProductDetails = async () => {
       const data = await commerce.products.retrieve(id);
       setProductItem(data);
@@ -96,7 +102,18 @@ const ProductDetails = () => {
   const addToCart = (p_id) => {
     const addItem = async () => {
       const response = await commerce.cart.add(p_id, prodQty);
-      if (response.success) window.alert("Item Added in Cart");
+      if (response.success) {
+        setAlertContent({
+          message: "Item Added in Cart!",
+          context: "success",
+        });
+        alertFunc.current();
+      } else {
+        setAlertContent({
+          message: "Error Occured!",
+          context: "error",
+        });
+      }
     };
     addItem();
   };
@@ -422,6 +439,9 @@ const ProductDetails = () => {
             </Switch>
           </Grid>
         </Grid>
+
+        {/* Alert Toast Message */}
+        <AlertMessage alertFunc={alertFunc} alertContent={alertContent} />
       </BrowserRouter>
     </>
   );
