@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
       "& img": {
         maxWidth: "120px",
         maxHeight: "125px",
-      }
+      },
     },
   },
   colorSize: {
@@ -116,6 +116,21 @@ const useStyles = makeStyles((theme) => ({
   },
   shippingPrice: {
     fontSize: "16px !important",
+  },
+  emptyCartBox: {
+    minHeight: "65vh",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 20,
+    "& img": {
+      maxWidth: 500,
+    },
+    [theme.breakpoints.down("sm")]: {
+      "& img": {
+        maxWidth: 300,
+      },
+    }
   },
 }));
 

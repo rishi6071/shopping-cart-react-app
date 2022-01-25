@@ -33,6 +33,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   noResultFound: {
+    minHeight: "65vh",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
@@ -40,6 +41,11 @@ const useStyles = makeStyles((theme) => ({
     "& img": {
       maxWidth: 500,
     },
+    [theme.breakpoints.down("sm")]: {
+      "& img": {
+        maxWidth: 300,
+      },
+    }
   },
 }));
 
@@ -59,10 +65,6 @@ const SearchProduct = () => {
 
     fetchSearchProducts();
   }, [search]);
-
-  useEffect(() => {
-    console.log(searchProducts);
-  }, [searchProducts]);
 
   return (
     <>

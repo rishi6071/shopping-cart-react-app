@@ -24,6 +24,7 @@ import { Typography, ButtonGroup, Button } from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
 import RemoveIcon from "@material-ui/icons/Remove";
 import ClearIcon from "@mui/icons-material/Clear";
+import EmptyCart from "../../media/empty_cart.png";
 
 const Cart = (props) => {
   const classes = useStyles();
@@ -213,7 +214,11 @@ const Cart = (props) => {
           </Grid>
         </Grid>
       ) : (
-        ``
+        <Grid container className={classes.root} sm={11} xs={12}>
+          <Grid container className={classes.emptyCartBox}>
+            <img src={EmptyCart} alt="EmptyCart" />
+          </Grid>
+        </Grid>
       )}
     </>
   );
