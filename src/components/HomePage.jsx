@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 // React-Router-Dom
 import { BrowserRouter, Switch, Route } from "react-router-dom";
@@ -24,26 +25,91 @@ import ProductSlider from "./sectionComponents/ProductSlider";
 // Formatting Price
 const formatPrice = (price) => {
   return price.substring(0, price.length - 3);
-}
+};
 
 const HomePage = () => {
+  const [newsCarousel, setNewsCarousel] = useState([]);
+  const [newsGridCards, setNewsGridCards] = useState();
+
   const [categories, setCategories] = useState([]);
   const [allProducts, setAllProducts] = useState([]);
 
-  // Fetch All Categories
   useEffect(() => {
+    // Fetch All Categories
     const fetchCategories = async () => {
       const { data } = await commerce.categories.list();
       setCategories(data);
     };
     fetchCategories();
 
+    // Fetch All Products
     const fetchAllProducts = async () => {
       const { data } = await commerce.products.list();
       setAllProducts(data);
     };
     fetchAllProducts();
+
+    // Fetch News Carousel Items
+    const fetchNewsCarousel = () => {
+      const options = {
+        method: "GET",
+        url: "https://bing-news-search1.p.rapidapi.com/news/search",
+        params: {
+          q: "Gadgets",
+          safeSearch: "Off",
+          textFormat: "Raw",
+          freshness: "Week",
+        },
+        headers: {
+          "x-bingapis-sdk": "true",
+          "x-rapidapi-host": "bing-news-search1.p.rapidapi.com",
+          "x-rapidapi-key":
+            "6f7060b3efmsh122f3af8594763dp1e7b8ajsn7ff3f2f5bd27",
+        },
+      };
+
+      axios
+        .request(options)
+        .then(function (response) {
+          setNewsCarousel(response.data.value);
+        })
+        .catch(function (error) {
+          console.error(error);
+        });
+    };
+    fetchNewsCarousel();
+
+    // Fetch News Horizontal Cards
+    const fetchNewsGridCards = () => {
+      const options = {
+        method: "GET",
+        url: "https://bing-news-search1.p.rapidapi.com/news/search",
+        params: {
+          q: "Technology",
+          safeSearch: "Off",
+          textFormat: "Raw",
+          freshness: "Week",
+        },
+        headers: {
+          "x-bingapis-sdk": "true",
+          "x-rapidapi-host": "bing-news-search1.p.rapidapi.com",
+          "x-rapidapi-key":
+            "6f7060b3efmsh122f3af8594763dp1e7b8ajsn7ff3f2f5bd27",
+        },
+      };
+
+      axios
+        .request(options)
+        .then(function (response) {
+          setNewsGridCards(response.data.value);
+        })
+        .catch(function (error) {
+          console.error(error);
+        });
+    };
+    fetchNewsGridCards();
   }, []);
+
 
   return (
     <>
@@ -78,13 +144,16 @@ const HomePage = () => {
             </div>
 
             <QuotesPolicy />
-            <NewsGrid resources={["newsCarousel"]} /> 
+            <NewsGrid newsCarousel={newsCarousel} />
           </Route>
           <Route path="/shop" exact>
             <Shop products={allProducts} />
           </Route>
           <Route path="/newsfeed" exact>
-            <NewsGrid resources={["newsCarousel", "newsGrid"]} />
+            <NewsGrid
+              newsCarousel={newsCarousel}
+              newsGridCards={newsGridCards}
+            />
           </Route>
           <Route path="/contact" exact>
             <Contact />
@@ -107,4 +176,4 @@ const HomePage = () => {
 };
 
 export default HomePage;
-export { formatPrice }; 
+export { formatPrice };

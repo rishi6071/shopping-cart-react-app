@@ -15,7 +15,7 @@ main {
 
 /******** Website Scrollbar CSS */
 /* width */
-::-webkit-scrollbar {
+html::-webkit-scrollbar {
   width: 8px;
 }
 

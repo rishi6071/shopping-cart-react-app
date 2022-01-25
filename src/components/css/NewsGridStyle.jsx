@@ -38,22 +38,16 @@ const responsiveNewsCards = {
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    marginTop: 30,
+    marginTop: 20,
     marginBottom: 50,
     [theme.breakpoints.up("md")]: {
+      marginTop: 30,
       minHeight: "70vh",
     },
-  },
-  grid: {
-    marginTop: 30,
   },
   paddingPart: {
     paddingLeft: 20,
     paddingRight: 20,
-    [theme.breakpoints.down("sm")]: {
-      paddingLeft: 5,
-      paddingRight: 5,
-    }
   },
   newsBtn: {
     width: 135,
@@ -74,23 +68,30 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   newsContentBox: {
-    height: 150,
-    overflow: "hidden",
+    height: 170,
+    overflowY: "auto",
+    paddingRight: 10,
+  },
+  newCarouselImg: {
+    height: 250,
+    [theme.breakpoints.down("sm")]: {
+      height: 200,
+    },
   },
   newsName: {
     fontWeight: "600",
-    fontSize: "17px",
+    fontSize: "15.5px",
     letterSpacing: "0.5px",
   },
   newsSource: {
     fontStyle: "italic",
     marginBottom: "8px",
-    fontSize: "13px",
+    fontSize: "12.5px",
     color: "rgba(0,0,0,0.85)",
   },
   newsDescription: {
     color: "dimgrey",
-    fontSize: "13.5px",
+    fontSize: "13.2px",
     letterSpacing: "0.7px",
     textAlign: "justify",
     lineHeight: 1.5,
@@ -115,18 +116,17 @@ const useStyles = makeStyles((theme) => ({
   },
   // Horizontal News Cards
   horizontalNewsContentBox: {
-    height: 160,
-    overflow: "hidden",
+    height: 170,
+    overflowY: "auto",
+    paddingRight: 15,
     [theme.breakpoints.down("sm")]: {
       height: 180,
     },
   },
   horizontalNewsBtn: {
-    width: 135,
     borderRadius: 0,
-    paddingTop: 4,
-    paddingBottom: 4,
-    marginTop: 15,
+    padding: "1px 10px",
+    marginTop: 10,
     fontSize: "12.5px",
     background: "transparent",
     color: "black",
@@ -140,6 +140,7 @@ const useStyles = makeStyles((theme) => ({
       color: "white",
     },
   },
+  
 }));
 
 export default useStyles;
