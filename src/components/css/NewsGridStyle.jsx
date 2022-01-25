@@ -70,7 +70,7 @@ const useStyles = makeStyles((theme) => ({
   newsContentBox: {
     height: 170,
     overflowY: "auto",
-    paddingRight: 10,
+    paddingRight: "10px !important",
   },
   newCarouselImg: {
     height: 250,
@@ -118,7 +118,7 @@ const useStyles = makeStyles((theme) => ({
   horizontalNewsContentBox: {
     height: 170,
     overflowY: "auto",
-    paddingRight: 15,
+    paddingRight: "15px !important",
     [theme.breakpoints.down("sm")]: {
       height: 180,
     },

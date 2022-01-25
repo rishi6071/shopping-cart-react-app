@@ -1,4 +1,7 @@
 import React from "react";
+import { useLocation } from "react-router-dom";
+
+// Material-Ui Components & Media
 import { Breadcrumbs, Link, makeStyles } from "@material-ui/core";
 import HomeIcon from "@material-ui/icons/Home";
 
@@ -26,6 +29,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Breadcrumb = (props) => {
   const classes = useStyles();
+  const location = useLocation();
   const { productName } = props;
 
   return (
@@ -35,7 +39,7 @@ const Breadcrumb = (props) => {
           <HomeIcon className={classes.breadcumbHomeIcon} />
         </Link>
         <Link color="inherit" href="#" className={classes.breadcumbLink}>
-          Shop
+          {location.pathname === "/cart" ? "Cart" : "Shop"}
         </Link>
         <Link
           color="textPrimary"
