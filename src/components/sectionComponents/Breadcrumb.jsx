@@ -8,7 +8,7 @@ const useStyles = makeStyles((theme) => ({
     background: "#f1f1f1",
     [theme.breakpoints.down("xs")]: {
       padding: "5px 10px 4px 22px",
-    }
+    },
   },
   breadcumbLink: {
     color: "dimgrey",
@@ -26,6 +26,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Breadcrumb = (props) => {
   const classes = useStyles();
+  const { productName } = props;
 
   return (
     <>
@@ -42,7 +43,7 @@ const Breadcrumb = (props) => {
           className={classes.breadcumbLink}
           aria-current="page"
         >
-          {props.productName}
+          {productName}
         </Link>
       </Breadcrumbs>
     </>

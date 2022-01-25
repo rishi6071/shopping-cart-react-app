@@ -112,7 +112,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Navbar = () => {
+const Navbar = (props) => {
   const classes = useStyles();
   const history = useHistory();
 
@@ -200,7 +200,10 @@ const Navbar = () => {
                 activeClassName={classes.activeNavbarLink}
                 exact
               >
-                <Badge badgeContent={4} color="error">
+                <Badge
+                  badgeContent={props.cartItems > 0 ? props.cartItems : `0`}
+                  color="error"
+                >
                   <ShoppingCartTwoToneIcon />
                 </Badge>
               </NavLink>

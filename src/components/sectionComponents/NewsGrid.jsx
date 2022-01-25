@@ -34,8 +34,6 @@ const NewsGrid = (props) => {
   useEffect(() => {
     if (props.newsCarousel !== undefined) setShowNewsCarousel(true);
     if (props.newsGridCards !== undefined) setShowNewsGrid(true);
-    console.log(props.newsCarousel);
-    console.log(props.newsGridCards);
   }, [props]);
 
   return (

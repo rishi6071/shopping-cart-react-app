@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 
 // React-Router-Dom
@@ -21,6 +21,7 @@ import SearchProduct from "./sectionComponents/SearchProduct";
 import Shop from "./sectionComponents/Shop";
 import QuotesPolicy from "./sectionComponents/QuotesPolicy";
 import ProductSlider from "./sectionComponents/ProductSlider";
+import AlertMessage from "./sectionComponents/AlertMessage";
 
 // Formatting Price
 const formatPrice = (price) => {
@@ -28,28 +29,33 @@ const formatPrice = (price) => {
 };
 
 const HomePage = () => {
+  const alertFunc = useRef(null);
+  const [alertContent, setAlertContent] = useState({
+    message: "",
+    context: "",
+  });
+
   const [newsCarousel, setNewsCarousel] = useState([]);
   const [newsGridCards, setNewsGridCards] = useState();
 
   const [categories, setCategories] = useState([]);
   const [allProducts, setAllProducts] = useState([]);
+  const [cart, setCart] = useState([]);
 
+  /** FETCH categories, products, news, cart */
   useEffect(() => {
-    // Fetch All Categories
     const fetchCategories = async () => {
       const { data } = await commerce.categories.list();
       setCategories(data);
     };
     fetchCategories();
 
-    // Fetch All Products
     const fetchAllProducts = async () => {
       const { data } = await commerce.products.list();
       setAllProducts(data);
     };
     fetchAllProducts();
 
-    // Fetch News Carousel Items
     const fetchNewsCarousel = () => {
       const options = {
         method: "GET",
@@ -79,7 +85,6 @@ const HomePage = () => {
     };
     fetchNewsCarousel();
 
-    // Fetch News Horizontal Cards
     const fetchNewsGridCards = () => {
       const options = {
         method: "GET",
@@ -108,13 +113,47 @@ const HomePage = () => {
         });
     };
     fetchNewsGridCards();
+
+    const fetchCart = async () => {
+      setCart(await commerce.cart.retrieve());
+    };
+    fetchCart();
   }, []);
 
+  const handleAddToCart = (p_id, qty) => {
+    const addItem = async (p_id) => {
+      const response = await commerce.cart.add(p_id, qty);
+      setCart(response.cart);
+      if (response.success)
+        handleAlertMessage("success", "Item Added in Cart!");
+      else handleAlertMessage("error", "Error Occured!");
+    };
+    addItem(p_id, qty);
+  };
+
+  const handleRemoveFromCart = (item_id) => {
+    const removeItem = async (id) => {
+      const response = await commerce.cart.remove(id);
+      setCart(response.cart);
+      if (response.success)
+        handleAlertMessage("success", "Item Removed from Cart!");
+      else handleAlertMessage("error", "Error Occured!");
+    };
+    removeItem(item_id);
+  };
+
+  const handleAlertMessage = (ctxt, msg) => {
+    setAlertContent({
+      message: msg,
+      context: ctxt,
+    });
+    alertFunc.current();
+  };
 
   return (
     <>
       <BrowserRouter>
-        <Navbar />
+        <Navbar cartItems={cart.total_unique_items} />
 
         <Switch>
           <Route path="/" exact>
@@ -128,8 +167,10 @@ const HomePage = () => {
                   {[...parent_category.children].map((sub_category) => {
                     return (
                       <div key={sub_category.id}>
-                        <SectionHeader title={"Branded " + sub_category.name} />
-                        <ProductSlider categorySlug={sub_category.slug} />
+                        <ProductSlider
+                          categorySlug={sub_category.slug}
+                          title={"Branded " + sub_category.name}
+                        />
                       </div>
                     );
                   })}
@@ -159,17 +200,20 @@ const HomePage = () => {
             <Contact />
           </Route>
           <Route path="/cart" exact>
-            <Cart />
+            <Cart cart={cart} handleRemoveFromCart={handleRemoveFromCart} />
           </Route>
           <Route path="/search/:search" exact>
             <SearchProduct />
           </Route>
           <Route path="/product/:id">
-            <ProductDetails />
+            <ProductDetails handleAddToCart={handleAddToCart} />
           </Route>
         </Switch>
 
         <Footer />
+
+        {/* Alert Toast Message */}
+        <AlertMessage alertFunc={alertFunc} alertContent={alertContent} />
       </BrowserRouter>
     </>
   );

@@ -30,7 +30,7 @@ const AlertMessage = (props) => {
     <>
       <Snackbar
         open={open}
-        autoHideDuration={8000}
+        autoHideDuration={6000}
         onClose={handleClose}
         anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
       >

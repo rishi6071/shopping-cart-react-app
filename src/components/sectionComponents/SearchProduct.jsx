@@ -43,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const SearchProduct = (props) => {
+const SearchProduct = () => {
   const classes = useStyles();
   const { search } = useParams();
   const [searchProducts, setSearchProducts] = useState([]);

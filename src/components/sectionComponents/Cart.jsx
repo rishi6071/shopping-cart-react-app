@@ -1,14 +1,10 @@
-import React, { useState, useEffect, useRef } from "react";
+import React from "react";
 import "../css/style.css";
 import useStyles from "../css/CartStyle";
 
 // Custom Components
 import Breadcrumb from "./Breadcrumb";
-import AlertMessage from "./AlertMessage";
 import { formatPrice } from "../HomePage";
-
-// Commerce.js Instance
-import { commerce } from "../../lib/commerce";
 
 // Material-UI Components
 import Grid from "@mui/material/Grid";
@@ -29,232 +25,196 @@ import AddIcon from "@material-ui/icons/Add";
 import RemoveIcon from "@material-ui/icons/Remove";
 import ClearIcon from "@mui/icons-material/Clear";
 
-const Cart = () => {
+const Cart = (props) => {
   const classes = useStyles();
-  const [cart, setCart] = useState({});
-  const [cartProducts, setCartProducts] = useState([]);
-
-  // AlertMessage
-  const alertFunc = useRef(null);
-  const [alertContent, setAlertContent] = useState({
-    message: "",
-    context: "",
-  });
-
-  useEffect(() => {
-    const fetchCart = async () => {
-      const response = await commerce.cart.retrieve();
-      setCart(response);
-      setCartProducts(response.line_items);
-    };
-
-    fetchCart();
-  }, []);
-
-  useEffect(() => {
-    console.log(cart);
-  }, [cart]);
-
-  const removeFromCart = (item_id) => {
-    const removeItem = async (id) => {
-      const response = await commerce.cart.remove(id);
-      if (response.success) {
-        setAlertContent({
-          message: "Item Removed from Cart!",
-          context: "success",
-        });
-        alertFunc.current();
-      } else {
-        setAlertContent({
-          message: "Error Occured!",
-          context: "error",
-        });
-        alertFunc.current();
-      }
-    };
-
-    removeItem(item_id);
-  };
+  const { cart, handleRemoveFromCart } = props;
 
   return (
     <>
       {/* Cart Breadcrumb */}
       <Breadcrumb />
 
-      <Grid container className={classes.root} sm={11} xs={12}>
-        {/* Cart Items Table */}
-        <TableContainer
-          component={Paper}
-          className={classes.cartItemBox}
-          data-box="cartBox"
-          id={cart.id}
-        >
-          <Table sx={{ minWidth: 650 }} aria-label="simple table">
-            <TableHead>
-              <TableRow className={classes.cartTableHead}>
-                <TableCell align="center">Product</TableCell>
-                <TableCell>Name</TableCell>
-                <TableCell align="center">Unit Price</TableCell>
-                <TableCell align="center">Quantity</TableCell>
-                <TableCell align="center">Total</TableCell>
-                <TableCell align="center">Remove</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {[...cartProducts].map((product) => (
-                <TableRow
-                  key={product.id}
-                  id={product.product_id}
-                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                >
-                  <TableCell
-                    component="th"
-                    scope="row"
-                    className={classes.cartItemImgBox}
+      {cart.total_unique_items > 0 ? (
+        <Grid container className={classes.root} sm={11} xs={12}>
+          {/* Cart Items Table */}
+          <TableContainer
+            component={Paper}
+            className={classes.cartItemBox}
+            data-box="cartBox"
+            id={cart.id}
+          >
+            <Table sx={{ minWidth: 650 }} aria-label="simple table">
+              <TableHead>
+                <TableRow className={classes.cartTableHead}>
+                  <TableCell align="center">Product</TableCell>
+                  <TableCell>Name</TableCell>
+                  <TableCell align="center">Unit Price</TableCell>
+                  <TableCell align="center">Quantity</TableCell>
+                  <TableCell align="center">Total</TableCell>
+                  <TableCell align="center">Remove</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {[...cart.line_items].map((product) => (
+                  <TableRow
+                    key={product.id}
+                    id={product.product_id}
+                    sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                   >
-                    <img
-                      src={product ? product.image.url : ``}
-                      alt={product.product_name}
-                    />
-                  </TableCell>
-                  <TableCell>
-                    <Typography variantMapping="p">
-                      {product.product_name}
-                    </Typography>
-                    {/* <Typography className={classes.colorSize}>
+                    <TableCell
+                      component="th"
+                      scope="row"
+                      className={classes.cartItemImgBox}
+                    >
+                      <img
+                        src={product ? product.image.url : ``}
+                        alt={product.product_name}
+                      />
+                    </TableCell>
+                    <TableCell>
+                      <Typography variantMapping="p">
+                        {product.product_name}
+                      </Typography>
+                      {/* <Typography className={classes.colorSize}>
                       White / 6.25
                     </Typography> */}
-                  </TableCell>
-                  <TableCell className={classes.cartItemPrice} align="center">
-                    {product
-                      ? formatPrice(product.price.formatted_with_symbol)
-                      : ``}
-                  </TableCell>
-                  <TableCell align="center">
-                    <Typography className={classes.productQuantityField}>
-                      <ButtonGroup
-                        size="medium"
-                        aria-label="small button group"
-                        style={{ transform: "translateY(5px)" }}
+                    </TableCell>
+                    <TableCell className={classes.cartItemPrice} align="center">
+                      {product
+                        ? formatPrice(product.price.formatted_with_symbol)
+                        : ``}
+                    </TableCell>
+                    <TableCell align="center">
+                      <Typography className={classes.productQuantityField}>
+                        <ButtonGroup
+                          size="medium"
+                          aria-label="small button group"
+                          style={{ transform: "translateY(5px)" }}
+                        >
+                          <Button className={classes.quantityButtons}>
+                            <RemoveIcon />
+                          </Button>
+                          <input
+                            className={classes.quantityInputField}
+                            type="number"
+                            name="prodQtyId"
+                            id="prodQtyId"
+                            value={product.quantity}
+                            readOnly
+                          />
+                          <Button className={classes.quantityButtons}>
+                            <AddIcon />
+                          </Button>
+                        </ButtonGroup>
+                      </Typography>
+                    </TableCell>
+                    <TableCell className={classes.cartItemPrice} align="center">
+                      {product
+                        ? formatPrice(product.line_total.formatted_with_symbol)
+                        : ``}
+                    </TableCell>
+                    <TableCell align="center">
+                      <Button
+                        className={classes.cartItemRemoveBtn}
+                        onClick={() => handleRemoveFromCart(product.id)}
                       >
-                        <Button className={classes.quantityButtons}>
-                          <RemoveIcon />
-                        </Button>
-                        <input
-                          className={classes.quantityInputField}
-                          type="number"
-                          name="prodQtyId"
-                          id="prodQtyId"
-                          value={product.quantity}
-                          readOnly
-                        />
-                        <Button className={classes.quantityButtons}>
-                          <AddIcon />
-                        </Button>
-                      </ButtonGroup>
-                    </Typography>
-                  </TableCell>
-                  <TableCell className={classes.cartItemPrice} align="center">
-                    {product
-                      ? formatPrice(product.line_total.formatted_with_symbol)
-                      : ``}
-                  </TableCell>
-                  <TableCell align="center">
-                    <Button
-                      className={classes.cartItemRemoveBtn}
-                      onClick={() => removeFromCart(product.id)}
-                    >
-                      <ClearIcon />
+                        <ClearIcon />
+                      </Button>
+                    </TableCell>
+                  </TableRow>
+                ))}
+
+                {/* Continue Shopping Row */}
+                <TableRow
+                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                >
+                  <TableCell component="th" scope="row" colSpan={3}>
+                    <Button contained="filled" className={classes.cartButtons}>
+                      Continue Shopping
                     </Button>
                   </TableCell>
-                </TableRow>
-              ))}
-
-              {/* Continue Shopping Row */}
-              <TableRow
-                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-              >
-                <TableCell component="th" scope="row" colSpan={3}>
-                  <Button contained="filled" className={classes.cartButtons}>
-                    Continue Shopping
-                  </Button>
-                </TableCell>
-                <TableCell colSpan={3}>
-                  <FormGroup>
-                    <FormControlLabel
-                      control={<Checkbox />}
-                      label="Shipping (+ ₹150)"
-                    />
-                  </FormGroup>
-                </TableCell>
-              </TableRow>
-            </TableBody>
-          </Table>
-        </TableContainer>
-
-        {/* Billing */}
-        <Grid container className={classes.billingBox} md={6} sm={8} xs={11}>
-          <Typography variantMapping="p" className={classes.billingHead}>
-            Cart Totals
-          </Typography>
-
-          <TableContainer component={Paper} style={{ boxShadow: "none" }}>
-            <Table aria-label="simple table">
-              <TableBody>
-                <TableRow
-                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                >
-                  <TableCell
-                    component="th"
-                    scope="row"
-                    className={classes.billingItemHead}
-                  >
-                    Subtotal
-                  </TableCell>
-                  <TableCell align="right" className={classes.billingItemPrice}>
-                    {cart.subtotal ? cart.subtotal.formatted_with_symbol : ``}
-                  </TableCell>
-                </TableRow>
-                <TableRow
-                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                >
-                  <TableCell
-                    component="th"
-                    scope="row"
-                    className={classes.billingItemHead}
-                  >
-                    Shipping
-                  </TableCell>
-                  <TableCell align="right" className={classes.shippingPrice}>
-                    <span>₹</span>0
-                  </TableCell>
-                </TableRow>
-                <TableRow
-                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                >
-                  <TableCell
-                    component="th"
-                    scope="row"
-                    className={classes.billingItemHead}
-                  >
-                    Total
-                  </TableCell>
-                  <TableCell align="right" className={classes.billingItemPrice}>
-                    {cart.subtotal ? cart.subtotal.formatted_with_symbol : ``}
+                  <TableCell colSpan={3}>
+                    <FormGroup>
+                      <FormControlLabel
+                        control={<Checkbox />}
+                        label="Shipping (+ ₹150)"
+                      />
+                    </FormGroup>
                   </TableCell>
                 </TableRow>
               </TableBody>
             </Table>
           </TableContainer>
 
-          <Button contained="filled" className={classes.cartButtons}>
-            Proceed To Checkout
-          </Button>
-        </Grid>
+          {/* Billing */}
+          <Grid container className={classes.billingBox} md={6} sm={8} xs={11}>
+            <Typography variantMapping="p" className={classes.billingHead}>
+              Cart Totals
+            </Typography>
 
-        {/* AlertMessage */}
-        <AlertMessage alertFunc={alertFunc} alertContent={alertContent} />
-      </Grid>
+            <TableContainer component={Paper} style={{ boxShadow: "none" }}>
+              <Table aria-label="simple table">
+                <TableBody>
+                  <TableRow
+                    sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                  >
+                    <TableCell
+                      component="th"
+                      scope="row"
+                      className={classes.billingItemHead}
+                    >
+                      Subtotal
+                    </TableCell>
+                    <TableCell
+                      align="right"
+                      className={classes.billingItemPrice}
+                    >
+                      {cart.subtotal ? cart.subtotal.formatted_with_symbol : ``}
+                    </TableCell>
+                  </TableRow>
+                  <TableRow
+                    sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                  >
+                    <TableCell
+                      component="th"
+                      scope="row"
+                      className={classes.billingItemHead}
+                    >
+                      Shipping
+                    </TableCell>
+                    <TableCell align="right" className={classes.shippingPrice}>
+                      <span>₹</span>0
+                    </TableCell>
+                  </TableRow>
+                  <TableRow
+                    sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                  >
+                    <TableCell
+                      component="th"
+                      scope="row"
+                      className={classes.billingItemHead}
+                    >
+                      Total
+                    </TableCell>
+                    <TableCell
+                      align="right"
+                      className={classes.billingItemPrice}
+                    >
+                      {cart.subtotal ? cart.subtotal.formatted_with_symbol : ``}
+                    </TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </TableContainer>
+
+            <Button contained="filled" className={classes.cartButtons}>
+              Proceed To Checkout
+            </Button>
+          </Grid>
+        </Grid>
+      ) : (
+        ``
+      )}
     </>
   );
 };

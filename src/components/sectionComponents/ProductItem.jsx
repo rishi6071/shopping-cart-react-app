@@ -20,20 +20,21 @@ import Rating from "@mui/material/Rating";
 // import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 
 const ProductItem = (props) => {
-  const [rating, setRating] = useState(3);
   const classes = useStyles();
+  const { item } = props;
+  const [rating, setRating] = useState(Math.floor((Math.random() * 4) + 2));
 
   return (
     <>
-      <NavLink to={"/product/" + props.item.id} className={classes.productItemLink}>
-        <Card className={classes.productItem} id={props.item.id}>
+      <NavLink to={"/product/" + item.id} className={classes.productItemLink}>
+        <Card className={classes.productItem} id={item.id}>
           <CardActionArea>
             <Grid className={classes.productImgBox}>
               <img
-                src={props.item.image.url}
+                src={item.image.url}
                 maxHeight="100%"
                 maxWidth="100%"
-                alt={props.item.image.id}
+                alt={item.image.id}
               />
             </Grid>
             <CardContent>
@@ -44,7 +45,7 @@ const ProductItem = (props) => {
                 align="center"
                 className={classes.productTitle}
               >
-                {props.item.name}
+                {item.name}
               </Typography>
               <Typography
                 variant="body2"
@@ -68,7 +69,7 @@ const ProductItem = (props) => {
                 align="center"
                 className={classes.productPrice}
               >
-                {formatPrice(props.item.price.formatted_with_symbol)}
+                {formatPrice(item.price.formatted_with_symbol)}
               </Typography>
               {/* <Button variant="contained" className={classes.addCartBtn}>
               ADD TO CART{" "}

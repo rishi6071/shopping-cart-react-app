@@ -18,6 +18,7 @@ const banners = [Banner1, Banner2];
 
 const HomeBanner = (props) => {
   const classes = useStyles();
+  const { categories } = props;
 
   useEffect(() => {
     AOS.init({
@@ -109,7 +110,7 @@ const HomeBanner = (props) => {
           className={classes.collection}
           spacing={2}
         >
-          {[...props.categories].map((collection) => {
+          {[...categories].map((collection) => {
             let iterable = collection.children;
             if (collection.children.length > 0) iterable = collection.children;
 

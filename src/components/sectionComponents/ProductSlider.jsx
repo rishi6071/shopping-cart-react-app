@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import "../css/style.css";
 
+// Custom Components
+import SectionHeader from "./SectionHeader";
+
 // Commerce.js Instance
 import { commerce } from "../../lib/commerce";
 
@@ -35,6 +38,10 @@ const ProductSlider = (props) => {
 
   return (
     <>
+      {/* Section Header */}
+      <SectionHeader title={props.title} />
+
+      {/* Item Carousel */}
       <Grid className={classes.productSliderBox}>
         <Carousel
           showDots={true}

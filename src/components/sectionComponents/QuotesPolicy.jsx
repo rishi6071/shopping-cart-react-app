@@ -113,6 +113,7 @@ const QuotesPolicy = () => {
           animationDuration="1000"
           disableButtonsControls="false"
           autoPlayInterval={2000}
+          infinite
           responsive={{
             1900: {
               items: 4,

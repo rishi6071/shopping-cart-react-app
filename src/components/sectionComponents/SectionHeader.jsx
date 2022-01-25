@@ -13,23 +13,24 @@ import StopIcon from "@material-ui/icons/Stop";
 
 const SectionHeader = (props) => {
   const classes = useStyles();
+  const { title, productId } = props;
   const [sectionLinks, setSectionLinks] = useState([]);
 
   // Links Filtering
   useEffect(() => {
-    if (props.title === "productDetailsSections") {
+    if (title === "productDetailsSections") {
       for (let i = 0; i < ProductSectionLinks.length; i++) {
-        ProductSectionLinks[i].path = ProductSectionLinks[i].path.replace("/1", `/${props.productId}`);
+        ProductSectionLinks[i].path = ProductSectionLinks[i].path.replace("/1", `/${productId}`);
       }
       setSectionLinks([...ProductSectionLinks]);
-    } else if (props.title === "newsPanel") {
+    } else if (title === "newsPanel") {
       setSectionLinks([...NewsPanel]);
     } else {
       setSectionLinks([
-        { id: `commercejs_${props.title}`, name: `${props.title}`, path: `#` },
+        { id: `commercejs_${title}`, name: `${title}`, path: `#` },
       ]);
     }
-  }, [props]);
+  }, [title, productId]);
 
   return (
     <>

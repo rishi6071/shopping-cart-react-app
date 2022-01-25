@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import "../css/style.css";
 
@@ -12,7 +12,6 @@ import { commerce } from "../../lib/commerce";
 import useStyles from "../css/ProductDetailsStyle";
 import SectionHeader from "./SectionHeader";
 import Breadcrumb from "./Breadcrumb";
-import AlertMessage from "./AlertMessage";
 
 // Material-UI Components
 import {
@@ -33,19 +32,12 @@ import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 import AddIcon from "@material-ui/icons/Add";
 import RemoveIcon from "@material-ui/icons/Remove";
 
-const ProductDetails = () => {
+const ProductDetails = (props) => {
   const classes = useStyles();
+  const { handleAddToCart } = props;
   const { id } = useParams();
 
-  // AlertMessage
-  const alertFunc = useRef(null);
-  const [alertContent, setAlertContent] = useState({
-    message: "",
-    context: "",
-  });
-
   const [productItem, setProductItem] = useState({});
-
   const [productImgGallery, setProductImgGallery] = useState([]);
   const [productMainImg, setProductMainImg] = useState("");
   const [productDescription, setProductDescription] = useState(["", ""]);
@@ -65,7 +57,6 @@ const ProductDetails = () => {
         behavior: "smooth",
       });
     };
-
     fetchProductDetails();
   }, [id]);
 
@@ -80,12 +71,6 @@ const ProductDetails = () => {
     }
   }, [productItem]);
 
-  // For Loggers
-  // useEffect(() => {
-  //   console.log(productItem);
-  //   console.log(productItem.assets);
-  // }, [productItem]);
-
   const handleQty = (operation) => {
     if (operation === "+") {
       if (prodQty < prodInStock) setProdQty(prodQty + 1);
@@ -97,25 +82,6 @@ const ProductDetails = () => {
   const handleMainImg = (e) => {
     let src = e.target.src;
     setProductMainImg(src);
-  };
-
-  const addToCart = (p_id) => {
-    const addItem = async () => {
-      const response = await commerce.cart.add(p_id, prodQty);
-      if (response.success) {
-        setAlertContent({
-          message: "Item Added in Cart!",
-          context: "success",
-        });
-        alertFunc.current();
-      } else {
-        setAlertContent({
-          message: "Error Occured!",
-          context: "error",
-        });
-      }
-    };
-    addItem();
   };
 
   return (
@@ -192,7 +158,7 @@ const ProductDetails = () => {
                       contained="filled"
                       className={classes.buyCartButton}
                       onClick={() => {
-                        addToCart(id);
+                        handleAddToCart(id, prodQty);
                       }}
                     >
                       <AddShoppingCartIcon className={classes.buttonIcon} />{" "}
@@ -441,7 +407,7 @@ const ProductDetails = () => {
         </Grid>
 
         {/* Alert Toast Message */}
-        <AlertMessage alertFunc={alertFunc} alertContent={alertContent} />
+        {/* <AlertMessage alertFunc={alertFunc} alertContent={alertContent} /> */}
       </BrowserRouter>
     </>
   );

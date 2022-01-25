@@ -8,6 +8,7 @@ import { Grid } from "@material-ui/core";
 
 const ProductGrid = (props) => {
   const classes = useStyles();
+  const { products } = props;
 
   return (
     <>
@@ -16,7 +17,7 @@ const ProductGrid = (props) => {
         direction="row"
         className={classes.productGridBox}
       >
-        {[...props.products].map((product) => {
+        {[...products].map((product) => {
           return (
             <>
               <Grid item md={3} sm={4} xs={6} className={classes.productGridItem}>
