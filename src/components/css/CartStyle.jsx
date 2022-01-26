@@ -3,7 +3,7 @@ import "./style.css";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    margin: "20px auto 30px auto",
+    margin: "10px auto 30px auto",
     "& *": {
       fontFamily: "Archivo, sans-serif !important",
     },
@@ -130,7 +130,7 @@ const useStyles = makeStyles((theme) => ({
       "& img": {
         maxWidth: 300,
       },
-    }
+    },
   },
 }));
 

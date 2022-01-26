@@ -1,20 +1,26 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import "../css/style.css";
 
 // Material-UI Components
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
 
+// Notification
+import Notification from "../../media/audio/NotificationAndroid.mp3";
+
 const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
 
 const AlertMessage = (props) => {
+  const { alertFunc, alertContent } = props;
+  const [audio] = useState(new Audio(Notification));
   const [open, setOpen] = useState(false);
 
-  const handleClick = () => {
+  const handleClick = useCallback(() => {
+    audio.play();
     setOpen(true);
-  };
+  }, [audio]);
 
   const handleClose = (event, reason) => {
     if (reason === "clickaway") return;
@@ -23,23 +29,23 @@ const AlertMessage = (props) => {
 
   // To Call AlertMessage's handleClick Function from Parent (Calling Component)
   useEffect(() => {
-    props.alertFunc.current = handleClick;
-  }, [props]);
+    alertFunc.current = handleClick;
+  }, [alertFunc, handleClick]);
 
   return (
     <>
       <Snackbar
         open={open}
-        autoHideDuration={6000}
+        autoHideDuration={5000}
         onClose={handleClose}
         anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
       >
         <Alert
           onClose={handleClose}
-          severity={props.alertContent.context}
+          severity={alertContent.context}
           sx={{ width: "100%" }}
         >
-          {props.alertContent.message}
+          {alertContent.message}
         </Alert>
       </Snackbar>
     </>

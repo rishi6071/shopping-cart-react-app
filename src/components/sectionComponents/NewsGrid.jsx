@@ -141,6 +141,7 @@ const NewsGrid = (props) => {
             autoPlayInterval={2000}
             responsive={responsiveNewsCards}
             mouseTracking="false"
+            infinite
             items={[...props.newsCarousel].map((newsfeed, idx) => {
               return (
                 <>

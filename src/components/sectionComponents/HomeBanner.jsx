@@ -1,4 +1,5 @@
 import React, { useEffect, Fragment } from "react";
+import { Link } from "react-router-dom";
 import "../css/style.css";
 import AOS from "aos";
 
@@ -157,6 +158,8 @@ const HomeBanner = (props) => {
                               <Button
                                 variant="contained"
                                 className={classes.collectionBtn}
+                                component={Link}
+                                to="/shop"
                               >
                                 SHOP NOW
                               </Button>

@@ -32,14 +32,14 @@ const Footer = (props) => {
               alignItems="center"
               className={classes.subscribeInputGroup}
             >
-              <Grid item sm={8}>
+              <Grid item sm={8} xs={12}>
                 <input
                   type="email"
                   className={classes.subscribeInput}
-                  placeholder="Enter your email address"
+                  placeholder="Enter your email address..."
                 />
               </Grid>
-              <Grid item sm={4}>
+              <Grid item sm={4} xs={12}>
                 <Button className={classes.subscribeBtn}>Subscribe</Button>
               </Grid>
             </Grid>
@@ -51,7 +51,9 @@ const Footer = (props) => {
 
       {/* Footer Section */}
       <Grid container className={classes.footerGridBox}>
-        Copyright © 2021 By Commerce.js
+        <Typography variantMapping={"p"} className={classes.footerContent}>
+          Copyright © 2022 By Commerce.js
+        </Typography>
       </Grid>
     </footer>
   );

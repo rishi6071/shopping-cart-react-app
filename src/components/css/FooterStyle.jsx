@@ -24,6 +24,9 @@ const useStyles = makeStyles((theme) => ({
   subscribeHeading: {
     textTransform: "uppercase",
     fontFamily: "Archivo, sans-serif",
+    [theme.breakpoints.down("sm")]: {
+      fontWeight: 600,
+    },
   },
   subscribeSubHeading: {
     color: "#808D9E",
@@ -75,11 +78,13 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
     alignItems: "center",
     background: "#222222",
+  },
+  footerContent: {
+    fontFamily: "Lobster Two, cursive !important",
     color: "rgb(166, 166, 166)",
-    fontWeight: 500,
+    fontWeight: 600,
     letterSpacing: "1.2px",
-    fontSize: "14px",
-    fontFamily: "algerian, cooper black, Arial !important",
+    fontSize: "16px",
   },
 }));
 

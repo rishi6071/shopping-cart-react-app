@@ -1,6 +1,7 @@
 import React from "react";
 import "../css/style.css";
 import useStyles from "../css/CartStyle";
+import { Link } from "react-router-dom";
 
 // Custom Components
 import Breadcrumb from "./Breadcrumb";
@@ -28,7 +29,16 @@ import EmptyCart from "../../media/empty_cart.png";
 
 const Cart = (props) => {
   const classes = useStyles();
-  const { cart, handleRemoveFromCart } = props;
+  const { cart, handleUpdateInCart, handleRemoveFromCart } = props;
+
+  const updateCartWithValidation = (opr, item_id, qty) => {
+    if (opr === "+") {
+      handleUpdateInCart(item_id, qty + 1);
+    } else if (opr === "-") {
+      if (qty === 1) handleRemoveFromCart(item_id);
+      else handleUpdateInCart(item_id, qty - 1);
+    }
+  };
 
   return (
     <>
@@ -48,7 +58,7 @@ const Cart = (props) => {
               <TableHead>
                 <TableRow className={classes.cartTableHead}>
                   <TableCell align="center">Product</TableCell>
-                  <TableCell>Name</TableCell>
+                  <TableCell style={{ minWidth: 150 }}>Name</TableCell>
                   <TableCell align="center">Unit Price</TableCell>
                   <TableCell align="center">Quantity</TableCell>
                   <TableCell align="center">Total</TableCell>
@@ -92,7 +102,16 @@ const Cart = (props) => {
                           aria-label="small button group"
                           style={{ transform: "translateY(5px)" }}
                         >
-                          <Button className={classes.quantityButtons}>
+                          <Button
+                            className={classes.quantityButtons}
+                            onClick={() => {
+                              updateCartWithValidation(
+                                "-",
+                                product.id,
+                                product.quantity
+                              );
+                            }}
+                          >
                             <RemoveIcon />
                           </Button>
                           <input
@@ -103,7 +122,16 @@ const Cart = (props) => {
                             value={product.quantity}
                             readOnly
                           />
-                          <Button className={classes.quantityButtons}>
+                          <Button
+                            className={classes.quantityButtons}
+                            onClick={() => {
+                              updateCartWithValidation(
+                                "+",
+                                product.id,
+                                product.quantity
+                              );
+                            }}
+                          >
                             <AddIcon />
                           </Button>
                         </ButtonGroup>
@@ -130,7 +158,12 @@ const Cart = (props) => {
                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                 >
                   <TableCell component="th" scope="row" colSpan={3}>
-                    <Button contained="filled" className={classes.cartButtons}>
+                    <Button
+                      component={Link}
+                      to="/shop"
+                      contained="filled"
+                      className={classes.cartButtons}
+                    >
                       Continue Shopping
                     </Button>
                   </TableCell>

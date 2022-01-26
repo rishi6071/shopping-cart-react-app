@@ -131,6 +131,17 @@ const HomePage = () => {
     addItem(p_id, qty);
   };
 
+  const handleUpdateInCart = (item_id, qty) => {
+    const updateCart = async (item_id, qty) => {
+      const response = await commerce.cart.update(item_id, { quantity: qty });
+      setCart(response.cart);
+      if (response.success)
+        handleAlertMessage("success", "Item Updated in Cart!");
+      else handleAlertMessage("error", "Error Occured!");
+    }
+    updateCart(item_id, qty);
+  };
+
   const handleRemoveFromCart = (item_id) => {
     const removeItem = async (id) => {
       const response = await commerce.cart.remove(id);
@@ -150,10 +161,14 @@ const HomePage = () => {
     alertFunc.current();
   };
 
+  useEffect(() => {
+    console.log(cart);
+  }, [cart]);
+
   return (
     <>
       <BrowserRouter>
-        <Navbar cartItems={cart.total_unique_items} />
+        <Navbar cartItems={cart.total_items} />
 
         <Switch>
           <Route path="/" exact>
@@ -200,7 +215,11 @@ const HomePage = () => {
             <Contact />
           </Route>
           <Route path="/cart" exact>
-            <Cart cart={cart} handleRemoveFromCart={handleRemoveFromCart} />
+            <Cart
+              cart={cart}
+              handleUpdateInCart={handleUpdateInCart}
+              handleRemoveFromCart={handleRemoveFromCart}
+            />
           </Route>
           <Route path="/search/:search" exact>
             <SearchProduct />
