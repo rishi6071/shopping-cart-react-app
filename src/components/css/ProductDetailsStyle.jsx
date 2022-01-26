@@ -1,4 +1,8 @@
+import React from "react";
+
+// Material-UI Components
 import { makeStyles } from "@material-ui/core";
+import Skeleton from "@mui/material/Skeleton";
 
 const useStyles = makeStyles((theme) => ({
   productDetailsBox: {
@@ -85,7 +89,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: 20,
     [theme.breakpoints.down("xs")]: {
       marginTop: 10,
-    }
+    },
   },
   buyButtonBox: {
     [theme.breakpoints.up("sm")]: {
@@ -271,6 +275,40 @@ const useStyles = makeStyles((theme) => ({
   shippingDetailsSection: {
     lineHeight: 2,
   },
+  skeletonHide: {
+    [theme.breakpoints.down("sm")]: {
+      display: "none",
+    },
+  },
 }));
 
+const SkeletonProdMainHead = () => {
+  const classes = useStyles();
+
+  return (
+    <div className={classes.skeletonHide}>
+      <Skeleton animation="wave" variant="text" width="80%" height={35} style={{ marginBottom: 10 }} />
+      <Skeleton animation="wave" variant="text" width="40%" height={35} style={{ marginBottom: 10 }} />
+      <Skeleton animation="wave" variant="text" width="55%" height={35} style={{ marginBottom: 10 }} />
+    </div>
+  );
+};
+
+const SkeletonProdDetails = () => {
+  const classes = useStyles();
+
+  return (
+    <div className={classes.skeletonHide} style={{ marginTop: 20 }}>
+      <Skeleton animation="wave" variant="text" width="45%" height={25} />
+      {[1, 1, 1, 1, 1, 1].map(() => {
+        return (
+          <Skeleton animation="wave" variant="text" width="30%" height={20} style={{ marginTop: 10, marginBottom: 10 }} />
+        );
+      })}
+      <Skeleton animation="wave" variant="text" width="45%" height={25} />
+    </div>
+  );
+};
+
 export default useStyles;
+export { SkeletonProdMainHead, SkeletonProdDetails };
