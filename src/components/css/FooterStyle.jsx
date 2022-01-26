@@ -80,7 +80,7 @@ const useStyles = makeStyles((theme) => ({
     background: "#222222",
   },
   footerContent: {
-    fontFamily: "Lobster Two, cursive !important",
+    fontFamily: "Acme, sans-serif !important",
     color: "rgb(166, 166, 166)",
     fontWeight: 600,
     letterSpacing: "1.2px",

@@ -138,7 +138,7 @@ const HomePage = () => {
       if (response.success)
         handleAlertMessage("success", "Item Updated in Cart!");
       else handleAlertMessage("error", "Error Occured!");
-    }
+    };
     updateCart(item_id, qty);
   };
 
@@ -160,10 +160,6 @@ const HomePage = () => {
     });
     alertFunc.current();
   };
-
-  useEffect(() => {
-    console.log(cart);
-  }, [cart]);
 
   return (
     <>
