@@ -90,7 +90,6 @@ const useStyles = makeStyles((theme) => ({
     color: "dimgrey",
     fontSize: "13.2px",
     letterSpacing: "0.7px",
-    textAlign: "justify",
     lineHeight: 1.5,
     marginTop: 5,
   },

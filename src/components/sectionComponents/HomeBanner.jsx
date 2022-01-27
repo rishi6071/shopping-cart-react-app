@@ -14,8 +14,7 @@ import { Typography, Button, Grid } from "@material-ui/core";
 import useStyles from "../css/HomeBannerStyle";
 
 // Icons & Media
-import { Banner1, Banner2 } from "../css/HomeBannerStyle";
-const banners = [Banner1, Banner2];
+import { homeBanners } from "../css/HomeBannerStyle";
 
 const HomeBanner = (props) => {
   const classes = useStyles();
@@ -42,10 +41,10 @@ const HomeBanner = (props) => {
             hoverPause="true"
             focusAt="center"
           >
-            {[...banners].map((bannerItem, idx) => {
+            {[...homeBanners].map((bannerItem) => {
               return (
                 <>
-                  <Fragment key={`banner_${idx+1}`}>
+                  <Fragment key={bannerItem.id}>
                     <Grid container className={classes.bannerBox}>
                       <Grid
                         item
@@ -58,20 +57,20 @@ const HomeBanner = (props) => {
                         className={classes.bannerContent}
                       >
                         <Typography variantMapping="p" className={classes.mt3}>
-                          New Inspiration 2021
+                          New Inspiration 2022
                         </Typography>
                         <Typography
                           variant="h5"
                           className={classes.bannerBoldContent}
                         >
-                          Phones Made For You!
+                          {bannerItem.title}
                         </Typography>
                         <Typography
                           variant="h6"
                           color="textSecondary"
                           className={classes.bannerSubTitle}
                         >
-                          Trending Mobiles, Headphone and Accessories Collection
+                          {bannerItem.subtitle}
                         </Typography>
                         <Button
                           variant="contained"
@@ -88,7 +87,7 @@ const HomeBanner = (props) => {
                         className={classes.bannerImgBox}
                       >
                         <img
-                          src={bannerItem}
+                          src={bannerItem.url}
                           className={classes.bannerImg}
                           alt="Product Banner"
                         />

@@ -4,6 +4,7 @@ import "./style.css";
 // Icons Banners
 import Banner1 from "../../media/banner/banner_01.png";
 import Banner2 from "../../media/banner/banner_02.png";
+import Banner3 from "../../media/banner/banner_03.png";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -156,5 +157,26 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const homeBanners = [
+  {
+    id: "banner_1",
+    url: Banner1,
+    title: "Phones Made For You!",
+    subtitle: "Trending Mobiles, Headphone and Accessories Collection",
+  },
+  {
+    id: "banner_2",
+    url: Banner2,
+    title: "Plug it, listen to it, feel it!",
+    subtitle: "Trending Mobiles, Headphone and Accessories Collection",
+  },
+  {
+    id: "banner_3",
+    url: Banner3,
+    title: "Lightweight, powerful, built to last",
+    subtitle: "Trending Mobiles, Headphone and Accessories Collection",
+  },
+];
+
 export default useStyles;
-export { Banner1, Banner2 };
+export { homeBanners, Banner1, Banner2 };
