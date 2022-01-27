@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { isMobile } from "react-device-detect";
 import "../css/style.css";
 
 // Custom Components
@@ -44,12 +45,11 @@ const ProductSlider = (props) => {
       {/* Item Carousel */}
       <Grid className={classes.productSliderBox}>
         <Carousel
-          showDots={true}
-          removeArrowOnDeviceType={["tablet", "mobile"]}
+          showDots={isMobile ? false : true}
           infinite={true}
-          autoPlay={props.deviceType !== "mobile" ? true : false}
-          autoPlaySpeed={5000}
-          customTransition="all 1.5s"
+          autoPlay={isMobile ? false : true}
+          autoPlaySpeed={6000}
+          customTransition="all 1s"
           transitionDuration={2000}
           ssr={true}
           draggable={true}

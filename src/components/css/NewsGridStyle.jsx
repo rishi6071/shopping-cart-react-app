@@ -27,13 +27,10 @@ const newsRandImgs = [
 
 const responsiveNewsCards = {
   0: { items: 1 },
-  767: {
-    items: 2,
-  },
-  1024: { items: 3 },
-  1900: {
-    items: 4,
-  },
+  550: { items: 2 },
+  767: { items: 3 },
+  1100: { items: 4 },
+  1900: { items: 5 },
 };
 
 const useStyles = makeStyles((theme) => ({
@@ -73,7 +70,7 @@ const useStyles = makeStyles((theme) => ({
     paddingRight: "10px !important",
   },
   newCarouselImg: {
-    height: 250,
+    height: 200,
     [theme.breakpoints.down("sm")]: {
       height: 200,
     },
@@ -140,7 +137,6 @@ const useStyles = makeStyles((theme) => ({
       color: "white",
     },
   },
-  
 }));
 
 export default useStyles;

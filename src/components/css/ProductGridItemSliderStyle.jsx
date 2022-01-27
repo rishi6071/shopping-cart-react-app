@@ -68,6 +68,9 @@ const useStyles = makeStyles((theme) => ({
   productTitle: {
     fontSize: "16px",
     fontFamily: "Archivo, sans-serif",
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "15px",
+    }
   },
   productPrice: {
     fontWeight: 600,

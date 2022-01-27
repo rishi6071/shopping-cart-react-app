@@ -192,7 +192,7 @@ const useStyles = makeStyles((theme) => ({
   },
   productExtraDetails: {
     fontFamily: "inherit",
-    fontSize: "smaller",
+    fontSize: "14.5px",
     marginTop: 12,
     marginLeft: 3,
     letterSpacing: "0.5px",
@@ -311,7 +311,7 @@ const SkeletonProdMainImg = () => {
       variant="rectangular"
       width={"100%"}
       height={"100%"}
-      style={{ borderRadius: 5 }}
+      style={{ borderRadius: 3 }}
     />
   );
 };

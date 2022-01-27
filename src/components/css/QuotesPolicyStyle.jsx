@@ -82,7 +82,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "15px",
     lineHeight: 1.8,
     fontStyle: "italic",
-    fontWeight: 200,
+    fontWeight: 500,
     marginBottom: 25,
   },
   quoteByDesignation: {

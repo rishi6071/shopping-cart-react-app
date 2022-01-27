@@ -34,6 +34,14 @@ const useStyles = makeStyles((theme) => ({
       },
     },
   },
+  cartItemName: {
+    textDecoration: "none",
+    color: "#000000",
+    "&:hover": {
+      textDecoration: "underline",
+      color: "#663399",
+    },
+  },
   colorSize: {
     marginTop: "6px",
     color: "dimgrey",

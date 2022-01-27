@@ -136,11 +136,11 @@ const NewsGrid = (props) => {
         >
           <AliceCarousel
             autoPlay
-            animationDuration="1000"
-            disableButtonsControls="false"
-            autoPlayInterval={2000}
+            animationDuration="1500"
+            autoPlayInterval={4000}
+            disableDotsControls
             responsive={responsiveNewsCards}
-            mouseTracking="false"
+            touchTracking
             infinite
             items={[...props.newsCarousel].map((newsfeed, idx) => {
               return (

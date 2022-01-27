@@ -83,7 +83,12 @@ const Cart = (props) => {
                       />
                     </TableCell>
                     <TableCell>
-                      <Typography variantMapping="p">
+                      <Typography
+                        variantMapping="p"
+                        component={Link}
+                        to={"/product/" + product.product_id}
+                        className={classes.cartItemName}
+                      >
                         {product.product_name}
                       </Typography>
                       {/* <Typography className={classes.colorSize}>
