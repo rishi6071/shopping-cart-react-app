@@ -3,6 +3,7 @@ import React from "react";
 // Material-UI Components
 import { makeStyles } from "@material-ui/core";
 import Skeleton from "@mui/material/Skeleton";
+import Grid from "@mui/material/Grid";
 
 const useStyles = makeStyles((theme) => ({
   productDetailsBox: {
@@ -282,15 +283,72 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const SkeletonProdGallery = () => {
+  const classes = useStyles();
+
+  return (
+    <div>
+      {[1, 1, 1, 1, 1].map(() => {
+        return (
+          <Grid item sm={12} xs={2} className={classes.prodGalleryImgBox}>
+            <Skeleton
+              variant="rectangular"
+              width={40}
+              height={40}
+              style={{ marginBottom: 18, borderRadius: 3 }}
+            />
+          </Grid>
+        );
+      })}
+    </div>
+  );
+};
+
+const SkeletonProdMainImg = () => {
+  return (
+    <Skeleton
+      animation="wave"
+      variant="rectangular"
+      width={"100%"}
+      height={"100%"}
+      style={{ borderRadius: 5 }}
+    />
+  );
+};
+
 const SkeletonProdMainHead = () => {
   const classes = useStyles();
 
   return (
     <div className={classes.skeletonHide}>
-      <Skeleton animation="wave" variant="text" width="80%" height={35} style={{ marginBottom: 10 }} />
-      <Skeleton animation="wave" variant="text" width="40%" height={35} style={{ marginBottom: 10 }} />
-      <Skeleton animation="wave" variant="text" width="55%" height={35} style={{ marginBottom: 10 }} />
+      <Skeleton
+        animation="wave"
+        variant="text"
+        width="80%"
+        height={35}
+        style={{ marginBottom: 10 }}
+      />
+      <Skeleton
+        animation="wave"
+        variant="text"
+        width="40%"
+        height={35}
+        style={{ marginBottom: 10 }}
+      />
+      <Skeleton
+        animation="wave"
+        variant="text"
+        width="55%"
+        height={35}
+        style={{ marginBottom: 10 }}
+      />
     </div>
+  );
+};
+
+const SkeletonAddBuyBtn = () => {
+  return (
+    <Skeleton variant="rectangular" animation="wave" width="100%" height={52} />
   );
 };
 
@@ -302,7 +360,13 @@ const SkeletonProdDetails = () => {
       <Skeleton animation="wave" variant="text" width="45%" height={25} />
       {[1, 1, 1, 1, 1, 1].map(() => {
         return (
-          <Skeleton animation="wave" variant="text" width="30%" height={20} style={{ marginTop: 10, marginBottom: 10 }} />
+          <Skeleton
+            animation="wave"
+            variant="text"
+            width="30%"
+            height={20}
+            style={{ marginTop: 10, marginBottom: 10 }}
+          />
         );
       })}
       <Skeleton animation="wave" variant="text" width="45%" height={25} />
@@ -311,4 +375,10 @@ const SkeletonProdDetails = () => {
 };
 
 export default useStyles;
-export { SkeletonProdMainHead, SkeletonProdDetails };
+export {
+  SkeletonProdMainImg,
+  SkeletonProdGallery,
+  SkeletonProdMainHead,
+  SkeletonAddBuyBtn,
+  SkeletonProdDetails,
+};

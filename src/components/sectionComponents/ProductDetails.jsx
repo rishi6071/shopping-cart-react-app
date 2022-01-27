@@ -9,7 +9,13 @@ import { useParams } from "react-router-dom";
 import { commerce } from "../../lib/commerce";
 
 // Custom Components
-import useStyles, { SkeletonProdMainHead, SkeletonProdDetails } from "../css/ProductDetailsStyle";
+import useStyles, {
+  SkeletonProdMainImg,
+  SkeletonProdGallery,
+  SkeletonProdMainHead,
+  SkeletonAddBuyBtn,
+  SkeletonProdDetails,
+} from "../css/ProductDetailsStyle";
 import SectionHeader from "./SectionHeader";
 import Breadcrumb from "./Breadcrumb";
 
@@ -22,7 +28,6 @@ import {
   Divider,
   ButtonGroup,
 } from "@material-ui/core";
-import Skeleton from "@mui/material/Skeleton";
 // import { MenuItem, FormControl, Select, InputLabel } from "@material-ui/core";
 
 // Icons & Media
@@ -111,43 +116,29 @@ const ProductDetails = (props) => {
                     marginTop: 10,
                   }}
                 >
-                  {!loading
-                    ? [...productImgGallery].map((galleryImg) => {
-                        return (
-                          <>
-                            <Grid
-                              item
-                              sm={12}
-                              xs={2}
-                              className={classes.prodGalleryImgBox}
-                              key={galleryImg.id}
-                            >
-                              <img
-                                src={galleryImg.url}
-                                onMouseOver={handleMainImg}
-                                alt={galleryImg.id}
-                              />
-                            </Grid>
-                          </>
-                        );
-                      })
-                    : [1, 1, 1, 1, 1].map(() => {
-                        return (
+                  {!loading ? (
+                    [...productImgGallery].map((galleryImg) => {
+                      return (
+                        <>
                           <Grid
                             item
                             sm={12}
                             xs={2}
                             className={classes.prodGalleryImgBox}
+                            key={galleryImg.id}
                           >
-                            <Skeleton
-                              variant="rectangular"
-                              width={40}
-                              height={40}
-                              style={{ marginBottom: 18 }}
+                            <img
+                              src={galleryImg.url}
+                              onMouseOver={handleMainImg}
+                              alt={galleryImg.id}
                             />
                           </Grid>
-                        );
-                      })}
+                        </>
+                      );
+                    })
+                  ) : (
+                    <SkeletonProdGallery />
+                  )}
                 </Grid>
               </Grid>
 
@@ -161,12 +152,7 @@ const ProductDetails = (props) => {
                     alt="ProductMainImage"
                   />
                 ) : (
-                  <Skeleton
-                    animation="wave"
-                    variant="rectangular"
-                    width={"100%"}
-                    height={"100%"}
-                  />
+                  <SkeletonProdMainImg />
                 )}
               </Grid>
             </Grid>
@@ -196,12 +182,7 @@ const ProductDetails = (props) => {
                         <span>Add To Cart</span>
                       </Button>
                     ) : (
-                      <Skeleton
-                        variant="rectangular"
-                        animation="wave"
-                        width="100%"
-                        height={52}
-                      />
+                      <SkeletonAddBuyBtn />
                     )}
                   </Grid>
                   <Grid item sm={6} xs={11} className={classes.buyButtonBox}>
@@ -214,12 +195,7 @@ const ProductDetails = (props) => {
                         <span>Buy Now</span>
                       </Button>
                     ) : (
-                      <Skeleton
-                        variant="rectangular"
-                        animation="wave"
-                        width="100%"
-                        height={52}
-                      />
+                      <SkeletonAddBuyBtn />
                     )}
                   </Grid>
                 </Grid>
