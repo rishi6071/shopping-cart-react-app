@@ -5,6 +5,9 @@ import useStyles, { categories, valuetext } from "../css/ShopStyle";
 import ProductItem from "./ProductItem";
 import ProdGridSkeleton from "../css/ProdGridSkeleton";
 
+// Commerce.js Instance
+import { commerce } from "../../lib/commerce";
+
 // Material-UI Components
 import {
   Grid,
@@ -18,22 +21,38 @@ import {
   Link,
   Slider,
 } from "@material-ui/core";
-import Rating from "@mui/material/Rating";
+import { Rating, Pagination } from "@mui/material";
 
 const Shop = (props) => {
   const classes = useStyles();
-  const { products } = props;
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
+  const [products, setProducts] = useState(props.products);
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPage, setTotalPage] = useState(0);
   const [rating, setRating] = useState(3);
-  const [value, setValue] = useState([20, 37]);
+  const [price, setPrice] = useState([20, 37]);
 
   useEffect(() => {
-    setLoading(false);
-  }, []);
+    setLoading(true);
+    const fetchProducts = async () => {
+      const response = await commerce.products.list({
+        limit: 12,
+        page: currentPage,
+      });
+      setTotalPage(response.meta.pagination.total_pages);
+      setProducts(response.data);
+      setLoading(false);
+    };
+    fetchProducts();
+  }, [currentPage]);
 
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
+  const handlePagination = (event, value) => {
+    setCurrentPage(value);
+  };
+
+  const handlePrice = (event, newValue) => {
+    setPrice(newValue);
   };
 
   return (
@@ -82,8 +101,8 @@ const Shop = (props) => {
             <Grid container className={classes.sliderBox}>
               <Slider
                 getAriaLabel={() => "Price Range"}
-                value={value}
-                onChange={handleChange}
+                value={price}
+                onChange={handlePrice}
                 valueLabelDisplay="auto"
                 getAriaValueText={valuetext}
               />
@@ -126,29 +145,38 @@ const Shop = (props) => {
 
         <Grid item md={9} xs={12}>
           {!loading ? (
-            <Grid
-              container
-              direction="row"
-              justifyContent="center"
-              className={classes.productGridBox}
-              spacing={2}
-            >
-              {[...products].map((item) => {
-                return (
-                  <>
-                    <Grid
-                      item
-                      md={3}
-                      sm={6}
-                      xs={6}
-                      className={classes.productGridItem}
-                    >
-                      <ProductItem item={item} />
-                    </Grid>
-                  </>
-                );
-              })}
-            </Grid>
+            <div>
+              <Grid
+                container
+                className={classes.productGridBox}
+                spacing={2}
+              >
+                {[...products].map((item) => {
+                  return (
+                    <>
+                      <Grid
+                        item
+                        md={3}
+                        sm={6}
+                        xs={6}
+                        className={classes.productGridItem}
+                      >
+                        <ProductItem item={item} />
+                      </Grid>
+                    </>
+                  );
+                })}
+              </Grid>
+              <Grid container justifyContent="center" alignItems="center">
+                <Pagination
+                  className={classes.paginationBox}
+                  count={totalPage}
+                  page={currentPage}
+                  onChange={handlePagination}
+                  color="primary"
+                />
+              </Grid>
+            </div>
           ) : (
             <ProdGridSkeleton />
           )}

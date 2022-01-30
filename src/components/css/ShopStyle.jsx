@@ -48,6 +48,10 @@ const useStyles = makeStyles((theme) => ({
       color: "dimgrey",
     },
   },
+  paginationBox: {
+    marginTop: 20,
+    marginBottom: 30,
+  },
 }));
 
 const categories = [

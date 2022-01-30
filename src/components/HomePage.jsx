@@ -50,11 +50,15 @@ const HomePage = () => {
     };
     fetchCategories();
 
-    const fetchAllProducts = async () => {
-      const { data } = await commerce.products.list();
-      setAllProducts(data);
+    const fetchLatestProducts = async () => {
+      const response = await commerce.products.list({
+        sortBy: "updated_at",
+        sortOrder: "desc",
+        limit: 12,
+      });
+      setAllProducts(response.data);
     };
-    fetchAllProducts();
+    fetchLatestProducts();
 
     const fetchNewsCarousel = () => {
       const options = {
