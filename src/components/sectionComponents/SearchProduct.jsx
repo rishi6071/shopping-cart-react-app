@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
-import useStyles, { SkeletonSearchProducts } from "../css/SearchProductStyle";
+import useStyles from "../css/SearchProductStyle";
 import { useParams } from "react-router-dom";
 
 // Custom Components
 import ProductGrid from "./ProductGrid";
+import ProdGridSkeleton from "../css/ProdGridSkeleton";
 
 // Commerce.js Instance
 import { commerce } from "../../lib/commerce";
@@ -41,13 +42,13 @@ const SearchProduct = () => {
         </Typography>
 
         {searchProducts ? (
-          <div>
+          <Grid container>
             {!loading ? (
               <ProductGrid products={searchProducts} />
             ) : (
-              <SkeletonSearchProducts />
+              <ProdGridSkeleton />
             )}
-          </div>
+          </Grid>
         ) : (
           <Grid container className={classes.noResultFound}>
             <img src={NoResultFound} alt="NoItemFound" />

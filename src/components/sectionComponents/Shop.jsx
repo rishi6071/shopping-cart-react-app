@@ -1,9 +1,12 @@
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
+import useStyles, { categories, valuetext } from "../css/ShopStyle";
+
+// Custom Components
 import ProductItem from "./ProductItem";
+import ProdGridSkeleton from "../css/ProdGridSkeleton";
 
 // Material-UI Components
 import {
-  makeStyles,
   Grid,
   Typography,
   Table,
@@ -17,82 +20,17 @@ import {
 } from "@material-ui/core";
 import Rating from "@mui/material/Rating";
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    margin: "15px auto",
-    padding: "0px 20px",
-    "& *": {
-      fontFamily: "Archivo, sans-serif",
-    },
-  },
-  filterBox: {
-    padding: "5px 15px 5px 8px",
-  },
-  filterHead: {
-    paddingLeft: 10,
-    textTransform: "uppercase",
-    letterSpacing: "1px",
-    marginTop: 20,
-    marginBottom: 10,
-    "& span": {
-      fontSize: "11px",
-      color: "dimgrey",
-      marginLeft: 5,
-    },
-  },
-  categoryName: {
-    fontSize: "14.5px",
-    "&:hover": {
-      textDecoration: "none",
-      color: "black",
-    },
-  },
-  sliderBox: {
-    paddingLeft: 20,
-    paddingRight: 20,
-  },
-  ratingBox: {
-    display: "block !important",
-    paddingLeft: 15,
-    paddingRight: 15,
-  },
-  ratingLayer: {
-    marginTop: 2.5,
-    display: "flex",
-    "& > span:nth-child(2)": {
-      marginLeft: 9,
-      paddingTop: 2.3,
-      color: "dimgrey",
-    },
-  },
-}));
-
-const categories = [
-  {
-    id: "category1",
-    name: "Mobile",
-    inStock: "35",
-  },
-  {
-    id: "category2",
-    name: "Headphone",
-    inStock: "55",
-  },
-  {
-    id: "category3",
-    name: "Laptop",
-    inStock: "15",
-  },
-];
-
-function valuetext(value) {
-  return `${value}°C`;
-}
-
 const Shop = (props) => {
   const classes = useStyles();
+  const { products } = props;
+  const [loading, setLoading] = useState(true);
+
   const [rating, setRating] = useState(3);
   const [value, setValue] = useState([20, 37]);
+
+  useEffect(() => {
+    setLoading(false);
+  }, []);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -187,29 +125,33 @@ const Shop = (props) => {
         </Grid>
 
         <Grid item md={9} xs={12}>
-          <Grid
-            container
-            direction="row"
-            justifyContent="center"
-            className={classes.productGridBox}
-            spacing={2}
-          >
-            {[...props.products].map((item) => {
-              return (
-                <>
-                  <Grid
-                    item
-                    md={3}
-                    sm={6}
-                    xs={6}
-                    className={classes.productGridItem}
-                  >
-                    <ProductItem item={item} />
-                  </Grid>
-                </>
-              );
-            })}
-          </Grid>
+          {!loading ? (
+            <Grid
+              container
+              direction="row"
+              justifyContent="center"
+              className={classes.productGridBox}
+              spacing={2}
+            >
+              {[...products].map((item) => {
+                return (
+                  <>
+                    <Grid
+                      item
+                      md={3}
+                      sm={6}
+                      xs={6}
+                      className={classes.productGridItem}
+                    >
+                      <ProductItem item={item} />
+                    </Grid>
+                  </>
+                );
+              })}
+            </Grid>
+          ) : (
+            <ProdGridSkeleton />
+          )}
         </Grid>
       </Grid>
     </>
