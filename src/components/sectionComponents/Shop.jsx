@@ -21,7 +21,14 @@ import {
   Link,
   Slider,
 } from "@material-ui/core";
-import { Rating, Pagination } from "@mui/material";
+import {
+  Rating,
+  Pagination,
+  InputLabel,
+  MenuItem,
+  FormControl,
+  Select,
+} from "@mui/material";
 
 const Shop = (props) => {
   const classes = useStyles();
@@ -32,20 +39,29 @@ const Shop = (props) => {
   const [totalPage, setTotalPage] = useState(0);
   const [rating, setRating] = useState(3);
   const [price, setPrice] = useState([20, 37]);
+  const [sortBy, setSortBy] = useState("");
 
   useEffect(() => {
-    setLoading(true);
-    const fetchProducts = async () => {
-      const response = await commerce.products.list({
-        limit: 12,
-        page: currentPage,
-      });
-      setTotalPage(response.meta.pagination.total_pages);
-      setProducts(response.data);
-      setLoading(false);
-    };
-    fetchProducts();
+    try {
+      setLoading(true);
+      const fetchProducts = async () => {
+        const response = await commerce.products.list({
+          limit: 16,
+          page: currentPage,
+        });
+        setTotalPage(response.meta.pagination.total_pages);
+        setProducts(response.data);
+        setLoading(false);
+      };
+      fetchProducts();
+    } catch (e) {
+      console.log(e);
+    }
   }, [currentPage]);
+
+  const handleSortBy = (event) => {
+    setSortBy(event.target.value);
+  };
 
   const handlePagination = (event, value) => {
     setCurrentPage(value);
@@ -146,11 +162,38 @@ const Shop = (props) => {
         <Grid item md={9} xs={12}>
           {!loading ? (
             <div>
-              <Grid
-                container
-                className={classes.productGridBox}
-                spacing={2}
-              >
+              {/* Sort By */}
+              <Grid container justifyContent="flex-end">
+                <FormControl
+                  sx={{ m: 1, minWidth: 120 }}
+                  style={{ margin: "7px 15px 15px 0" }}
+                  size="small"
+                >
+                  <InputLabel id="sort-by-selection">Sort By</InputLabel>
+                  <Select
+                    labelId="sort-by-selection"
+                    id="sort-by-selection-helper"
+                    value={sortBy}
+                    label="Sort By"
+                    onChange={handleSortBy}
+                  >
+                    <MenuItem value={{ sortBy: "price", sortOrder: "asc" }}>
+                      Price: Low to High
+                    </MenuItem>
+                    <MenuItem value={{ sortBy: "price", sortOrder: "desc" }}>
+                      Price: High to Low
+                    </MenuItem>
+                    <MenuItem
+                      value={{ sortBy: "created_at", sortOrder: "desc" }}
+                    >
+                      Newest First
+                    </MenuItem>
+                  </Select>
+                </FormControl>
+              </Grid>
+
+              {/* Product Items */}
+              <Grid container className={classes.productGridBox} spacing={2}>
                 {[...products].map((item) => {
                   return (
                     <>
@@ -178,7 +221,7 @@ const Shop = (props) => {
               </Grid>
             </div>
           ) : (
-            <ProdGridSkeleton />
+            <ProdGridSkeleton count={6} />
           )}
         </Grid>
       </Grid>

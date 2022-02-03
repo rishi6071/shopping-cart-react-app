@@ -22,25 +22,29 @@ import ProductItem from "./ProductItem";
 
 const ProductSlider = (props) => {
   const classes = useStyles();
+  const { categorySlug, title } = props;
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    // Fetch All Category Products
-    const fetchCategoryProducts = async () => {
-      const { data } = await commerce.products.list({
-        category_slug: [props.categorySlug],
-        limit: 10,
-      });
-      setProducts(data);
-    };
-
-    fetchCategoryProducts();
-  }, [props.categorySlug]);
+    try {
+      // Fetch All Category Products
+      const fetchCategoryProducts = async () => {
+        const { data } = await commerce.products.list({
+          category_slug: [categorySlug],
+          limit: 10,
+        });
+        setProducts(data);
+      };
+      fetchCategoryProducts();
+    } catch (e) {
+      console.log(e);
+    }
+  }, [categorySlug]);
 
   return (
     <>
       {/* Section Header */}
-      <SectionHeader title={props.title} />
+      <SectionHeader title={title} />
 
       {/* Item Carousel */}
       <Grid className={classes.productSliderBox}>

@@ -52,30 +52,38 @@ const ProductDetails = (props) => {
   const [prodInStock, setProdInStock] = useState(0);
 
   useEffect(() => {
-    const fetchProductDetails = async () => {
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth",
-      });
+    try {
+      const fetchProductDetails = async () => {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
 
-      const data = await commerce.products.retrieve(id);
-      setProductItem(data);
-      setProductImgGallery(data.assets);
-      setProductMainImg(data.assets[0].url);
-      setProdInStock(data.inventory.available);
-      setLoading(false);
-    };
-    fetchProductDetails();
+        const data = await commerce.products.retrieve(id);
+        setProductItem(data);
+        setProductImgGallery(data.assets);
+        setProductMainImg(data.assets[0].url);
+        setProdInStock(data.inventory.available);
+        setLoading(false);
+      };
+      fetchProductDetails();
+    } catch (e) {
+      console.log(e);
+    }
   }, [id]);
 
   // Formatting ProductDescription once Product Loads
   useEffect(() => {
-    if (Object.keys(productItem).length !== 0) {
-      let p_description = productItem.description;
-      p_description = p_description.split(
-        "<h2><strong>About this item:</strong></h2>"
-      );
-      setProductDescription(p_description);
+    try {
+      if (Object.keys(productItem).length !== 0) {
+        let p_description = productItem.description;
+        p_description = p_description.split(
+          "<h2><strong>About this item:</strong></h2>"
+        );
+        setProductDescription(p_description);
+      }
+    } catch (e) {
+      console.log(e);
     }
   }, [productItem]);
 

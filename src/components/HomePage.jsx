@@ -44,84 +44,88 @@ const HomePage = () => {
 
   /** FETCH categories, products, news, cart */
   useEffect(() => {
-    const fetchCategories = async () => {
-      const { data } = await commerce.categories.list();
-      setCategories(data);
-    };
-    fetchCategories();
-
-    const fetchLatestProducts = async () => {
-      const response = await commerce.products.list({
-        sortBy: "updated_at",
-        sortOrder: "desc",
-        limit: 12,
-      });
-      setAllProducts(response.data);
-    };
-    fetchLatestProducts();
-
-    const fetchNewsCarousel = () => {
-      const options = {
-        method: "GET",
-        url: "https://bing-news-search1.p.rapidapi.com/news/search",
-        params: {
-          q: "Gadgets",
-          safeSearch: "Off",
-          textFormat: "Raw",
-          freshness: "Week",
-        },
-        headers: {
-          "x-bingapis-sdk": "true",
-          "x-rapidapi-host": "bing-news-search1.p.rapidapi.com",
-          "x-rapidapi-key":
-            "6f7060b3efmsh122f3af8594763dp1e7b8ajsn7ff3f2f5bd27",
-        },
+    try {
+      const fetchCategories = async () => {
+        const { data } = await commerce.categories.list();
+        setCategories(data);
       };
+      fetchCategories();
 
-      axios
-        .request(options)
-        .then(function (response) {
-          setNewsCarousel(response.data.value);
-        })
-        .catch(function (error) {
-          console.error(error);
+      const fetchLatestProducts = async () => {
+        const response = await commerce.products.list({
+          sortBy: "updated_at",
+          sortOrder: "desc",
+          limit: 12,
         });
-    };
-    fetchNewsCarousel();
-
-    const fetchNewsGridCards = () => {
-      const options = {
-        method: "GET",
-        url: "https://bing-news-search1.p.rapidapi.com/news/search",
-        params: {
-          q: "Technology",
-          safeSearch: "Off",
-          textFormat: "Raw",
-          freshness: "Week",
-        },
-        headers: {
-          "x-bingapis-sdk": "true",
-          "x-rapidapi-host": "bing-news-search1.p.rapidapi.com",
-          "x-rapidapi-key":
-            "6f7060b3efmsh122f3af8594763dp1e7b8ajsn7ff3f2f5bd27",
-        },
+        setAllProducts(response.data);
       };
+      fetchLatestProducts();
 
-      axios
-        .request(options)
-        .then(function (response) {
-          setNewsGridCards(response.data.value);
-        })
-        .catch(function (error) {
-          console.error(error);
-        });
-    };
-    fetchNewsGridCards();
+      const fetchNewsCarousel = () => {
+        const options = {
+          method: "GET",
+          url: "https://bing-news-search1.p.rapidapi.com/news/search",
+          params: {
+            q: "Gadgets",
+            safeSearch: "Off",
+            textFormat: "Raw",
+            freshness: "Week",
+          },
+          headers: {
+            "x-bingapis-sdk": "true",
+            "x-rapidapi-host": "bing-news-search1.p.rapidapi.com",
+            "x-rapidapi-key":
+              "6f7060b3efmsh122f3af8594763dp1e7b8ajsn7ff3f2f5bd27",
+          },
+        };
 
-    const fetchCart = async () => {
-      setCart(await commerce.cart.retrieve());
-    };
-    fetchCart();
+        axios
+          .request(options)
+          .then(function (response) {
+            setNewsCarousel(response.data.value);
+          })
+          .catch(function (error) {
+            console.error(error);
+          });
+      };
+      fetchNewsCarousel();
+
+      const fetchNewsGridCards = () => {
+        const options = {
+          method: "GET",
+          url: "https://bing-news-search1.p.rapidapi.com/news/search",
+          params: {
+            q: "Technology",
+            safeSearch: "Off",
+            textFormat: "Raw",
+            freshness: "Week",
+          },
+          headers: {
+            "x-bingapis-sdk": "true",
+            "x-rapidapi-host": "bing-news-search1.p.rapidapi.com",
+            "x-rapidapi-key":
+              "6f7060b3efmsh122f3af8594763dp1e7b8ajsn7ff3f2f5bd27",
+          },
+        };
+
+        axios
+          .request(options)
+          .then(function (response) {
+            setNewsGridCards(response.data.value);
+          })
+          .catch(function (error) {
+            console.error(error);
+          });
+      };
+      fetchNewsGridCards();
+
+      const fetchCart = async () => {
+        setCart(await commerce.cart.retrieve());
+      };
+      fetchCart();
+    } catch (e) {
+      console.log(e);
+    }
   }, []);
 
   const handleAddToCart = (p_id, qty) => {

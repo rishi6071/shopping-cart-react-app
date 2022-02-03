@@ -63,7 +63,7 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    marginBottom: 18,
+    marginBottom: "16px !important",
     width: 100,
     height: "2.5rem",
     transition: "border 0.3s",
@@ -295,7 +295,7 @@ const SkeletonProdGallery = () => {
               variant="rectangular"
               width={40}
               height={40}
-              style={{ marginBottom: 18, borderRadius: 3 }}
+              style={{ marginTop: 18, borderRadius: 3 }}
             />
           </Grid>
         );

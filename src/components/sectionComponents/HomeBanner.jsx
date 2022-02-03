@@ -21,9 +21,13 @@ const HomeBanner = (props) => {
   const { categories } = props;
 
   useEffect(() => {
-    AOS.init({
-      duration: 2000,
-    });
+    try {
+      AOS.init({
+        duration: 2000,
+      });
+    } catch (e) {
+      console.log(e);
+    }
   }, []);
 
   return (

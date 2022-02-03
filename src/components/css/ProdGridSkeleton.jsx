@@ -18,8 +18,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ProdGridSkeleton = () => {
+const ProdGridSkeleton = (props) => {
   const classes = useStyles();
+  const { count } = props;
+  const gridCount = new Array(count).fill(1);
 
   return (
     <Grid
@@ -27,7 +29,7 @@ const ProdGridSkeleton = () => {
       className={classes.skeletonItemBox}
       spacing={1}
     >
-      {[1, 1, 1, 1, 1, 1].map(() => {
+      {[...gridCount].map(() => {
         return (
           <Grid item md={3} sm={4} xs={6} className={classes.skeletonGridItem}>
             <Grid container justifyContent="center">

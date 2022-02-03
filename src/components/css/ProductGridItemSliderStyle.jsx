@@ -42,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
   },
   productItem: {
     boxSizing: "border-box",
-    margin: "0px auto 40px auto",
+    margin: "0px auto 30px auto",
     boxShadow: "none",
   },
   productImgBox: {

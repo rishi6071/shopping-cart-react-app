@@ -20,6 +20,7 @@ import Typography from "@material-ui/core/Typography";
 
 const NewsGrid = (props) => {
   const classes = useStyles();
+  const { newsCarousel, newsGridCards } = props;
 
   const [showNewsGrid, setShowNewsGrid] = useState(false);
   const [showNewsCarousel, setShowNewsCarousel] = useState(false);
@@ -32,9 +33,9 @@ const NewsGrid = (props) => {
 
   // Filtering Resource Request
   useEffect(() => {
-    if (props.newsCarousel !== undefined) setShowNewsCarousel(true);
-    if (props.newsGridCards !== undefined) setShowNewsGrid(true);
-  }, [props]);
+    if (newsCarousel !== undefined) setShowNewsCarousel(true);
+    if (newsGridCards !== undefined) setShowNewsGrid(true);
+  }, [newsCarousel, newsGridCards]);
 
   return (
     <>
@@ -49,8 +50,8 @@ const NewsGrid = (props) => {
           }}
           spacing={3}
         >
-          {props.newsGridCards
-            ? [...props.newsGridCards].map((newsCard, idx) => {
+          {newsGridCards
+            ? [...newsGridCards].map((newsCard, idx) => {
                 return (
                   <>
                     <Grid
@@ -142,7 +143,7 @@ const NewsGrid = (props) => {
             responsive={responsiveNewsCards}
             touchTracking
             infinite
-            items={[...props.newsCarousel].map((newsfeed, idx) => {
+            items={[...newsCarousel].map((newsfeed, idx) => {
               return (
                 <>
                   <Grid item key={`news_carousel_card_${idx}`} className="news_card_grid_item">

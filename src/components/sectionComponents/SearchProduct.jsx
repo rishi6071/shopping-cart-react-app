@@ -13,26 +13,39 @@ import { commerce } from "../../lib/commerce";
 import NoResultFound from "../../media/result_not_found.png";
 
 // Material UI Components
-import { Grid, Typography } from "@mui/material";
+import { Grid, Typography, Pagination } from "@mui/material";
 
 const SearchProduct = () => {
   const classes = useStyles();
   const { search } = useParams();
   const [loading, setLoading] = useState(true);
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPage, setTotalPage] = useState(1);
   const [searchProducts, setSearchProducts] = useState([]);
 
   useEffect(() => {
-    const fetchSearchProducts = async () => {
-      setLoading(true);
-      const { data } = await commerce.products.list({
-        query: search,
-      });
-      setSearchProducts(data);
-      setLoading(false);
-    };
-    fetchSearchProducts();
-  }, [search]);
+    try {
+      const fetchSearchProducts = async () => {
+        setLoading(true);
+        const response = await commerce.products.list({
+          query: search,
+          limit: 16,
+          page: currentPage,
+        });
+        setTotalPage(response.meta.pagination.total_pages);
+        setSearchProducts(response.data);
+        setLoading(false);
+      };
+      fetchSearchProducts();
+    } catch (e) {
+      console.log(e);
+    }
+  }, [search, currentPage]);
+
+  const handlePagination = (event, value) => {
+    setCurrentPage(value);
+  };
 
   return (
     <>
@@ -44,9 +57,20 @@ const SearchProduct = () => {
         {searchProducts ? (
           <Grid container>
             {!loading ? (
-              <ProductGrid products={searchProducts} />
+              <div>
+                <ProductGrid products={searchProducts} />
+                <Grid container justifyContent="center" alignItems="center">
+                  <Pagination
+                    className={classes.paginationBox}
+                    count={totalPage}
+                    page={currentPage}
+                    onChange={handlePagination}
+                    color="primary"
+                  />
+                </Grid>
+              </div>
             ) : (
-              <ProdGridSkeleton />
+              <ProdGridSkeleton count={6} />
             )}
           </Grid>
         ) : (

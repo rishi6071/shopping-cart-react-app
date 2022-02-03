@@ -34,6 +34,10 @@ const useStyles = makeStyles((theme) => ({
       },
     },
   },
+  paginationBox: {
+    marginTop: 20,
+    marginBottom: 30,
+  },
 }));
 
 export default useStyles;
