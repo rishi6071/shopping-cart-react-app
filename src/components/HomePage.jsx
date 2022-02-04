@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useLayoutEffect, useEffect, useRef } from "react";
 import axios from "axios";
 
 // React-Router-Dom
@@ -22,6 +22,7 @@ import Shop from "./sectionComponents/Shop";
 import QuotesPolicy from "./sectionComponents/QuotesPolicy";
 import ProductSlider from "./sectionComponents/ProductSlider";
 import AlertMessage from "./sectionComponents/AlertMessage";
+import Checkout from "./sectionComponents/Checkout";
 
 // Formatting Price
 const formatPrice = (price) => {
@@ -29,6 +30,8 @@ const formatPrice = (price) => {
 };
 
 const HomePage = () => {
+  const [loading, setLoading] = useState(true);
+
   const alertFunc = useRef(null);
   const [alertContent, setAlertContent] = useState({
     message: "",
@@ -42,9 +45,10 @@ const HomePage = () => {
   const [allProducts, setAllProducts] = useState([]);
   const [cart, setCart] = useState([]);
 
-  /** FETCH categories, products, news, cart */
-  useEffect(() => {
+  /** FETCH categories, products */
+  useLayoutEffect(() => {
     try {
+      setLoading(true);
       const fetchCategories = async () => {
         const { data } = await commerce.categories.list();
         setCategories(data);
@@ -60,7 +64,17 @@ const HomePage = () => {
         setAllProducts(response.data);
       };
       fetchLatestProducts();
+      setTimeout(() => {
+        setLoading(false);
+      }, 2000);
+    } catch (e) {
+      console.log(e);
+    }
+  }, []);
 
+  /** FETCH News, Cart */
+  useEffect(() => {
+    try {
       const fetchNewsCarousel = () => {
         const options = {
           method: "GET",
@@ -179,29 +193,35 @@ const HomePage = () => {
             {/* Home Carousel & Categories Listing */}
             <HomeBanner categories={categories} />
 
-            {/* ProductSlider for all Sub-Categories */}
-            {[...categories].map((parent_category) => {
-              return (
-                <>
-                  {[...parent_category.children].map((sub_category) => {
-                    return (
-                      <div key={sub_category.id}>
-                        <ProductSlider
-                          categorySlug={sub_category.slug}
-                          title={"Branded " + sub_category.name}
-                        />
-                      </div>
-                    );
-                  })}
-                </>
-              );
-            })}
+            {!loading ? (
+              <div>
+                {/* ProductSlider for all Sub-Categories */}
+                {[...categories].map((parent_category) => {
+                  return (
+                    <>
+                      {[...parent_category.children].map((sub_category) => {
+                        return (
+                          <div key={sub_category.id}>
+                            <ProductSlider
+                              categorySlug={sub_category.slug}
+                              title={"Branded " + sub_category.name}
+                            />
+                          </div>
+                        );
+                      })}
+                    </>
+                  );
+                })}
 
-            {/* Latest Products */}
-            <div>
-              <SectionHeader title="Latest Products" />
-              <ProductGrid products={allProducts} />
-            </div>
+                {/* Latest Products */}
+                <div>
+                  <SectionHeader title="Latest Products" />
+                  <ProductGrid products={allProducts} />
+                </div>
+              </div>
+            ) : (
+              ``
+            )}
 
             <QuotesPolicy />
             <NewsGrid newsCarousel={newsCarousel} />
@@ -227,6 +247,9 @@ const HomePage = () => {
           </Route>
           <Route path="/search/:search" exact>
             <SearchProduct />
+          </Route>
+          <Route path="/checkout" exact>
+            <Checkout />
           </Route>
           <Route path="/product/:id">
             <ProductDetails handleAddToCart={handleAddToCart} />

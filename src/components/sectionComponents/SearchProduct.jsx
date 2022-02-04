@@ -27,6 +27,7 @@ const SearchProduct = () => {
   useEffect(() => {
     try {
       const fetchSearchProducts = async () => {
+        window.scrollTo({ top: 0 });
         setLoading(true);
         const response = await commerce.products.list({
           query: search,

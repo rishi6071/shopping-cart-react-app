@@ -29,11 +29,13 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: "0px 1px 5px lightgrey",
   },
   title: {
-    flexGrow: 1,
-    display: "block",
     fontWeight: "bolder",
     letterSpacing: "1px",
-    marginLeft: 15,
+    textDecoration: "none",
+    fontSize: "larger",
+    transform: "scale(1.15)",
+    marginLeft: 20,
+    color: "#000000",
     fontFamily: "Acme, sans-serif",
     [theme.breakpoints.down("sm")]: {
       marginLeft: 10,
@@ -82,6 +84,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   navbarLinkBox: {
+    marginLeft: "auto",
     marginRight: 20,
     display: "flex",
     [theme.breakpoints.down("sm")]: {
@@ -143,15 +146,13 @@ const Navbar = (props) => {
           className={classes.appbar}
         >
           <Toolbar>
-            <Typography className={classes.title} variant="h5" noWrap>
+            {/* <Typography className={classes.title} variant="h5" noWrap>
               Commerce.js
-            </Typography>
-            {/* <div className={classes.searchBox}>
-              <input type="text" name="" id="" />
-              <button type="button">
-                <SearchIcon fontSize="small" />
-              </button>
-            </div> */}
+            </Typography> */}
+            <NavLink className={classes.title} to="/" noWrap>
+              Commerce.js
+            </NavLink>
+
             <div className={classes.navbarLinkBox}>
               {[...navLinks].map((linkItem) => {
                 return (

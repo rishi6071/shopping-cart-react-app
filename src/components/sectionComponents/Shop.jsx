@@ -43,6 +43,7 @@ const Shop = (props) => {
 
   useEffect(() => {
     try {
+      window.scrollTo({ top: 0 });
       setLoading(true);
       const fetchProducts = async () => {
         const response = await commerce.products.list({

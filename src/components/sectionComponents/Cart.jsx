@@ -246,7 +246,7 @@ const Cart = (props) => {
               </Table>
             </TableContainer>
 
-            <Button contained="filled" className={classes.cartButtons}>
+            <Button component={Link} to="/checkout" contained="filled" className={classes.cartButtons}>
               Proceed To Checkout
             </Button>
           </Grid>
