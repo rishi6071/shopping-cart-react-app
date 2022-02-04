@@ -287,7 +287,7 @@ const SkeletonProdGallery = () => {
   const classes = useStyles();
 
   return (
-    <div>
+    <Grid container justifyContent="center" style={{ width: "80vw" }}>
       {[1, 1, 1, 1, 1].map(() => {
         return (
           <Grid item sm={12} xs={2} className={classes.prodGalleryImgBox}>
@@ -300,7 +300,7 @@ const SkeletonProdGallery = () => {
           </Grid>
         );
       })}
-    </div>
+    </Grid>
   );
 };
 

@@ -222,7 +222,7 @@ const Shop = (props) => {
               </Grid>
             </div>
           ) : (
-            <ProdGridSkeleton count={6} />
+            <ProdGridSkeleton count={8} />
           )}
         </Grid>
       </Grid>

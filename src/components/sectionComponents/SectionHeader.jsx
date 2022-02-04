@@ -20,7 +20,10 @@ const SectionHeader = (props) => {
   useEffect(() => {
     if (title === "productDetailsSections") {
       for (let i = 0; i < ProductSectionLinks.length; i++) {
-        ProductSectionLinks[i].path = ProductSectionLinks[i].path.replace("/1", `/${productId}`);
+        ProductSectionLinks[i].path = ProductSectionLinks[i].path.replace(
+          "/1",
+          `/${productId}`
+        );
       }
       setSectionLinks([...ProductSectionLinks]);
     } else if (title === "newsPanel") {
@@ -43,19 +46,17 @@ const SectionHeader = (props) => {
         >
           {[...sectionLinks].map((linkItem) => {
             return (
-              <>
-                <Grid className={classes.sectionHeadItem} key={linkItem.id}>
-                  <NavLink
-                    to={linkItem.path}
-                    exact
-                    className={classes.sectionHeadTitle}
-                    activeClassName={classes.activeSectionHeadTitle}
-                  >
-                    <StopIcon className={classes.sectionHeadIcon} />
-                    <span>{linkItem.name}</span>
-                  </NavLink>
-                </Grid>
-              </>
+              <Grid className={classes.sectionHeadItem} key={linkItem.id}>
+                <NavLink
+                  to={linkItem.path}
+                  exact
+                  className={classes.sectionHeadTitle}
+                  activeClassName={classes.activeSectionHeadTitle}
+                >
+                  <StopIcon className={classes.sectionHeadIcon} />
+                  <span>{linkItem.name}</span>
+                </NavLink>
+              </Grid>
             );
           })}
         </Grid>

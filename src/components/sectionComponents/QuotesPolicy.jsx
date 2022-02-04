@@ -77,25 +77,21 @@ const QuotesPolicy = () => {
         <Grid container>
           {[...policies].map((policy) => {
             return (
-              <>
-                <Grid
-                  item
-                  lg={3}
-                  xs={6}
-                  align="center"
-                  className={classes.policyBox}
-                  key={policy.id}
-                >
-                  <Typography className={classes.policyIconBox}>
-                    <span className={classes.policyIconSpan}>
-                      {policy.icon}
-                    </span>
-                  </Typography>
-                  <Typography className={classes.policyName}>
-                    {policy.name}
-                  </Typography>
-                </Grid>
-              </>
+              <Grid
+                item
+                lg={3}
+                xs={6}
+                align="center"
+                className={classes.policyBox}
+                key={policy.id}
+              >
+                <Typography className={classes.policyIconBox}>
+                  <span className={classes.policyIconSpan}>{policy.icon}</span>
+                </Typography>
+                <Typography className={classes.policyName}>
+                  {policy.name}
+                </Typography>
+              </Grid>
             );
           })}
         </Grid>
@@ -122,37 +118,35 @@ const QuotesPolicy = () => {
           mouseTracking="false"
           items={[...quotes].map((quote) => {
             return (
-              <>
-                <Grid item className={classes.quoteItemBox} key={quote.id}>
-                  <Grid container justifyContent="center" alignItems="center">
-                    <Grid
-                      item
-                      md={8}
-                      sm={10}
-                      xs={12}
-                      className={classes.quoteContentBox}
+              <Grid item className={classes.quoteItemBox} key={quote.id}>
+                <Grid container justifyContent="center" alignItems="center">
+                  <Grid
+                    item
+                    md={8}
+                    sm={10}
+                    xs={12}
+                    className={classes.quoteContentBox}
+                  >
+                    <Typography className={classes.quoteImg}>
+                      <img
+                        src={quote.img}
+                        alt={quote.writtenBy}
+                        loading="lazy"
+                      />
+                    </Typography>
+                    <Typography
+                      variantMapping="p"
+                      className={classes.quoteLines}
                     >
-                      <Typography className={classes.quoteImg}>
-                        <img
-                          src={quote.img}
-                          alt={quote.writtenBy}
-                          loading="lazy"
-                        />
-                      </Typography>
-                      <Typography
-                        variantMapping="p"
-                        className={classes.quoteLines}
-                      >
-                        “{quote.quoteLine}”
-                      </Typography>
-                      <Typography variant="h6">{quote.writtenBy}</Typography>
-                      <Typography className={classes.quoteByDesignation}>
-                        {quote.designation}
-                      </Typography>
-                    </Grid>
+                      “{quote.quoteLine}”
+                    </Typography>
+                    <Typography variant="h6">{quote.writtenBy}</Typography>
+                    <Typography className={classes.quoteByDesignation}>
+                      {quote.designation}
+                    </Typography>
                   </Grid>
                 </Grid>
-              </>
+              </Grid>
             );
           })}
         />

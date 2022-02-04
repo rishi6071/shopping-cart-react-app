@@ -196,9 +196,9 @@ const HomePage = () => {
             {!loading ? (
               <div>
                 {/* ProductSlider for all Sub-Categories */}
-                {[...categories].map((parent_category) => {
+                {[...categories].map((parent_category, idx) => {
                   return (
-                    <>
+                    <div key={idx}>
                       {[...parent_category.children].map((sub_category) => {
                         return (
                           <div key={sub_category.id}>
@@ -209,7 +209,7 @@ const HomePage = () => {
                           </div>
                         );
                       })}
-                    </>
+                    </div>
                   );
                 })}
 

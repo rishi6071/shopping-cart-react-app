@@ -54,6 +54,9 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up("sm")]: {
       width: "auto",
     },
+    [theme.breakpoints.down("sm")]: {
+      marginLeft: "auto",
+    },
     [theme.breakpoints.down("xs")]: {
       display: "none",
     },
@@ -109,6 +112,15 @@ const useStyles = makeStyles((theme) => ({
   activeNavbarLink: {
     color: "tomato",
   },
+  cartLinkItem: {
+    marginLeft: 18,
+    marginRight: 10,
+    fontFamily: "Archivo, sans-serif",
+    fontSize: "14.5px",
+    [theme.breakpoints.down("xs")]: {
+      marginLeft: "auto",
+    },
+  },
   badge: {
     marginLeft: 20,
     marginRight: 10,
@@ -149,18 +161,17 @@ const Navbar = (props) => {
             {/* <Typography className={classes.title} variant="h5" noWrap>
               Commerce.js
             </Typography> */}
-            <NavLink className={classes.title} to="/" noWrap>
+            <NavLink className={classes.title} to="/" nowrap="true">
               Commerce.js
             </NavLink>
 
             <div className={classes.navbarLinkBox}>
               {[...navLinks].map((linkItem) => {
                 return (
-                  <>
+                  <div key={linkItem.id}>
                     <Typography
                       variantMapping="p"
                       className={classes.navbarLinkItem}
-                      key={linkItem.id}
                     >
                       <NavLink
                         to={linkItem.path}
@@ -171,7 +182,7 @@ const Navbar = (props) => {
                         {linkItem.name}
                       </NavLink>
                     </Typography>
-                  </>
+                  </div>
                 );
               })}
             </div>
@@ -191,10 +202,7 @@ const Navbar = (props) => {
                 onKeyDown={switchToSearch}
               />
             </div>
-            <div
-              className={classes.navbarLinkItem}
-              style={{ marginLeft: 15, marginRight: 10 }}
-            >
+            <div className={classes.cartLinkItem}>
               <NavLink
                 to="/cart"
                 className={classes.navbarLink}

@@ -94,6 +94,7 @@ const HomeBanner = (props) => {
                           src={bannerItem.url}
                           className={classes.bannerImg}
                           alt="Product Banner"
+                          loading="lazy"
                         />
                       </Grid>
                     </Grid>
@@ -133,7 +134,7 @@ const HomeBanner = (props) => {
                             <img
                               src={category.assets[0].url}
                               className={classes.collectionImg}
-                              alt="Smartphones"
+                              alt={category.name}
                             />
                           </Grid>
                           <Grid

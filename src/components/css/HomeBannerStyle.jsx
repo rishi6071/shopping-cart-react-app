@@ -8,7 +8,7 @@ import Banner3 from "../../media/banner/banner_03.png";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    maxWidth: "1400px",
+    maxwidth: "1400px",
     height: 600,
     marginBottom: 40,
     background: "#f1f1f1",
