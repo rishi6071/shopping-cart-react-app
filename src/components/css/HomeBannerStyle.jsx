@@ -57,9 +57,11 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: "bold",
     marginTop: 10,
     textTransform: "uppercase",
+    textAlign: "center",
     fontFamily: "Archivo, sans-serif",
     [theme.breakpoints.up("sm")]: {
       fontSize: "30px",
+      textAlign: "left",
     },
   },
   bannerSubTitle: {

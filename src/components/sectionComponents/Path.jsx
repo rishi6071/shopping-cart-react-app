@@ -1,24 +1,33 @@
+import HomeIcon from "@mui/icons-material/Home";
+import ShopIcon from '@mui/icons-material/Shop';
+import FeedIcon from '@mui/icons-material/Feed';
+import PermContactCalendarIcon from '@mui/icons-material/PermContactCalendar';
+
 // Navbar Links
 const NavbarLinks = [
   {
     id: "nav_home",
     name: "Home",
     path: "/",
+    icon: <HomeIcon />,
   },
   {
     id: "nav_category",
     name: "Shop",
     path: "/shop",
+    icon: <ShopIcon />,
   },
   {
     id: "nav_newsfeed",
     name: "NewsFeed",
     path: "/newsfeed",
+    icon: <FeedIcon />,
   },
   {
     id: "nav_contact",
     name: "Contact",
     path: "/contact",
+    icon: <PermContactCalendarIcon />,
   },
 ];
 
