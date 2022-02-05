@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { NavLink, useHistory } from "react-router-dom";
+import { NavLink, useHistory, Link } from "react-router-dom";
 import NavbarLinks from "./Path";
 
 // Material-UI Components
@@ -13,7 +13,7 @@ import {
 } from "@material-ui/core";
 import {
   Box,
-  SwipeableDrawer,
+  Drawer,
   Button,
   Divider,
   List,
@@ -147,13 +147,33 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   humbergerTitle: {
+    transform: "translateY(-7px)",
+    paddingTop: "16px !important",
     paddingBottom: "16px !important",
     boxShadow: "0px 1px 5px lightgrey",
-    marginBottom: "15px !important",
+    marginBottom: "18px !important",
   },
   humbergerBtn: {
     color: "#000000 !important",
     minWidth: "30px !important",
+  },
+  humbergerSearch: {
+    position: "relative",
+    borderRadius: theme.shape.borderRadius,
+    backgroundColor: alpha(theme.palette.common.black, 0.08),
+    "&:hover": {
+      backgroundColor: alpha(theme.palette.common.black, 0.08),
+      transition: "0.4s",
+    },
+    margin: "5px auto 15px auto",
+    width: "90%",
+  },
+  humbergerInputInput: {
+    padding: theme.spacing(1, 1, 1, 0),
+    // vertical padding + font size from searchIcon
+    paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
+    transition: theme.transitions.create("width"),
+    width: "18ch",
   },
 }));
 
@@ -296,18 +316,13 @@ const HumbergerMenu = (props) => {
   } = props;
 
   return (
-    <SwipeableDrawer
+    <Drawer
       anchor={"left"}
       open={openSidebar}
       onOpen={toggleDrawer(true)}
       onClose={toggleDrawer(false)}
     >
-      <Box
-        sx={{ width: 250 }}
-        role="presentation"
-        onClick={toggleDrawer(false)}
-        onKeyDown={toggleDrawer(false)}
-      >
+      <Box sx={{ width: 250 }} role="presentation">
         <List>
           {/* Brand Title */}
           <ListItem button className={classes.humbergerTitle}>
@@ -315,15 +330,15 @@ const HumbergerMenu = (props) => {
           </ListItem>
 
           {/* Search */}
-          <div className={classes.search}>
+          <div className={classes.humbergerSearch}>
             <div className={classes.searchIcon}>
               <SearchIcon />
             </div>
             <InputBase
-              placeholder="Search…"
+              placeholder="Search & Enter…"
               classes={{
                 root: classes.inputRoot,
-                input: classes.inputInput,
+                input: classes.humbergerInputInput,
               }}
               value={searchInput}
               inputProps={{ "aria-label": "search" }}
@@ -333,14 +348,27 @@ const HumbergerMenu = (props) => {
           </div>
 
           {[...NavbarLinks].map((item) => (
-            <ListItem button key={item.name}>
+            <ListItem
+              button
+              component={Link}
+              to={item.path}
+              key={item.name}
+              onClick={toggleDrawer(false)}
+              style={{ marginTop: 5, marginLeft: 6 }}
+            >
               <ListItemIcon>{item.icon}</ListItemIcon>
               <ListItemText primary={item.name} />
             </ListItem>
           ))}
 
           {/* Cart */}
-          <ListItem button style={{ marginTop: 6 }}>
+          <ListItem
+            button
+            component={Link}
+            to="/cart"
+            onClick={toggleDrawer(false)}
+            style={{ marginTop: 7, marginLeft: 6 }}
+          >
             <ListItemIcon>
               <Badge
                 badgeContent={cartItems > 0 ? cartItems : `0`}
@@ -354,7 +382,7 @@ const HumbergerMenu = (props) => {
         </List>
         <Divider />
       </Box>
-    </SwipeableDrawer>
+    </Drawer>
   );
 };
 
