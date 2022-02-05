@@ -22,7 +22,7 @@ import Shop from "./sectionComponents/Shop";
 import QuotesPolicy from "./sectionComponents/QuotesPolicy";
 import ProductSlider from "./sectionComponents/ProductSlider";
 import AlertMessage from "./sectionComponents/AlertMessage";
-import Checkout from "./sectionComponents/Checkout";
+import Checkout from "./sectionComponents/Checkout/Checkout";
 
 // Formatting Price
 const formatPrice = (price) => {
@@ -92,7 +92,6 @@ const HomePage = () => {
               "6f7060b3efmsh122f3af8594763dp1e7b8ajsn7ff3f2f5bd27",
           },
         };
-
         axios
           .request(options)
           .then(function (response) {
@@ -121,7 +120,6 @@ const HomePage = () => {
               "6f7060b3efmsh122f3af8594763dp1e7b8ajsn7ff3f2f5bd27",
           },
         };
-
         axios
           .request(options)
           .then(function (response) {
@@ -249,7 +247,7 @@ const HomePage = () => {
             <SearchProduct />
           </Route>
           <Route path="/checkout" exact>
-            <Checkout />
+            <Checkout cart={cart} />
           </Route>
           <Route path="/product/:id">
             <ProductDetails handleAddToCart={handleAddToCart} />

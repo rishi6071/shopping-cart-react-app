@@ -166,7 +166,7 @@ const useStyles = makeStyles((theme) => ({
       transition: "0.4s",
     },
     margin: "5px auto 15px auto",
-    width: "90%",
+    width: "85%",
   },
   humbergerInputInput: {
     padding: theme.spacing(1, 1, 1, 0),

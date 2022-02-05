@@ -6,7 +6,7 @@ import HomePage from "./components/HomePage";
 const App = () => {
   return (
     <>
-      <main>
+      <main id="root__component">
         <HomePage />
       </main>
     </>
