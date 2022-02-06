@@ -14,7 +14,7 @@ import FormInput from "./CustomTextField";
 // React-Hook-Form
 import { useForm, FormProvider } from "react-hook-form";
 
-const AddressForm = ({ checkoutToken }) => {
+const AddressForm = ({ checkoutToken, next }) => {
   const classes = useStyles();
   const methods = useForm();
 
@@ -49,7 +49,6 @@ const AddressForm = ({ checkoutToken }) => {
       country,
       region,
     });
-
     setShippingOptions(options);
     setShippingOption(options[0].id);
   };
@@ -75,7 +74,16 @@ const AddressForm = ({ checkoutToken }) => {
   return (
     <>
       <FormProvider {...methods}>
-        <form onSubmit="">
+        <form
+          onSubmit={methods.handleSubmit((data) =>
+            next({
+              ...data,
+              shippingCountry,
+              shippingSubdivision,
+              shippingOption,
+            })
+          )}
+        >
           <Grid container spacing={3}>
             {/* Input Fields */}
             <FormInput name="firstName" label="First Name" />
@@ -159,7 +167,7 @@ const AddressForm = ({ checkoutToken }) => {
               component={Link}
               to="/cart"
               variant="outlined"
-              className={classes.backToCartBtn}
+              className={classes.backBtn}
             >
               Back to Cart
             </Button>

@@ -8,9 +8,16 @@ import { commerce } from "../../../lib/commerce";
 import AddressForm from "./CheckoutForm/AddressForm";
 import PaymentForm from "./CheckoutForm/PaymentForm";
 import Confirmation from "./CheckoutForm/Confirmation";
+import YourOrders from "./CheckoutForm/YourOrders";
 
 // Material-UI Components
-import { Paper, Stepper, Step, StepLabel } from "@mui/material";
+import {
+  Grid,
+  Paper,
+  Stepper,
+  Step,
+  StepLabel,
+} from "@mui/material";
 
 const steps = ["Shipping Address", "Payment Details"];
 
@@ -18,17 +25,18 @@ const Checkout = ({ cart }) => {
   const classes = useStyles();
   const [checkoutToken, setCheckoutToken] = useState(null);
   const [activeStep, setActiveStep] = useState(0);
+  const [shippingData, setShippingData] = useState({});
 
   const Form = () =>
     activeStep === 0 ? (
-      <AddressForm checkoutToken={checkoutToken} />
+      <AddressForm checkoutToken={checkoutToken} next={next} />
     ) : (
-      <PaymentForm />
+      <PaymentForm
+        checkoutToken={checkoutToken}
+        shippingData={shippingData}
+        backStep={backStep}
+      />
     );
-
-  useEffect(() => {
-    setActiveStep(0);
-  }, []);
 
   useEffect(() => {
     const generateToken = async () => {
@@ -44,26 +52,44 @@ const Checkout = ({ cart }) => {
     generateToken();
   }, [cart]);
 
+  const nextStep = () => setActiveStep((prevActiveStep) => prevActiveStep + 1);
+  const backStep = () => setActiveStep((prevActiveStep) => prevActiveStep - 1);
+
+  const next = (data) => {
+    setShippingData(data);
+    nextStep();
+  };
+
   return (
     <main className={classes.layout}>
-      <Paper className={classes.paper}>
-        <Stepper activeStep={activeStep} className={classes.stepper}>
-          {[...steps].map((step) => {
-            return (
-              <Step key={step}>
-                <StepLabel>{step}</StepLabel>
-              </Step>
-            );
-          })}
-        </Stepper>
-        {activeStep === steps.length ? (
-          <Confirmation />
-        ) : checkoutToken ? (
-          <Form />
-        ) : (
-          ``
-        )}
-      </Paper>
+      <Grid container justifyContent="center" spacing={3}>
+        {/* Checkout Form */}
+        <Grid item xs={12} sm={7} order={{ xs: 2, sm: 1 }}>
+          <Paper className={classes.paper}>
+            <Stepper activeStep={activeStep} className={classes.stepper}>
+              {[...steps].map((step) => {
+                return (
+                  <Step key={step}>
+                    <StepLabel>{step}</StepLabel>
+                  </Step>
+                );
+              })}
+            </Stepper>
+            {activeStep === steps.length ? (
+              <Confirmation />
+            ) : checkoutToken ? (
+              <Form />
+            ) : (
+              ``
+            )}
+          </Paper>
+        </Grid>
+
+        {/* Your Orders */}
+        <Grid item xs={12} sm={5} order={{ xs: 1, sm: 2 }}>
+          <YourOrders checkoutToken={checkoutToken} />
+        </Grid>
+      </Grid>
     </main>
   );
 };
