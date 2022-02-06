@@ -89,7 +89,7 @@ const AddressForm = ({ checkoutToken, next }) => {
             <FormInput name="firstName" label="First Name" />
             <FormInput name="lastName" label="Last Name" />
             <FormInput name="address" label="Address" />
-            <FormInput name="emailAddress" label="Email" />
+            <FormInput name="email" label="Email" />
             <FormInput name="city" label="City" />
             <FormInput name="zip" label="Zip / Postal Code" />
 

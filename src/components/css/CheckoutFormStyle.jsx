@@ -15,15 +15,12 @@ export default makeStyles((theme) => ({
   },
   paper: {
     marginTop: theme.spacing(3),
-    marginBottom: theme.spacing(3),
     padding: theme.spacing(2),
     paddingTop: 20,
     paddingBottom: 25,
-    [theme.breakpoints.down("xs")]: {
+    [theme.breakpoints.down("sm")]: {
       width: "100%",
-      marginTop: 30,
-      padding: "15px !important",
-      marginBottom: theme.spacing(2),
+      padding: "25px 15px !important",
     },
     [theme.breakpoints.up(600 + theme.spacing(3) * 2)]: {
       marginTop: theme.spacing(4),
@@ -71,6 +68,9 @@ export default makeStyles((theme) => ({
     fontWeight: "bold",
     marginBottom: "20px !important",
     marginLeft: "3px !important",
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "x-large !important",
+    },
   },
   orderImgBox: {
     display: "flex",

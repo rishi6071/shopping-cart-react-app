@@ -9,7 +9,7 @@ const YourOrders = ({ checkoutToken }) => {
 
   return (
     <Paper className={classes.paper}>
-      <Typography variant="h6" className={classes.yourOrdersHeading}>
+      <Typography variant="h6" align="center" className={classes.yourOrdersHeading}>
         Your Orders
       </Typography>
 
@@ -53,7 +53,7 @@ const YourOrders = ({ checkoutToken }) => {
           })}
 
           <Grid container className={classes.checkoutTotal}>
-            <Typography variant="h6">Total:</Typography>
+            <Typography variant="h6">Total Cost:</Typography>
             <Typography variant="h6" style={{ marginRight: 20 }}>
               {checkoutToken.live.total.formatted_with_symbol}
             </Typography>

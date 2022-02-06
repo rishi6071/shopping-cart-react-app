@@ -43,18 +43,23 @@ const HomePage = () => {
 
   const [categories, setCategories] = useState([]);
   const [allProducts, setAllProducts] = useState([]);
-  const [cart, setCart] = useState([]);
 
-  /** FETCH categories, products */
+  const [cart, setCart] = useState([]);
+  const [order, setOrder] = useState({});
+  const [errorMessage, setErrorMessage] = useState("");
+
   useLayoutEffect(() => {
     try {
       setLoading(true);
+
+      /** CATEGORIES */
       const fetchCategories = async () => {
         const { data } = await commerce.categories.list();
         setCategories(data);
       };
       fetchCategories();
 
+      /** LATEST PRODUCTS */
       const fetchLatestProducts = async () => {
         const response = await commerce.products.list({
           sortBy: "updated_at",
@@ -67,14 +72,14 @@ const HomePage = () => {
       setTimeout(() => {
         setLoading(false);
       }, 2000);
-    } catch (e) {
-      console.log(e);
+    } catch (error) {
+      console.log(error);
     }
   }, []);
 
-  /** FETCH News, Cart */
   useEffect(() => {
     try {
+      /** NEWS Carousel */
       const fetchNewsCarousel = () => {
         const options = {
           method: "GET",
@@ -103,6 +108,7 @@ const HomePage = () => {
       };
       fetchNewsCarousel();
 
+      /** NEWS Grid Cards */
       const fetchNewsGridCards = () => {
         const options = {
           method: "GET",
@@ -131,15 +137,17 @@ const HomePage = () => {
       };
       fetchNewsGridCards();
 
+      /** FETCH CART */
       const fetchCart = async () => {
         setCart(await commerce.cart.retrieve());
       };
       fetchCart();
-    } catch (e) {
-      console.log(e);
+    } catch (error) {
+      console.log(error);
     }
   }, []);
 
+  /** ADD TO CART */
   const handleAddToCart = (p_id, qty) => {
     const addItem = async (p_id) => {
       const response = await commerce.cart.add(p_id, qty);
@@ -151,6 +159,7 @@ const HomePage = () => {
     addItem(p_id, qty);
   };
 
+  /** UPDATE IN CART */
   const handleUpdateInCart = (item_id, qty) => {
     const updateCart = async (item_id, qty) => {
       const response = await commerce.cart.update(item_id, { quantity: qty });
@@ -162,6 +171,7 @@ const HomePage = () => {
     updateCart(item_id, qty);
   };
 
+  /** REMOTE FROM CART */
   const handleRemoveFromCart = (item_id) => {
     const removeItem = async (id) => {
       const response = await commerce.cart.remove(id);
@@ -173,6 +183,28 @@ const HomePage = () => {
     removeItem(item_id);
   };
 
+  /** REFRESH CART */
+  const refreshCart = async () => {
+    const newCart = await commerce.cart.refresh();
+    setCart(newCart);
+  };
+
+  /** CAPTURE CHECKOUT */
+  const handleCaptureCheckout = async (checkoutTokenId, newOrder) => {
+    try {
+      const incomingOrder = await commerce.checkout.capture(
+        checkoutTokenId,
+        newOrder
+      );
+      setOrder(incomingOrder);
+      refreshCart();
+    } catch (error) {
+      setErrorMessage(error.data.error.message);
+      handleAlertMessage("error", "Error OCCURED!");
+    }
+  };
+
+  /** ALERT MESSAGE */
   const handleAlertMessage = (ctxt, msg) => {
     setAlertContent({
       message: msg,
@@ -220,22 +252,25 @@ const HomePage = () => {
             ) : (
               ``
             )}
-
             <QuotesPolicy />
             <NewsGrid newsCarousel={newsCarousel} />
           </Route>
+
           <Route path="/shop" exact>
             <Shop products={allProducts} />
           </Route>
+
           <Route path="/newsfeed" exact>
             <NewsGrid
               newsCarousel={newsCarousel}
               newsGridCards={newsGridCards}
             />
           </Route>
+
           <Route path="/contact" exact>
             <Contact />
           </Route>
+
           <Route path="/cart" exact>
             <Cart
               cart={cart}
@@ -243,12 +278,20 @@ const HomePage = () => {
               handleRemoveFromCart={handleRemoveFromCart}
             />
           </Route>
+
           <Route path="/search/:search" exact>
             <SearchProduct />
           </Route>
+
           <Route path="/checkout" exact>
-            <Checkout cart={cart} />
+            <Checkout
+              cart={cart}
+              order={order}
+              onCaptureCheckout={handleCaptureCheckout}
+              error={errorMessage}
+            />
           </Route>
+
           <Route path="/product/:id">
             <ProductDetails handleAddToCart={handleAddToCart} />
           </Route>
