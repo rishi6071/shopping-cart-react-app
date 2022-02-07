@@ -39,7 +39,6 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: 50,
     [theme.breakpoints.up("md")]: {
       marginTop: 30,
-      minHeight: "70vh",
     },
   },
   paddingPart: {

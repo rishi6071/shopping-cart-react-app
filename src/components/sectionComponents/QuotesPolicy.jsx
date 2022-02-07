@@ -73,7 +73,7 @@ const QuotesPolicy = () => {
   return (
     <>
       {/* Policy Section */}
-      <Grid container className={classes.policyGridBox}>
+      <Grid container className={classes.policyGridBox} id="quotes__policy">
         <Grid container>
           {[...policies].map((policy) => {
             return (

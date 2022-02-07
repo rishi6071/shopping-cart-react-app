@@ -1,11 +1,17 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 
-import useStyles from "../css/FooterStyle";
+import useStyles, { footerLinksList } from "../css/FooterStyle";
 import "../css/style.css";
 
 // Material-UI Components
-import { Grid, Typography, Button } from "@material-ui/core";
+import { Grid, Typography, Button, List, ListItem } from "@material-ui/core";
+
+// Icons & Media
+import PhoneIcon from "@mui/icons-material/Phone";
+import EmailIcon from "@mui/icons-material/Email";
+import LocationOnIcon from "@mui/icons-material/LocationOn";
+import SendIcon from "@mui/icons-material/Send";
 
 const Footer = (props) => {
   const classes = useStyles();
@@ -51,9 +57,61 @@ const Footer = (props) => {
 
       {/* Footer Section */}
       <Grid container className={classes.footerGridBox}>
-        <Typography variantMapping={"p"} className={classes.footerContent}>
-          Copyright © 2022 By Commerce.js
-        </Typography>
+        <Grid item xs={12} sm={6} className={classes.footerGridItem}>
+          <Typography className={classes.footerHead}>INFORMATION</Typography>
+
+          <List className={classes.footerItemList}>
+            {[...footerLinksList].map((link, idx) => {
+              return (
+                <ListItem>
+                  <Link
+                    key={idx}
+                    to={link.path}
+                    className={classes.footerItemLink}
+                  >
+                    {link.name}
+                  </Link>
+                </ListItem>
+              );
+            })}
+          </List>
+        </Grid>
+
+        <Grid item xs={12} sm={6} className={classes.footerGridItem}>
+          <Typography
+            className={classes.footerHead}
+            id="contact_us_footer"
+          >
+            CONTACT US
+          </Typography>
+
+          <List className={classes.footerItemList}>
+            <ListItem style={{ lineHeight: 1.5 }}>
+              <span>
+                <LocationOnIcon />
+              </span>{" "}
+              42 Dream House, Dreammy street, 7131 Dreamville, USA
+            </ListItem>
+            <ListItem>
+              <span>
+                <EmailIcon />
+              </span>{" "}
+              company@gmail.com
+            </ListItem>
+            <ListItem>
+              <span>
+                <PhoneIcon />
+              </span>{" "}
+              456-456-4512
+            </ListItem>
+            <ListItem>
+              <span>
+                <SendIcon />
+              </span>{" "}
+              Dream City, USA
+            </ListItem>
+          </List>
+        </Grid>
       </Grid>
     </footer>
   );

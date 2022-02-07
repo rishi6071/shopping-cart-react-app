@@ -72,20 +72,55 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   footerGridBox: {
-    paddingTop: 25,
-    paddingBottom: 25,
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
+    padding: "25px 35px 45px 35px",
     background: "#222222",
   },
-  footerContent: {
-    fontFamily: "Acme, sans-serif !important",
-    color: "rgb(166, 166, 166)",
-    fontWeight: 600,
-    letterSpacing: "1.2px",
-    fontSize: "16px",
+  footerGridItem: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    marginTop: 25,
+    [theme.breakpoints.down("xs")]: {
+      alignItems: "flex-start",
+    },
+  },
+  footerHead: {
+    fontSize: "18px",
+    color: "lightgrey",
+    fontFamily: "Archivo, sans-serif",
+  },
+  footerItemList: {
+    lineHeight: 1,
+    fontSize: "14px",
+    marginTop: 10,
+    fontFamily: "Archivo, sans-serif",
+    maxWidth: 300,
+    color: "grey",
+    "& span": {
+      marginRight: 10,
+      "& *": {
+        color: "lightgrey",
+        fontSize: "18px",
+      },
+    },
+  },
+  footerItemLink: {
+    textDecoration: "none",
+    color: "grey",
+    "&:hover": {
+      color: "crimson",
+    },
   },
 }));
 
+const footerLinksList = [
+  { path: "/", name: "Categories" },
+  { path: "/shop", name: "Shop" },
+  { path: "/", name: "Terms & Conditions" },
+  { path: "/contact", name: "Contact Us" },
+  { path: "/", name: "Quotes" },
+  { path: "/newsfeed", name: "Latest News" },
+];
+
 export default useStyles;
+export { footerLinksList };
