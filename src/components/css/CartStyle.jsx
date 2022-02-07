@@ -121,6 +121,9 @@ const useStyles = makeStyles((theme) => ({
       background: "black",
       color: "rgba(255, 255, 255, 0.9)",
     },
+    [theme.breakpoints.down("xs")]: {
+      margin: "10px auto",
+    },
   },
   shippingPrice: {
     fontSize: "16px !important",

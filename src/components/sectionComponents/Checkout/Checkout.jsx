@@ -34,8 +34,6 @@ const Checkout = ({ cart, order, onCaptureCheckout, error }) => {
       />
     );
 
-  
-
   useEffect(() => {
     /** GENERATE TOKEN */
     const generateToken = async () => {
@@ -64,7 +62,13 @@ const Checkout = ({ cart, order, onCaptureCheckout, error }) => {
       <main className={classes.layout}>
         <Grid container justifyContent="center" spacing={3}>
           {/* Checkout Form */}
-          <Grid item xs={12} sm={7} order={{ xs: 2, sm: 1 }}>
+          <Grid
+            item
+            xs={12}
+            sm={7}
+            order={{ xs: 2, sm: 1 }}
+            style={{ marginBottom: 35 }}
+          >
             <Paper className={classes.paper}>
               <Stepper activeStep={activeStep} className={classes.stepper}>
                 {[...steps].map((step) => {

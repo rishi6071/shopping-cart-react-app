@@ -87,7 +87,7 @@ const useStyles = makeStyles((theme) => ({
   buyCartButtonsBox: {
     paddingLeft: 30,
     paddingRight: 30,
-    marginTop: 20,
+    marginTop: 13,
     [theme.breakpoints.down("xs")]: {
       marginTop: 10,
     },
@@ -292,6 +292,8 @@ const SkeletonProdGallery = () => {
         return (
           <Grid item sm={12} xs={2} className={classes.prodGalleryImgBox}>
             <Skeleton
+              animation="wave"
+              sx={{ bgcolor: "grey.200" }}
               variant="rectangular"
               width={40}
               height={40}
@@ -308,6 +310,7 @@ const SkeletonProdMainImg = () => {
   return (
     <Skeleton
       animation="wave"
+      sx={{ bgcolor: "grey.200" }}
       variant="rectangular"
       width={"100%"}
       height={"100%"}
@@ -323,6 +326,7 @@ const SkeletonProdMainHead = () => {
     <div className={classes.skeletonHide}>
       <Skeleton
         animation="wave"
+        sx={{ bgcolor: "grey.200" }}
         variant="text"
         width="80%"
         height={35}
@@ -330,6 +334,7 @@ const SkeletonProdMainHead = () => {
       />
       <Skeleton
         animation="wave"
+        sx={{ bgcolor: "grey.200" }}
         variant="text"
         width="40%"
         height={35}
@@ -337,6 +342,7 @@ const SkeletonProdMainHead = () => {
       />
       <Skeleton
         animation="wave"
+        sx={{ bgcolor: "grey.200" }}
         variant="text"
         width="55%"
         height={35}
@@ -348,7 +354,13 @@ const SkeletonProdMainHead = () => {
 
 const SkeletonAddBuyBtn = () => {
   return (
-    <Skeleton variant="rectangular" animation="wave" width="100%" height={52} />
+    <Skeleton
+      variant="rectangular"
+      animation="wave"
+      sx={{ bgcolor: "grey.200" }}
+      width="100%"
+      height={52}
+    />
   );
 };
 
@@ -357,11 +369,18 @@ const SkeletonProdDetails = () => {
 
   return (
     <div className={classes.skeletonHide} style={{ marginTop: 20 }}>
-      <Skeleton animation="wave" variant="text" width="45%" height={25} />
+      <Skeleton
+        animation="wave"
+        sx={{ bgcolor: "grey.200" }}
+        variant="text"
+        width="45%"
+        height={25}
+      />
       {[1, 1, 1, 1, 1, 1].map(() => {
         return (
           <Skeleton
             animation="wave"
+            sx={{ bgcolor: "grey.200" }}
             variant="text"
             width="30%"
             height={20}
@@ -369,7 +388,13 @@ const SkeletonProdDetails = () => {
           />
         );
       })}
-      <Skeleton animation="wave" variant="text" width="45%" height={25} />
+      <Skeleton
+        animation="wave"
+        sx={{ bgcolor: "grey.200" }}
+        variant="text"
+        width="45%"
+        height={25}
+      />
     </div>
   );
 };

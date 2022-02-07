@@ -53,6 +53,7 @@ const useStyles = makeStyles((theme) => ({
     },
     [theme.breakpoints.down("sm")]: {
       marginTop: 15,
+      width: "90%",
     },
   },
   subscribeBtn: {
@@ -60,7 +61,7 @@ const useStyles = makeStyles((theme) => ({
     background: "#222222",
     color: "#FFFFFF",
     borderRadius: 0,
-    textTransform: "lowercase",
+    textTransform: "capitalize",
     width: "100%",
     fontSize: "15px",
     border: "none",
@@ -69,6 +70,7 @@ const useStyles = makeStyles((theme) => ({
     },
     [theme.breakpoints.down("sm")]: {
       marginTop: 15,
+      width: "70%",
     },
   },
   footerGridBox: {

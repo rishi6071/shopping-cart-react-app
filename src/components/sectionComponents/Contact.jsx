@@ -132,7 +132,15 @@ const Contact = () => {
 
         {/* FAQs Q&A */}
         <Grid container alignItems="center" direction="column">
-          <Grid container justifyContent="center" xl={6} md={8} sm={10} xs={12}>
+          <Grid
+            container
+            justifyContent="center"
+            xl={6}
+            md={8}
+            sm={10}
+            xs={12}
+            style={{ marginBottom: 30 }}
+          >
             {[...faqData].map((faqItem) => {
               return (
                 <>

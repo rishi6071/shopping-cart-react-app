@@ -86,23 +86,21 @@ const Shop = (props) => {
                 <TableBody>
                   {[...categories].map((category) => {
                     return (
-                      <>
-                        <TableRow
-                          key={category.id}
-                          sx={{
-                            "&:last-child td, &:last-child th": { border: 0 },
-                          }}
-                        >
-                          <TableCell component="th" scope="row">
-                            <Link href="#" className={classes.categoryName}>
-                              {category.name}
-                            </Link>
-                          </TableCell>
-                          <TableCell align="right">
-                            ({category.inStock})
-                          </TableCell>
-                        </TableRow>
-                      </>
+                      <TableRow
+                        key={category.id}
+                        sx={{
+                          "&:last-child td, &:last-child th": { border: 0 },
+                        }}
+                      >
+                        <TableCell component="th" scope="row">
+                          <Link href="#" className={classes.categoryName}>
+                            {category.name}
+                          </Link>
+                        </TableCell>
+                        <TableCell align="right">
+                          ({category.inStock})
+                        </TableCell>
+                      </TableRow>
                     );
                   })}
                 </TableBody>
@@ -133,27 +131,22 @@ const Shop = (props) => {
             </Typography>
 
             <Grid container className={classes.ratingBox}>
-              {[1].map(() => {
+              {[1].map((value, idx) => {
                 return (
-                  <>
-                    <Grid item>
-                      <Typography
-                        variant="body2"
-                        className={classes.ratingLayer}
-                      >
-                        <span>
-                          <Rating
-                            name="read-only"
-                            value={rating}
-                            onChange={(event, rating) => {
-                              setRating(rating);
-                            }}
-                          />
-                        </span>
-                        <span>&#38; up</span>
-                      </Typography>
-                    </Grid>
-                  </>
+                  <Grid item key={idx}>
+                    <Typography variant="body2" className={classes.ratingLayer}>
+                      <span>
+                        <Rating
+                          name="read-only"
+                          value={rating}
+                          onChange={(event, rating) => {
+                            setRating(rating);
+                          }}
+                        />
+                      </span>
+                      <span>&#38; up</span>
+                    </Typography>
+                  </Grid>
                 );
               })}
             </Grid>
@@ -195,19 +188,18 @@ const Shop = (props) => {
 
               {/* Product Items */}
               <Grid container className={classes.productGridBox} spacing={2}>
-                {[...products].map((item) => {
+                {[...products].map((item, idx) => {
                   return (
-                    <>
-                      <Grid
-                        item
-                        md={3}
-                        sm={6}
-                        xs={6}
-                        className={classes.productGridItem}
-                      >
-                        <ProductItem item={item} />
-                      </Grid>
-                    </>
+                    <Grid
+                      key={idx}
+                      item
+                      md={3}
+                      sm={6}
+                      xs={6}
+                      className={classes.productGridItem}
+                    >
+                      <ProductItem item={item} />
+                    </Grid>
                   );
                 })}
               </Grid>

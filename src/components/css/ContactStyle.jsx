@@ -4,7 +4,7 @@ import "./style.css";
 const useStyles = makeStyles((theme) => ({
   root: {
     padding: "30px 40px",
-    marginBottom: 10,
+    background: "#F1F1F1",
     [theme.breakpoints.down("sm")]: {
       padding: "10px",
     },
@@ -54,7 +54,7 @@ const useStyles = makeStyles((theme) => ({
     letterSpacing: "1.5px",
     border: "1px solid rgba(118, 118, 118, 0.6)",
     boxShadow: "none",
-    color: "grey",
+    color: "dimgrey",
     fontWeight: "500",
     "&:focus": {
       boxShadow: "none",
@@ -62,7 +62,7 @@ const useStyles = makeStyles((theme) => ({
     "&:hover": {
       boxShadow: "none",
       color: "white",
-      background: "#515490",
+      background: "#000000",
     },
   },
   contactMap: {
@@ -85,12 +85,13 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
+    marginTop: 10,
     marginBottom: 30,
     "& span:nth-child(2)": {
       border: "2px solid transparent",
       marginTop: 1,
       borderRadius: 20,
-      background: "rebeccapurple",
+      background: "#515490",
       width: 90,
       transform: "translateX(-14px)",
     },

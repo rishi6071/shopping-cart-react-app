@@ -36,6 +36,7 @@ const ProdGridSkeleton = (props) => {
               <Skeleton
                 variant="rectangular"
                 animation="wave"
+                sx={{ bgcolor: 'grey.200' }}
                 width={"90%"}
                 height={160}
                 style={{ borderRadius: 3 }}
@@ -43,20 +44,23 @@ const ProdGridSkeleton = (props) => {
               <Skeleton
                 variant="text"
                 animation="wave"
-                width={"80%"}
+                sx={{ bgcolor: 'grey.200' }}
+                width={"75%"}
                 height={15}
                 style={{ marginTop: 5 }}
               />
               <Skeleton
                 variant="text"
                 animation="wave"
-                width={"70%"}
+                sx={{ bgcolor: 'grey.200' }}
+                width={"65%"}
                 height={15}
               />
               <Skeleton
                 variant="text"
                 animation="wave"
-                width={"60%"}
+                sx={{ bgcolor: 'grey.200' }}
+                width={"55%"}
                 height={15}
               />
             </Grid>
