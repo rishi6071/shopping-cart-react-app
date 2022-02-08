@@ -9,7 +9,11 @@ const YourOrders = ({ checkoutToken }) => {
 
   return (
     <Paper className={classes.paper}>
-      <Typography variant="h6" align="center" className={classes.yourOrdersHeading}>
+      <Typography
+        variant="h6"
+        align="center"
+        className={classes.yourOrdersHeading}
+      >
         Your Orders
       </Typography>
 

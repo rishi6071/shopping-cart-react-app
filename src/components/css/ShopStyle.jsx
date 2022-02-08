@@ -10,6 +10,9 @@ const useStyles = makeStyles((theme) => ({
   },
   filterBox: {
     padding: "5px 15px 5px 8px",
+    [theme.breakpoints.down("xs")]: {
+      marginBottom: 30,
+    }
   },
   filterHead: {
     paddingLeft: 10,

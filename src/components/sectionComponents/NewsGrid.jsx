@@ -137,8 +137,8 @@ const NewsGrid = (props) => {
         >
           <AliceCarousel
             autoPlay
-            animationDuration="1500"
-            autoPlayInterval={4000}
+            animationDuration="1000"
+            autoPlayInterval={5000}
             disableDotsControls
             responsive={responsiveNewsCards}
             touchTracking

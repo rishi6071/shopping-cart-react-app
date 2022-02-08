@@ -106,7 +106,7 @@ const HomeBanner = (props) => {
         </div>
       </div>
 
-      {/* Second Banner Section */}
+      {/* Second Category Section */}
       <div data-aos="zoom-up">
         <Grid
           container
@@ -163,7 +163,7 @@ const HomeBanner = (props) => {
                                 variant="contained"
                                 className={classes.collectionBtn}
                                 component={Link}
-                                to="/shop"
+                                to={"/shop/category/" + category.slug}
                               >
                                 SHOP NOW
                               </Button>

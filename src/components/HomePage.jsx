@@ -257,7 +257,11 @@ const HomePage = () => {
           </Route>
 
           <Route path="/shop" exact>
-            <Shop products={allProducts} />
+            <Shop />
+          </Route>
+
+          <Route path="/shop/category/:category" exact>
+            <Shop />
           </Route>
 
           <Route path="/newsfeed" exact>

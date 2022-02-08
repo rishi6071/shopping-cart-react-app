@@ -67,8 +67,8 @@ const ProductDetails = (props) => {
         setLoading(false);
       };
       fetchProductDetails();
-    } catch (e) {
-      console.log(e);
+    } catch (error) {
+      console.log(error);
     }
   }, [id]);
 
@@ -82,8 +82,8 @@ const ProductDetails = (props) => {
         );
         setProductDescription(p_description);
       }
-    } catch (e) {
-      console.log(e);
+    } catch (error) {
+      console.log(error);
     }
   }, [productItem]);
 

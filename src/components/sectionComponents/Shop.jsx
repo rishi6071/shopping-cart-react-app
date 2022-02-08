@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import useStyles, { categories, valuetext } from "../css/ShopStyle";
 
 // Custom Components
@@ -30,10 +31,11 @@ import {
   Select,
 } from "@mui/material";
 
-const Shop = (props) => {
+const Shop = () => {
   const classes = useStyles();
+  const { category } = useParams();
   const [loading, setLoading] = useState(false);
-  const [products, setProducts] = useState(props.products);
+  const [products, setProducts] = useState([]);
 
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPage, setTotalPage] = useState(0);
@@ -43,22 +45,27 @@ const Shop = (props) => {
 
   useEffect(() => {
     try {
+      const request = {
+        limit: 16,
+        page: currentPage,
+      };
+
+      // If requested for Category
+      if (category) request.category_slug = [category];
+
       window.scrollTo({ top: 0 });
       setLoading(true);
       const fetchProducts = async () => {
-        const response = await commerce.products.list({
-          limit: 16,
-          page: currentPage,
-        });
+        const response = await commerce.products.list(request);
         setTotalPage(response.meta.pagination.total_pages);
         setProducts(response.data);
         setLoading(false);
       };
       fetchProducts();
-    } catch (e) {
-      console.log(e);
+    } catch (error) {
+      console.log(error);
     }
-  }, [currentPage]);
+  }, [currentPage, category]);
 
   const handleSortBy = (event) => {
     setSortBy(event.target.value);

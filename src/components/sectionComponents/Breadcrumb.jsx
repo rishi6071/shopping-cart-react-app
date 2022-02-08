@@ -1,5 +1,6 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
+import { isMobile } from "react-device-detect";
 
 // Material-Ui Components & Media
 import { Breadcrumbs, Link, makeStyles } from "@material-ui/core";
@@ -34,22 +35,26 @@ const Breadcrumb = (props) => {
 
   return (
     <>
-      <Breadcrumbs aria-label="breadcrumb" className={classes.breadcumbBox}>
-        <Link color="inherit" href="/" className={classes.breadcumbLink}>
-          <HomeIcon className={classes.breadcumbHomeIcon} />
-        </Link>
-        <Link color="inherit" href="#" className={classes.breadcumbLink}>
-          {location.pathname === "/cart" ? "Cart" : "Shop"}
-        </Link>
-        <Link
-          color="textPrimary"
-          href="#"
-          className={classes.breadcumbLink}
-          aria-current="page"
-        >
-          {productName}
-        </Link>
-      </Breadcrumbs>
+      {isMobile ? (
+        <Breadcrumbs aria-label="breadcrumb" className={classes.breadcumbBox}>
+          <Link color="inherit" href="/" className={classes.breadcumbLink}>
+            <HomeIcon className={classes.breadcumbHomeIcon} />
+          </Link>
+          <Link color="inherit" href="#" className={classes.breadcumbLink}>
+            {location.pathname === "/cart" ? "Cart" : "Shop"}
+          </Link>
+          <Link
+            color="textPrimary"
+            href="#"
+            className={classes.breadcumbLink}
+            aria-current="page"
+          >
+            {productName}
+          </Link>
+        </Breadcrumbs>
+      ) : (
+        ``
+      )}
     </>
   );
 };

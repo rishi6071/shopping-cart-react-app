@@ -43,10 +43,10 @@ const useStyles = makeStyles((theme) => ({
     },
     [theme.breakpoints.down("xs")]: {
       order: 1,
-      height: "14rem",
+      height: "16rem",
       "& img": {
-        maxWidth: 225,
-        maxHeight: "14rem",
+        maxWidth: 285,
+        maxHeight: "16rem",
       },
     },
   },

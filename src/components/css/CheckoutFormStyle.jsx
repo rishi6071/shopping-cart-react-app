@@ -112,7 +112,7 @@ export default makeStyles((theme) => ({
   checkoutTotal: {
     display: "flex",
     justifyContent: "space-between",
-    margin: "20px 10px 2px 10px",
+    margin: "20px 10px 0px 10px",
     "& *": {
       fontFamily: "Archivo, sans-serif !important",
       fontSize: "20px !important",

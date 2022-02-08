@@ -326,7 +326,14 @@ const HumbergerMenu = (props) => {
         <List>
           {/* Brand Title */}
           <ListItem button className={classes.humbergerTitle}>
-            <Typography className={classes.title}>Commerce.js</Typography>
+            <Typography
+              component={Link}
+              to="/"
+              className={classes.title}
+              onClick={toggleDrawer(false)}
+            >
+              Commerce.js
+            </Typography>
           </ListItem>
 
           {/* Search */}
@@ -335,7 +342,7 @@ const HumbergerMenu = (props) => {
               <SearchIcon />
             </div>
             <InputBase
-              placeholder="Search & Enter…"
+              placeholder="Search & Go..."
               classes={{
                 root: classes.inputRoot,
                 input: classes.humbergerInputInput,
