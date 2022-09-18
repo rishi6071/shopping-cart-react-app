@@ -27,23 +27,13 @@ const Footer = (props) => {
               Subscribe to our NewsLetter
             </Typography>
             <Typography className={classes.subscribeSubHeading}>
-              A short sentence describing what someone will receive by
-              subscribing
+              A short sentence describing what someone will receive by subscribing
             </Typography>
           </Grid>
           <Grid item md={6} sm={12} className={classes.subscribeGridItem}>
-            <Grid
-              container
-              justifyContent="center"
-              alignItems="center"
-              className={classes.subscribeInputGroup}
-            >
+            <Grid container justifyContent="center" alignItems="center" className={classes.subscribeInputGroup}>
               <Grid item sm={8} xs={12}>
-                <input
-                  type="email"
-                  className={classes.subscribeInput}
-                  placeholder="Enter your email address..."
-                />
+                <input type="email" className={classes.subscribeInput} placeholder="Enter your email address..." />
               </Grid>
               <Grid item sm={4} xs={12}>
                 <Button className={classes.subscribeBtn}>Subscribe</Button>
@@ -63,12 +53,8 @@ const Footer = (props) => {
           <List className={classes.footerItemList}>
             {[...footerLinksList].map((link, idx) => {
               return (
-                <ListItem>
-                  <Link
-                    key={idx}
-                    to={link.path}
-                    className={classes.footerItemLink}
-                  >
+                <ListItem key={`footer_${idx + 1}`}>
+                  <Link to={link.path} className={classes.footerItemLink}>
                     {link.name}
                   </Link>
                 </ListItem>
@@ -78,10 +64,7 @@ const Footer = (props) => {
         </Grid>
 
         <Grid item xs={12} sm={6} className={classes.footerGridItem}>
-          <Typography
-            className={classes.footerHead}
-            id="contact_us_footer"
-          >
+          <Typography className={classes.footerHead} id="contact_us_footer">
             CONTACT US
           </Typography>
 

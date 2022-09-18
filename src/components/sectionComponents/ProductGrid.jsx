@@ -11,24 +11,15 @@ const ProductGrid = (props) => {
   const { products } = props;
 
   return (
-    <>
-      <Grid container direction="row" className={classes.productGridBox}>
-        {[...products].map((product, idx) => {
-          return (
-            <Grid
-              item
-              md={3}
-              sm={4}
-              xs={6}
-              className={classes.productGridItem}
-              key={"product_" + idx}
-            >
-              <ProductItem item={product} />
-            </Grid>
-          );
-        })}
-      </Grid>
-    </>
+    <Grid container direction="row" className={classes.productGridBox}>
+      {[...products].map((product, idx) => {
+        return (
+          <Grid item md={3} sm={4} xs={6} className={classes.productGridItem} key={"product_" + idx}>
+            <ProductItem item={product} />
+          </Grid>
+        );
+      })}
+    </Grid>
   );
 };
 

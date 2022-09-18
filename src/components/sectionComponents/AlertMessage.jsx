@@ -33,22 +33,16 @@ const AlertMessage = (props) => {
   }, [alertFunc, handleClick]);
 
   return (
-    <>
-      <Snackbar
-        open={open}
-        autoHideDuration={5000}
-        onClose={handleClose}
-        anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
-      >
-        <Alert
-          onClose={handleClose}
-          severity={alertContent.context}
-          sx={{ width: "100%" }}
-        >
-          {alertContent.message}
-        </Alert>
-      </Snackbar>
-    </>
+    <Snackbar
+      open={open}
+      autoHideDuration={5000}
+      onClose={handleClose}
+      anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+    >
+      <Alert onClose={handleClose} severity={alertContent.context} sx={{ width: "100%" }}>
+        {alertContent.message}
+      </Alert>
+    </Snackbar>
   );
 };
 

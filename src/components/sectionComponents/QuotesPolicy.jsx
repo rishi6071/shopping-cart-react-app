@@ -3,11 +3,7 @@ import "../css/style.css";
 
 import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/alice-carousel.css";
-import useStyles, {
-  RatanTata,
-  ElonMusk,
-  SteveJobs,
-} from "../css/QuotesPolicyStyle";
+import useStyles, { RatanTata, ElonMusk, SteveJobs } from "../css/QuotesPolicyStyle";
 
 // Material-UI Components
 import { Typography, Grid } from "@material-ui/core";
@@ -77,20 +73,11 @@ const QuotesPolicy = () => {
         <Grid container>
           {[...policies].map((policy) => {
             return (
-              <Grid
-                item
-                lg={3}
-                xs={6}
-                align="center"
-                className={classes.policyBox}
-                key={policy.id}
-              >
+              <Grid item lg={3} xs={6} align="center" className={classes.policyBox} key={policy.id}>
                 <Typography className={classes.policyIconBox}>
                   <span className={classes.policyIconSpan}>{policy.icon}</span>
                 </Typography>
-                <Typography className={classes.policyName}>
-                  {policy.name}
-                </Typography>
+                <Typography className={classes.policyName}>{policy.name}</Typography>
               </Grid>
             );
           })}
@@ -98,12 +85,7 @@ const QuotesPolicy = () => {
       </Grid>
 
       {/* Quotes Section */}
-      <Grid
-        container
-        direction="row"
-        justifyContent="center"
-        className={classes.quotesGridBox}
-      >
+      <Grid container direction="row" justifyContent="center" className={classes.quotesGridBox}>
         <AliceCarousel
           autoPlay
           animationDuration="1000"
@@ -120,30 +102,13 @@ const QuotesPolicy = () => {
             return (
               <Grid item className={classes.quoteItemBox} key={quote.id}>
                 <Grid container justifyContent="center" alignItems="center">
-                  <Grid
-                    item
-                    md={8}
-                    sm={10}
-                    xs={12}
-                    className={classes.quoteContentBox}
-                  >
+                  <Grid item md={8} sm={10} xs={12} className={classes.quoteContentBox}>
                     <Typography className={classes.quoteImg}>
-                      <img
-                        src={quote.img}
-                        alt={quote.writtenBy}
-                        loading="lazy"
-                      />
+                      <img src={quote.img} alt={quote.writtenBy} loading="lazy" />
                     </Typography>
-                    <Typography
-                      variantMapping="p"
-                      className={classes.quoteLines}
-                    >
-                      “{quote.quoteLine}”
-                    </Typography>
+                    <Typography className={classes.quoteLines}>“{quote.quoteLine}”</Typography>
                     <Typography variant="h6">{quote.writtenBy}</Typography>
-                    <Typography className={classes.quoteByDesignation}>
-                      {quote.designation}
-                    </Typography>
+                    <Typography className={classes.quoteByDesignation}>{quote.designation}</Typography>
                   </Grid>
                 </Grid>
               </Grid>

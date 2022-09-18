@@ -4,23 +4,8 @@ import NavbarLinks from "./Path";
 
 // Material-UI Components
 import { alpha, makeStyles } from "@material-ui/core/styles";
-import {
-  AppBar,
-  Badge,
-  Toolbar,
-  InputBase,
-  Typography,
-} from "@material-ui/core";
-import {
-  Box,
-  Drawer,
-  Button,
-  Divider,
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-} from "@mui/material";
+import { AppBar, Badge, Toolbar, InputBase, Typography } from "@material-ui/core";
+import { Box, Drawer, Button, Divider, List, ListItem, ListItemIcon, ListItemText } from "@mui/material";
 
 // Icons & Media
 import SearchIcon from "@material-ui/icons/Search";
@@ -203,135 +188,94 @@ const Navbar = (props) => {
 
   // For Humburger Menu
   const toggleDrawer = (open) => (event) => {
-    if (
-      event.type === "keydown" &&
-      (event.key === "Tab" || event.key === "Shift")
-    ) {
+    if (event.type === "keydown" && (event.key === "Tab" || event.key === "Shift")) {
       return;
     }
     setOpenSidebar(open);
   };
 
   return (
-    <>
-      <div className={classes.root}>
-        {/* Desktop AppBar */}
-        <AppBar
-          position="static"
-          color="transparent"
-          className={classes.appbar}
-        >
-          <Toolbar>
-            <NavLink className={classes.title} to="/" nowrap="true">
-              Commerce.js
-            </NavLink>
+    <div className={classes.root}>
+      {/* Desktop AppBar */}
+      <AppBar position="static" color="transparent" className={classes.appbar}>
+        <Toolbar>
+          <NavLink className={classes.title} to="/" nowrap="true">
+            Commerce.js
+          </NavLink>
 
-            <div className={classes.navbarLinkBox}>
-              {[...navLinks].map((linkItem) => {
-                return (
-                  <div key={linkItem.id}>
-                    <Typography
-                      variantMapping="p"
-                      className={classes.navbarLinkItem}
+          <div className={classes.navbarLinkBox}>
+            {[...navLinks].map((linkItem) => {
+              return (
+                <div key={linkItem.id}>
+                  <Typography className={classes.navbarLinkItem}>
+                    <NavLink
+                      to={linkItem.path}
+                      className={classes.navbarLink}
+                      activeClassName={classes.activeNavbarLink}
+                      exact
                     >
-                      <NavLink
-                        to={linkItem.path}
-                        className={classes.navbarLink}
-                        activeClassName={classes.activeNavbarLink}
-                        exact
-                      >
-                        {linkItem.name}
-                      </NavLink>
-                    </Typography>
-                  </div>
-                );
-              })}
+                      {linkItem.name}
+                    </NavLink>
+                  </Typography>
+                </div>
+              );
+            })}
+          </div>
+          <div className={classes.search}>
+            <div className={classes.searchIcon}>
+              <SearchIcon />
             </div>
-            <div className={classes.search}>
-              <div className={classes.searchIcon}>
-                <SearchIcon />
-              </div>
-              <InputBase
-                placeholder="Search…"
-                classes={{
-                  root: classes.inputRoot,
-                  input: classes.inputInput,
-                }}
-                value={searchInput}
-                inputProps={{ "aria-label": "search" }}
-                onChange={handleSearch}
-                onKeyDown={switchToSearch}
-              />
-            </div>
-            <div className={classes.cartLinkItem}>
-              <NavLink
-                to="/cart"
-                className={classes.navbarLink}
-                activeClassName={classes.activeNavbarLink}
-                exact
-              >
-                <Badge
-                  badgeContent={cartItems > 0 ? cartItems : `0`}
-                  color="error"
-                >
-                  <ShoppingCartTwoToneIcon />
-                </Badge>
-              </NavLink>
-            </div>
-            <div className={classes.humbergerLinkItem}>
-              <Button
-                variant="text"
-                onClick={toggleDrawer(true)}
-                className={classes.humbergerBtn}
-              >
-                <DehazeIcon />
-              </Button>
-            </div>
-          </Toolbar>
-        </AppBar>
+            <InputBase
+              placeholder="Search…"
+              classes={{
+                root: classes.inputRoot,
+                input: classes.inputInput,
+              }}
+              value={searchInput}
+              inputProps={{ "aria-label": "search" }}
+              onChange={handleSearch}
+              onKeyDown={switchToSearch}
+            />
+          </div>
+          <div className={classes.cartLinkItem}>
+            <NavLink to="/cart" className={classes.navbarLink} activeClassName={classes.activeNavbarLink} exact>
+              <Badge badgeContent={cartItems > 0 ? cartItems : `0`} color="error">
+                <ShoppingCartTwoToneIcon />
+              </Badge>
+            </NavLink>
+          </div>
+          <div className={classes.humbergerLinkItem}>
+            <Button onClick={toggleDrawer(true)} className={classes.humbergerBtn}>
+              <DehazeIcon />
+            </Button>
+          </div>
+        </Toolbar>
+      </AppBar>
 
-        {/* Mobile Humburger Menu */}
-        <HumbergerMenu
-          openSidebar={openSidebar}
-          toggleDrawer={toggleDrawer}
-          cartItems={cartItems}
-          searchInput={searchInput}
-          handleSearch={handleSearch}
-          switchToSearch={switchToSearch}
-        />
-      </div>
-    </>
+      {/* Mobile Humburger Menu */}
+      <HumbergerMenu
+        openSidebar={openSidebar}
+        toggleDrawer={toggleDrawer}
+        cartItems={cartItems}
+        searchInput={searchInput}
+        handleSearch={handleSearch}
+        switchToSearch={switchToSearch}
+      />
+    </div>
   );
 };
 
 const HumbergerMenu = (props) => {
   const classes = useStyles();
-  const {
-    openSidebar,
-    toggleDrawer,
-    cartItems,
-    searchInput,
-    handleSearch,
-    switchToSearch,
-  } = props;
+  const { openSidebar, toggleDrawer, cartItems, searchInput, handleSearch, switchToSearch } = props;
 
   return (
-    <Drawer
-      anchor={"left"}
-      open={openSidebar}
-      onOpen={toggleDrawer(true)}
-      onClose={toggleDrawer(false)}
-    >
+    <Drawer anchor={"left"} open={openSidebar} onOpen={toggleDrawer(true)} onClose={toggleDrawer(false)}>
       <Box sx={{ width: 250 }} role="presentation">
         <List>
           {/* Brand Title */}
           <ListItem button className={classes.humbergerTitle}>
-            <Typography
-              component={Link}
-              to="/"
-              className={classes.title}
-              onClick={toggleDrawer(false)}
-            >
+            <Typography component={Link} to="/" className={classes.title} onClick={toggleDrawer(false)}>
               Commerce.js
             </Typography>
           </ListItem>
@@ -342,7 +286,7 @@ const HumbergerMenu = (props) => {
               <SearchIcon />
             </div>
             <InputBase
-              placeholder="Search & Go..."
+              placeholder="Search &amp; Go..."
               classes={{
                 root: classes.inputRoot,
                 input: classes.humbergerInputInput,
@@ -377,10 +321,7 @@ const HumbergerMenu = (props) => {
             style={{ marginTop: 7, marginLeft: 6 }}
           >
             <ListItemIcon>
-              <Badge
-                badgeContent={cartItems > 0 ? cartItems : `0`}
-                color="error"
-              >
+              <Badge badgeContent={cartItems > 0 ? cartItems : `0`} color="error">
                 <ShoppingCartTwoToneIcon />
               </Badge>
             </ListItemIcon>

@@ -4,6 +4,9 @@ import axios from "axios";
 // React-Router-Dom
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 
+// Helpers
+import { saveInCache, getFromCache } from "../helper/cache";
+
 // Commerce.js Instance
 import { commerce } from "../lib/commerce";
 
@@ -30,8 +33,6 @@ const formatPrice = (price) => {
 };
 
 const HomePage = () => {
-  const [loading, setLoading] = useState(true);
-
   const alertFunc = useRef(null);
   const [alertContent, setAlertContent] = useState({
     message: "",
@@ -49,35 +50,52 @@ const HomePage = () => {
   const [errorMessage, setErrorMessage] = useState("");
 
   useLayoutEffect(() => {
-    try {
-      setLoading(true);
+    let isMounted = true;
 
+    try {
       /** CATEGORIES */
       const fetchCategories = async () => {
         const { data } = await commerce.categories.list();
-        setCategories(data);
+        saveInCache("categories", data);
+        if (isMounted) setCategories(data);
       };
-      fetchCategories();
+
+      // use categories if already in cache otherwise fetch
+      const getCategories = getFromCache("categories");
+      if (getCategories?.length > 0) {
+        if (isMounted) setCategories([...getCategories]);
+      } else fetchCategories();
 
       /** LATEST PRODUCTS */
       const fetchLatestProducts = async () => {
-        const response = await commerce.products.list({
+        const { data } = await commerce.products.list({
           sortBy: "updated_at",
           sortOrder: "desc",
           limit: 12,
         });
-        setAllProducts(response.data);
+        saveInCache("latest_products", data);
+        if (isMounted) setAllProducts(data);
       };
-      fetchLatestProducts();
-      setTimeout(() => {
-        setLoading(false);
-      }, 2000);
-    } catch (error) {
-      console.log(error);
+
+      // use latest_products if already in cache otherwise fetch
+      const getLatestProducts = getFromCache("latest_products");
+      if (getLatestProducts?.length > 0) {
+        if (isMounted) setAllProducts([...getLatestProducts]);
+      } else fetchLatestProducts();
+    } catch (err) {
+      console.log(err);
     }
+
+    // cleanup function
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
+  // NEWS Carousel, Grid and Cart
   useEffect(() => {
+    let isMounted = true;
+
     try {
       /** NEWS Carousel */
       const fetchNewsCarousel = () => {
@@ -93,14 +111,13 @@ const HomePage = () => {
           headers: {
             "x-bingapis-sdk": "true",
             "x-rapidapi-host": "bing-news-search1.p.rapidapi.com",
-            "x-rapidapi-key":
-              "6f7060b3efmsh122f3af8594763dp1e7b8ajsn7ff3f2f5bd27",
+            "x-rapidapi-key": "6f7060b3efmsh122f3af8594763dp1e7b8ajsn7ff3f2f5bd27",
           },
         };
         axios
           .request(options)
           .then(function (response) {
-            setNewsCarousel(response.data.value);
+            if (isMounted) setNewsCarousel(response.data.value);
           })
           .catch(function (error) {
             console.error(error);
@@ -122,14 +139,13 @@ const HomePage = () => {
           headers: {
             "x-bingapis-sdk": "true",
             "x-rapidapi-host": "bing-news-search1.p.rapidapi.com",
-            "x-rapidapi-key":
-              "6f7060b3efmsh122f3af8594763dp1e7b8ajsn7ff3f2f5bd27",
+            "x-rapidapi-key": "6f7060b3efmsh122f3af8594763dp1e7b8ajsn7ff3f2f5bd27",
           },
         };
         axios
           .request(options)
           .then(function (response) {
-            setNewsGridCards(response.data.value);
+            if (isMounted) setNewsGridCards(response.data.value);
           })
           .catch(function (error) {
             console.error(error);
@@ -139,12 +155,17 @@ const HomePage = () => {
 
       /** FETCH CART */
       const fetchCart = async () => {
-        setCart(await commerce.cart.retrieve());
+        if (isMounted) setCart(await commerce.cart.retrieve());
       };
       fetchCart();
     } catch (error) {
       console.log(error);
     }
+
+    // cleanup function
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   /** ADD TO CART */
@@ -152,8 +173,7 @@ const HomePage = () => {
     const addItem = async (p_id) => {
       const response = await commerce.cart.add(p_id, qty);
       setCart(response.cart);
-      if (response.success)
-        handleAlertMessage("success", "Item Added in Cart!");
+      if (response.success) handleAlertMessage("success", "Item Added in Cart!");
       else handleAlertMessage("error", "Error Occured!");
     };
     addItem(p_id, qty);
@@ -164,8 +184,7 @@ const HomePage = () => {
     const updateCart = async (item_id, qty) => {
       const response = await commerce.cart.update(item_id, { quantity: qty });
       setCart(response.cart);
-      if (response.success)
-        handleAlertMessage("success", "Item Updated in Cart!");
+      if (response.success) handleAlertMessage("success", "Item Updated in Cart!");
       else handleAlertMessage("error", "Error Occured!");
     };
     updateCart(item_id, qty);
@@ -176,8 +195,7 @@ const HomePage = () => {
     const removeItem = async (id) => {
       const response = await commerce.cart.remove(id);
       setCart(response.cart);
-      if (response.success)
-        handleAlertMessage("success", "Item Removed from Cart!");
+      if (response.success) handleAlertMessage("success", "Item Removed from Cart!");
       else handleAlertMessage("error", "Error Occured!");
     };
     removeItem(item_id);
@@ -192,10 +210,7 @@ const HomePage = () => {
   /** CAPTURE CHECKOUT */
   const handleCaptureCheckout = async (checkoutTokenId, newOrder) => {
     try {
-      const incomingOrder = await commerce.checkout.capture(
-        checkoutTokenId,
-        newOrder
-      );
+      const incomingOrder = await commerce.checkout.capture(checkoutTokenId, newOrder);
       setOrder(incomingOrder);
       refreshCart();
     } catch (error) {
@@ -223,35 +238,28 @@ const HomePage = () => {
             {/* Home Carousel & Categories Listing */}
             <HomeBanner categories={categories} />
 
-            {!loading ? (
-              <div>
-                {/* ProductSlider for all Sub-Categories */}
-                {[...categories].map((parent_category, idx) => {
-                  return (
-                    <div key={idx}>
-                      {[...parent_category.children].map((sub_category) => {
-                        return (
-                          <div key={sub_category.id}>
-                            <ProductSlider
-                              categorySlug={sub_category.slug}
-                              title={"Branded " + sub_category.name}
-                            />
-                          </div>
-                        );
-                      })}
-                    </div>
-                  );
-                })}
-
-                {/* Latest Products */}
-                <div>
-                  <SectionHeader title="Latest Products" />
-                  <ProductGrid products={allProducts} />
+            {/* ProductSlider for all Sub-Categories */}
+            {[...categories].map((parent_category, idx) => {
+              return (
+                <div key={idx}>
+                  {[...parent_category.children].map((sub_category) => {
+                    return (
+                      <div key={sub_category.id}>
+                        <ProductSlider categorySlug={sub_category.slug} title={"Branded " + sub_category.name} />
+                      </div>
+                    );
+                  })}
                 </div>
-              </div>
-            ) : (
-              ``
-            )}
+              );
+            })}
+
+            {/* Latest Products */}
+            <div>
+              <SectionHeader title="Latest Products" />
+              <ProductGrid products={allProducts} />
+            </div>
+
+            {/* Quotes Policy & NEWS Panel */}
             <QuotesPolicy />
             <NewsGrid newsCarousel={newsCarousel} />
           </Route>
@@ -265,10 +273,7 @@ const HomePage = () => {
           </Route>
 
           <Route path="/newsfeed" exact>
-            <NewsGrid
-              newsCarousel={newsCarousel}
-              newsGridCards={newsGridCards}
-            />
+            <NewsGrid newsCarousel={newsCarousel} newsGridCards={newsGridCards} />
           </Route>
 
           <Route path="/contact" exact>
@@ -276,11 +281,7 @@ const HomePage = () => {
           </Route>
 
           <Route path="/cart" exact>
-            <Cart
-              cart={cart}
-              handleUpdateInCart={handleUpdateInCart}
-              handleRemoveFromCart={handleRemoveFromCart}
-            />
+            <Cart cart={cart} handleUpdateInCart={handleUpdateInCart} handleRemoveFromCart={handleRemoveFromCart} />
           </Route>
 
           <Route path="/search/:search" exact>
@@ -288,12 +289,7 @@ const HomePage = () => {
           </Route>
 
           <Route path="/checkout" exact>
-            <Checkout
-              cart={cart}
-              order={order}
-              onCaptureCheckout={handleCaptureCheckout}
-              error={errorMessage}
-            />
+            <Checkout cart={cart} order={order} onCaptureCheckout={handleCaptureCheckout} error={errorMessage} />
           </Route>
 
           <Route path="/product/:id">

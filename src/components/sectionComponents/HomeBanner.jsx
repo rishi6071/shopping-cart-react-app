@@ -47,59 +47,32 @@ const HomeBanner = (props) => {
           >
             {[...homeBanners].map((bannerItem) => {
               return (
-                <>
-                  <Fragment key={bannerItem.id}>
-                    <Grid container className={classes.bannerBox}>
-                      <Grid
-                        item
-                        xl={4}
-                        sm={12}
-                        md={6}
-                        container
-                        direction="column"
-                        justifyContent="center"
-                        className={classes.bannerContent}
-                      >
-                        <Typography variantMapping="p" className={classes.mt3}>
-                          New Inspiration 2022
-                        </Typography>
-                        <Typography
-                          variant="h5"
-                          className={classes.bannerBoldContent}
-                        >
-                          {bannerItem.title}
-                        </Typography>
-                        <Typography
-                          variant="h6"
-                          color="textSecondary"
-                          className={classes.bannerSubTitle}
-                        >
-                          {bannerItem.subtitle}
-                        </Typography>
-                        <Button
-                          variant="contained"
-                          className={classes.bannerBtn}
-                        >
-                          Shop Now
-                        </Button>
-                      </Grid>
-                      <Grid
-                        item
-                        xl={8}
-                        sm={12}
-                        md={6}
-                        className={classes.bannerImgBox}
-                      >
-                        <img
-                          src={bannerItem.url}
-                          className={classes.bannerImg}
-                          alt="Product Banner"
-                          loading="lazy"
-                        />
-                      </Grid>
-                    </Grid>
-                  </Fragment>
-                </>
+                <Grid container className={classes.bannerBox} key={`banner_${bannerItem.id}`}>
+                  <Grid
+                    item
+                    xl={4}
+                    sm={12}
+                    md={6}
+                    container
+                    direction="column"
+                    justifyContent="center"
+                    className={classes.bannerContent}
+                  >
+                    <Typography className={classes.mt3}>New Inspiration 2022</Typography>
+                    <Typography variant="h5" className={classes.bannerBoldContent}>
+                      {bannerItem.title}
+                    </Typography>
+                    <Typography variant="h6" color="textSecondary" className={classes.bannerSubTitle}>
+                      {bannerItem.subtitle}
+                    </Typography>
+                    <Button variant="contained" className={classes.bannerBtn}>
+                      Shop Now
+                    </Button>
+                  </Grid>
+                  <Grid item xl={8} sm={12} md={6} className={classes.bannerImgBox}>
+                    <img src={bannerItem.url} className={classes.bannerImg} alt="Product Banner" loading="lazy" />
+                  </Grid>
+                </Grid>
               );
             })}
           </Glide>
@@ -108,13 +81,7 @@ const HomeBanner = (props) => {
 
       {/* Second Category Section */}
       <div data-aos="zoom-up">
-        <Grid
-          container
-          direction="row"
-          justifyContent="center"
-          className={classes.collection}
-          spacing={2}
-        >
+        <Grid container direction="row" justifyContent="center" className={classes.collection} spacing={2}>
           {[...categories].map((collection) => {
             let iterable = collection.children;
             if (collection.children.length > 0) iterable = collection.children;
@@ -123,40 +90,18 @@ const HomeBanner = (props) => {
               <>
                 {[...iterable].map((category) => {
                   return (
-                    <Grid item sm={6} xs={12} key={category.id}>
+                    <Grid item sm={6} xs={12} key={`category_${category.id}`}>
                       <Grid className={classes.collectionItem}>
                         <Grid container justifyContent="center">
-                          <Grid
-                            item
-                            xs={6}
-                            className={classes.collectionImgBox}
-                          >
-                            <img
-                              src={category.assets[0].url}
-                              className={classes.collectionImg}
-                              alt={category.name}
-                            />
+                          <Grid item xs={6} className={classes.collectionImgBox}>
+                            <img src={category.assets[0].url} className={classes.collectionImg} alt={category.name} />
                           </Grid>
-                          <Grid
-                            item
-                            xs={6}
-                            container
-                            alignItems="center"
-                            justifyContent="space-around"
-                          >
+                          <Grid item xs={6} container alignItems="center" justifyContent="space-around">
                             <Grid>
-                              <Typography
-                                variantMapping="p"
-                                className={classes.collectionSlogan}
-                              >
-                                {category.description === undefined
-                                  ? "Newly Branded"
-                                  : category.description}
+                              <Typography className={classes.collectionSlogan}>
+                                {category.description === undefined ? "Newly Branded" : category.description}
                               </Typography>
-                              <Typography
-                                variant="h6"
-                                className={classes.collectionBoldContent}
-                              >
+                              <Typography variant="h6" className={classes.collectionBoldContent}>
                                 {category.name}
                               </Typography>
                               <Button

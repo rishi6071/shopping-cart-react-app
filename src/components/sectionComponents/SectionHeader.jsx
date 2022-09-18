@@ -20,48 +20,36 @@ const SectionHeader = (props) => {
   useEffect(() => {
     if (title === "productDetailsSections") {
       for (let i = 0; i < ProductSectionLinks.length; i++) {
-        ProductSectionLinks[i].path = ProductSectionLinks[i].path.replace(
-          "/1",
-          `/${productId}`
-        );
+        ProductSectionLinks[i].path = ProductSectionLinks[i].path.replace("/1", `/${productId}`);
       }
       setSectionLinks([...ProductSectionLinks]);
     } else if (title === "newsPanel") {
       setSectionLinks([...NewsPanel]);
     } else {
-      setSectionLinks([
-        { id: `commercejs_${title}`, name: `${title}`, path: `#` },
-      ]);
+      setSectionLinks([{ id: `commercejs_${title}`, name: `${title}`, path: `#` }]);
     }
   }, [title, productId]);
 
   return (
-    <>
-      <Container className={classes.sectionHead}>
-        <Grid
-          container
-          justifyContent="center"
-          alignItems="center"
-          direction="row"
-        >
-          {[...sectionLinks].map((linkItem) => {
-            return (
-              <Grid className={classes.sectionHeadItem} key={linkItem.id}>
-                <NavLink
-                  to={linkItem.path}
-                  exact
-                  className={classes.sectionHeadTitle}
-                  activeClassName={classes.activeSectionHeadTitle}
-                >
-                  <StopIcon className={classes.sectionHeadIcon} />
-                  <span>{linkItem.name}</span>
-                </NavLink>
-              </Grid>
-            );
-          })}
-        </Grid>
-      </Container>
-    </>
+    <Container className={classes.sectionHead}>
+      <Grid container justifyContent="center" alignItems="center" direction="row">
+        {[...sectionLinks].map((linkItem) => {
+          return (
+            <Grid className={classes.sectionHeadItem} key={linkItem.id}>
+              <NavLink
+                to={linkItem.path}
+                exact
+                className={classes.sectionHeadTitle}
+                activeClassName={classes.activeSectionHeadTitle}
+              >
+                <StopIcon className={classes.sectionHeadIcon} />
+                <span>{linkItem.name}</span>
+              </NavLink>
+            </Grid>
+          );
+        })}
+      </Grid>
+    </Container>
   );
 };
 

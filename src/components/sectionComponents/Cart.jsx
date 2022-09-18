@@ -51,18 +51,29 @@ const Cart = (props) => {
           <TableContainer
             component={Paper}
             className={classes.cartItemBox}
+            style={{ marginTop: 15 }}
             data-box="cartBox"
             id={cart.id}
           >
             <Table sx={{ minWidth: 650 }} aria-label="simple table">
               <TableHead>
                 <TableRow className={classes.cartTableHead}>
-                  <TableCell align="center">Product</TableCell>
+                  <TableCell align="center" size="small">
+                    Product
+                  </TableCell>
                   <TableCell style={{ minWidth: 150 }}>Name</TableCell>
-                  <TableCell align="center">Unit Price</TableCell>
-                  <TableCell align="center">Quantity</TableCell>
-                  <TableCell align="center">Total</TableCell>
-                  <TableCell align="center">Remove</TableCell>
+                  <TableCell align="center" size="small">
+                    Unit Price
+                  </TableCell>
+                  <TableCell align="center" size="small">
+                    Quantity
+                  </TableCell>
+                  <TableCell align="center" size="small">
+                    Total
+                  </TableCell>
+                  <TableCell align="center" size="small">
+                    Remove
+                  </TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -72,19 +83,11 @@ const Cart = (props) => {
                     id={product.product_id}
                     sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                   >
-                    <TableCell
-                      component="th"
-                      scope="row"
-                      className={classes.cartItemImgBox}
-                    >
-                      <img
-                        src={product ? product.image.url : ``}
-                        alt={product.product_name}
-                      />
+                    <TableCell component="th" scope="row" className={classes.cartItemImgBox}>
+                      <img src={product ? product.image.url : ``} alt={product.product_name} />
                     </TableCell>
                     <TableCell>
                       <Typography
-                        variantMapping="p"
                         component={Link}
                         to={"/product/" + product.product_id}
                         className={classes.cartItemName}
@@ -96,9 +99,7 @@ const Cart = (props) => {
                     </Typography> */}
                     </TableCell>
                     <TableCell className={classes.cartItemPrice} align="center">
-                      {product
-                        ? formatPrice(product.price.formatted_with_symbol)
-                        : ``}
+                      {product ? formatPrice(product.price.formatted_with_symbol) : ``}
                     </TableCell>
                     <TableCell align="center">
                       <Typography className={classes.productQuantityField}>
@@ -110,11 +111,7 @@ const Cart = (props) => {
                           <Button
                             className={classes.quantityButtons}
                             onClick={() => {
-                              updateCartWithValidation(
-                                "-",
-                                product.id,
-                                product.quantity
-                              );
+                              updateCartWithValidation("-", product.id, product.quantity);
                             }}
                           >
                             <RemoveIcon />
@@ -130,11 +127,7 @@ const Cart = (props) => {
                           <Button
                             className={classes.quantityButtons}
                             onClick={() => {
-                              updateCartWithValidation(
-                                "+",
-                                product.id,
-                                product.quantity
-                              );
+                              updateCartWithValidation("+", product.id, product.quantity);
                             }}
                           >
                             <AddIcon />
@@ -143,15 +136,10 @@ const Cart = (props) => {
                       </Typography>
                     </TableCell>
                     <TableCell className={classes.cartItemPrice} align="center">
-                      {product
-                        ? formatPrice(product.line_total.formatted_with_symbol)
-                        : ``}
+                      {product ? formatPrice(product.line_total.formatted_with_symbol) : ``}
                     </TableCell>
                     <TableCell align="center">
-                      <Button
-                        className={classes.cartItemRemoveBtn}
-                        onClick={() => handleRemoveFromCart(product.id)}
-                      >
+                      <Button className={classes.cartItemRemoveBtn} onClick={() => handleRemoveFromCart(product.id)}>
                         <ClearIcon />
                       </Button>
                     </TableCell>
@@ -159,25 +147,15 @@ const Cart = (props) => {
                 ))}
 
                 {/* Continue Shopping Row */}
-                <TableRow
-                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                >
+                <TableRow sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
                   <TableCell component="th" scope="row" colSpan={3}>
-                    <Button
-                      component={Link}
-                      to="/shop"
-                      contained="filled"
-                      className={classes.cartButtons}
-                    >
+                    <Button component={Link} to="/shop" contained="filled" className={classes.cartButtons}>
                       Continue Shopping
                     </Button>
                   </TableCell>
                   <TableCell colSpan={3}>
                     <FormGroup>
-                      <FormControlLabel
-                        control={<Checkbox />}
-                        label="Shipping (+ ₹150)"
-                      />
+                      <FormControlLabel control={<Checkbox />} label="Shipping (+ ₹150)" />
                     </FormGroup>
                   </TableCell>
                 </TableRow>
@@ -187,58 +165,32 @@ const Cart = (props) => {
 
           {/* Billing */}
           <Grid container className={classes.billingBox} md={6} sm={8} xs={11}>
-            <Typography variantMapping="p" className={classes.billingHead}>
-              Cart Totals
-            </Typography>
+            <Typography className={classes.billingHead}>Cart Totals</Typography>
 
             <TableContainer component={Paper} style={{ boxShadow: "none" }}>
               <Table aria-label="simple table">
                 <TableBody>
-                  <TableRow
-                    sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                  >
-                    <TableCell
-                      component="th"
-                      scope="row"
-                      className={classes.billingItemHead}
-                    >
+                  <TableRow sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
+                    <TableCell component="th" scope="row" className={classes.billingItemHead}>
                       Subtotal
                     </TableCell>
-                    <TableCell
-                      align="right"
-                      className={classes.billingItemPrice}
-                    >
+                    <TableCell align="right" className={classes.billingItemPrice}>
                       {cart.subtotal ? cart.subtotal.formatted_with_symbol : ``}
                     </TableCell>
                   </TableRow>
-                  <TableRow
-                    sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                  >
-                    <TableCell
-                      component="th"
-                      scope="row"
-                      className={classes.billingItemHead}
-                    >
+                  <TableRow sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
+                    <TableCell component="th" scope="row" className={classes.billingItemHead}>
                       Shipping
                     </TableCell>
                     <TableCell align="right" className={classes.shippingPrice}>
                       <span>₹</span>0
                     </TableCell>
                   </TableRow>
-                  <TableRow
-                    sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                  >
-                    <TableCell
-                      component="th"
-                      scope="row"
-                      className={classes.billingItemHead}
-                    >
+                  <TableRow sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
+                    <TableCell component="th" scope="row" className={classes.billingItemHead}>
                       Total
                     </TableCell>
-                    <TableCell
-                      align="right"
-                      className={classes.billingItemPrice}
-                    >
+                    <TableCell align="right" className={classes.billingItemPrice}>
                       {cart.subtotal ? cart.subtotal.formatted_with_symbol : ``}
                     </TableCell>
                   </TableRow>
@@ -246,12 +198,7 @@ const Cart = (props) => {
               </Table>
             </TableContainer>
 
-            <Button
-              component={Link}
-              to="/checkout"
-              contained="filled"
-              className={classes.cartButtons}
-            >
+            <Button component={Link} to="/checkout" contained="filled" className={classes.cartButtons}>
               Proceed To Checkout
             </Button>
           </Grid>

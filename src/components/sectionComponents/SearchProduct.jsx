@@ -25,6 +25,8 @@ const SearchProduct = () => {
   const [searchProducts, setSearchProducts] = useState([]);
 
   useEffect(() => {
+    let isMounted = true;
+
     try {
       const fetchSearchProducts = async () => {
         window.scrollTo({ top: 0 });
@@ -34,14 +36,21 @@ const SearchProduct = () => {
           limit: 16,
           page: currentPage,
         });
-        setTotalPage(response.meta.pagination.total_pages);
-        setSearchProducts(response.data);
+        if (isMounted) {
+          setTotalPage(response?.meta?.pagination.total_pages);
+          setSearchProducts(response?.data);
+        }
         setLoading(false);
       };
       fetchSearchProducts();
     } catch (e) {
       console.log(e);
     }
+
+    // cleanup function
+    return () => {
+      isMounted = false;
+    };
   }, [search, currentPage]);
 
   const handlePagination = (event, value) => {
@@ -49,38 +58,36 @@ const SearchProduct = () => {
   };
 
   return (
-    <>
-      <Grid container className={classes.root} sm={11} xs={12}>
-        <Typography variantMapping="p" className={classes.searchHead}>
-          <strong>Search Results For:</strong> <span>{search}</span>
-        </Typography>
+    <Grid container className={classes.root} sm={11} xs={12}>
+      <Typography className={classes.searchHead}>
+        <strong>Search Results For:</strong> <span>{search}</span>
+      </Typography>
 
-        {searchProducts ? (
-          <Grid container>
-            {!loading ? (
-              <div>
-                <ProductGrid products={searchProducts} />
-                <Grid container justifyContent="center" alignItems="center">
-                  <Pagination
-                    className={classes.paginationBox}
-                    count={totalPage}
-                    page={currentPage}
-                    onChange={handlePagination}
-                    color="primary"
-                  />
-                </Grid>
-              </div>
-            ) : (
-              <ProdGridSkeleton count={8} />
-            )}
-          </Grid>
-        ) : (
-          <Grid container className={classes.noResultFound}>
-            <img src={NoResultFound} alt="NoItemFound" />
-          </Grid>
-        )}
-      </Grid>
-    </>
+      {searchProducts ? (
+        <Grid container>
+          {!loading ? (
+            <div>
+              <ProductGrid products={searchProducts} />
+              <Grid container justifyContent="center" alignItems="center">
+                <Pagination
+                  className={classes.paginationBox}
+                  count={totalPage}
+                  page={currentPage}
+                  onChange={handlePagination}
+                  color="primary"
+                />
+              </Grid>
+            </div>
+          ) : (
+            <ProdGridSkeleton count={8} />
+          )}
+        </Grid>
+      ) : (
+        <Grid container className={classes.noResultFound}>
+          <img src={NoResultFound} alt="NoItemFound" />
+        </Grid>
+      )}
+    </Grid>
   );
 };
 

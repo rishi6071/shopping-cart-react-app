@@ -2,9 +2,6 @@ import React, { useState, useEffect } from "react";
 import { isMobile } from "react-device-detect";
 import "../css/style.css";
 
-// Custom Components
-import SectionHeader from "./SectionHeader";
-
 // Commerce.js Instance
 import { commerce } from "../../lib/commerce";
 
@@ -15,9 +12,12 @@ import "react-multi-carousel/lib/styles.css";
 // Material-UI Components
 import Grid from "@material-ui/core/Grid";
 
-import useStyles, {
-  responsiveProductCards,
-} from "../css/ProductGridItemSliderStyle";
+// Helpers
+import { saveInCache, getFromCache } from "../../helper/cache";
+
+// Custom Components
+import useStyles, { responsiveProductCards } from "../css/ProductGridItemSliderStyle";
+import SectionHeader from "./SectionHeader";
 import ProductItem from "./ProductItem";
 
 const ProductSlider = (props) => {
@@ -26,6 +26,8 @@ const ProductSlider = (props) => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
+    let isMounted = true;
+
     try {
       // Fetch All Category Products
       const fetchCategoryProducts = async () => {
@@ -33,11 +35,21 @@ const ProductSlider = (props) => {
           category_slug: [categorySlug],
           limit: 10,
         });
-        setProducts(data);
+        saveInCache(categorySlug, data);
+        if (isMounted) setProducts(data);
       };
-      fetchCategoryProducts();
+
+      // use products if already in cache otherwise fetch
+      const getProducts = getFromCache(categorySlug);
+      if (getProducts?.length > 0) setProducts([...getProducts]);
+      else fetchCategoryProducts();
     } catch (e) {
       console.log(e);
+    }
+
+    // cleanup function
+    return () => {
+      isMounted = false;
     }
   }, [categorySlug]);
 

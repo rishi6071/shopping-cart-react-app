@@ -114,7 +114,7 @@ const Contact = () => {
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14723.890194393827!2d75.82225400922567!3d22.69206581440997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3962fc4ba88d9735%3A0x20b7ae13a5b8a1d3!2sSudama%20Nagar%2C%20Indore%2C%20Madhya%20Pradesh%20452009!5e0!3m2!1sen!2sin!4v1632565971102!5m2!1sen!2sin"
             className={classes.contactMap}
-            allowfullscreen=""
+            allowFullScreen=""
             loading="lazy"
             title="Office Address"
           ></iframe>
