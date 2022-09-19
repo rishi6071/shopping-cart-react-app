@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, NavLink } from "react-router-dom";
 import useStyles, { categories, valuetext } from "../css/ShopStyle";
 
 // Custom Components
@@ -19,7 +19,6 @@ import {
   TableBody,
   TableRow,
   Paper,
-  Link,
   Slider,
 } from "@material-ui/core";
 import { Rating, Pagination, InputLabel, MenuItem, FormControl, Select } from "@mui/material";
@@ -27,6 +26,7 @@ import { Rating, Pagination, InputLabel, MenuItem, FormControl, Select } from "@
 const Shop = () => {
   const classes = useStyles();
   const { category } = useParams();
+
   const [loading, setLoading] = useState(false);
   const [products, setProducts] = useState([]);
 
@@ -93,17 +93,17 @@ const Shop = () => {
                 {[...categories].map((category) => {
                   return (
                     <TableRow
-                      key={category.id}
+                      key={category?.id}
                       sx={{
                         "&:last-child td, &:last-child th": { border: 0 },
                       }}
                     >
                       <TableCell component="th" scope="row">
-                        <Link href="#" className={classes.categoryName}>
-                          {category.name}
-                        </Link>
+                        <NavLink to={`/shop/category/${category?.slug}`} className={classes.categoryName}>
+                          {category?.name}
+                        </NavLink>
                       </TableCell>
-                      <TableCell align="right">({category.inStock})</TableCell>
+                      <TableCell align="right">({category?.inStock})</TableCell>
                     </TableRow>
                   );
                 })}

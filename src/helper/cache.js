@@ -11,10 +11,14 @@ export const saveInCache = (key, value) => {
 
 // get from cache
 export const getFromCache = (key) => {
-  const cache_store = JSON.parse(localStorage.getItem(STORE));
+  try {
+    const cache_store = JSON.parse(localStorage.getItem(STORE));
 
-  if (!cache_store) return null;
-  return cache_store[key] || null;
+    if (!cache_store) return null;
+    return cache_store[key] || null;
+  } catch (err) {
+    return null;
+  }
 };
 
 // delete from cache

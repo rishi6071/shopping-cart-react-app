@@ -27,6 +27,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   categoryName: {
+    textDecoration: "none",
     fontSize: "14.5px",
     "&:hover": {
       textDecoration: "none",
@@ -61,16 +62,19 @@ const categories = [
   {
     id: "category1",
     name: "Mobile",
+    slug: "mobiles",
     inStock: "35",
   },
   {
     id: "category2",
     name: "Headphone",
+    slug: "headphones",
     inStock: "55",
   },
   {
     id: "category3",
     name: "Laptop",
+    slug: "laptops",
     inStock: "15",
   },
 ];

@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: 40,
     background: "#f1f1f1",
     [theme.breakpoints.down("xs")]: {
-      height: 550,
+      height: 580,
     },
   },
   mt3: {
@@ -46,11 +46,14 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   bannerContent: {
+    height: 500,
     paddingLeft: 100,
     paddingBottom: 20,
     [theme.breakpoints.down("sm")]: {
+      height: "auto",
       alignItems: "center",
       paddingLeft: 0,
+      paddingTop: 20
     },
   },
   bannerBoldContent: {
@@ -164,18 +167,21 @@ const homeBanners = [
     id: "banner_1",
     url: Banner1,
     title: "Phones Made For You!",
+    slug: "mobiles",
     subtitle: "Trending Mobiles, Headphone and Accessories Collection",
   },
   {
     id: "banner_2",
     url: Banner2,
     title: "Plug it, listen to it, feel it!",
+    slug: "headphones",
     subtitle: "Trending Mobiles, Headphone and Accessories Collection",
   },
   {
     id: "banner_3",
     url: Banner3,
     title: "Lightweight, powerful, built to last",
+    slug: "laptops",
     subtitle: "Trending Mobiles, Headphone and Accessories Collection",
   },
 ];

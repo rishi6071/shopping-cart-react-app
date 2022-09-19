@@ -60,17 +60,22 @@ const HomeBanner = (props) => {
                   >
                     <Typography className={classes.mt3}>New Inspiration 2022</Typography>
                     <Typography variant="h5" className={classes.bannerBoldContent}>
-                      {bannerItem.title}
+                      {bannerItem?.title}
                     </Typography>
                     <Typography variant="h6" color="textSecondary" className={classes.bannerSubTitle}>
-                      {bannerItem.subtitle}
+                      {bannerItem?.subtitle}
                     </Typography>
-                    <Button variant="contained" className={classes.bannerBtn}>
+                    <Button
+                      variant="contained"
+                      className={classes.bannerBtn}
+                      component={Link}
+                      to={"/shop/category/" + bannerItem?.slug}
+                    >
                       Shop Now
                     </Button>
                   </Grid>
                   <Grid item xl={8} sm={12} md={6} className={classes.bannerImgBox}>
-                    <img src={bannerItem.url} className={classes.bannerImg} alt="Product Banner" loading="lazy" />
+                    <img src={bannerItem?.url} className={classes.bannerImg} alt="Product Banner" loading="lazy" />
                   </Grid>
                 </Grid>
               );
